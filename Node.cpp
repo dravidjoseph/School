@@ -8,7 +8,7 @@
 #include "Node.h"
 
 Node::Node():m_value(0),m_next(nullptr){
-	
+
 }
 
 void Node::setValue(int val){

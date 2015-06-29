@@ -5,6 +5,8 @@
 * @brief: Implementation file for LinkedList.h
 ********************************************************/
 
+#include "LinkedList.h"
+
 LinkedList::LinkedList():m_top(nullptr),m_size(0){
 	
 }
