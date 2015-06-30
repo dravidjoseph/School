@@ -48,24 +48,24 @@ int main(){
 			
 			std::cout<<"Adding "<<val<<" to the back of list.";
 			
-			list->addFront(val);
+			list->addBack(val);
 		}
 		else if(choice == 3){
-			std::cout<<"Attempting removal from front of list.";
+			std::cout<<"Attempting removal from front of list.\n";
 			if(list->removeFront()){
-				std::cout<<"Removal successful";
+				std::cout<<"Removal successful\n";
 			}
 			else{
-				std::cout<<"Removal failed";
+				std::cout<<"Removal failed\n";
 			}
 		}
 		else if(choice == 4){
-			std::cout<<"Attempting removal from back of list.";
+			std::cout<<"Attempting removal from back of list.\n";
 			if(list->removeBack()){
-				std::cout<<"Removal successful";
+				std::cout<<"Removal successful\n";
 			}
 			else{
-				std::cout<<"Removal failed";
+				std::cout<<"Removal failed\n";
 			}
 		}
 		else if(choice == 5){

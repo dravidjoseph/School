@@ -28,22 +28,23 @@ int LinkedList::size() const{
 
 bool LinkedList::search(int value) const{
 	
-	Node* traverse = m_front;
-	bool flag = false;
 	
-	while(traverse->getNext() != nullptr || flag){
-		if(traverse->getValue() == value){
-			flag = true;
-		}
-		else{
-			traverse = traverse->getNext();
-		}
+	if(isEmpty()){
+		return false;
 	}
-	if(traverse->getValue() == value){
-		flag = true;
+	else{
+		Node* traverse = m_front;
+		while(traverse != nullptr){
+			if(traverse->getValue() == value){
+				return true;
+			}
+			else{
+				traverse = traverse->getNext();
+			}
+		}
+		
+		return false;
 	}
-	
-	return flag;
 	
 }
 
@@ -107,7 +108,7 @@ bool LinkedList::removeBack(){
 		}
 		delete traverse2;
 		traverse2 = nullptr;
-		traverse1 = nullptr;
+		traverse1->setNext(nullptr);
 		
 		m_size--;
 		
