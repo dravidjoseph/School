@@ -7,7 +7,7 @@
 
 #include "LinkedList.h"
 
-LinkedList::LinkedList():m_top(nullptr),m_size(0){
+LinkedList::LinkedList():m_front(nullptr),m_size(0){
 	
 }
 
@@ -23,6 +23,10 @@ int LinkedList::size() const{
 	return m_size;
 }
 
+bool LinkedList::search(int value) const{
+	return true;
+}
+
 void LinkedList::printList() const{
 	
 }
@@ -36,11 +40,11 @@ void LinkedList::addFront(int value){
 }
 
 bool LinkedList::removeBack(){
-	
+	return true;
 }
 
 bool LinkedList::removeFront(){
-	
+	return true;
 }
 
 
