@@ -26,7 +26,7 @@ int main(){
 	int choice = 0;
 	int val = 0;
 	LinkedList* list = new LinkedList();
-	
+
 	while(!flag){
 		
 		printMenu();
@@ -91,32 +91,5 @@ int main(){
 		}	
 		
 	}
-	
-	
 
-/**	
-	Node* newNode1 = new Node();
-	Node* newNode2 = new Node();
-	
-	Node* traverse;
-	
-	newNode1->setValue(35);
-	newNode2->setValue(25);
-	newNode1->setNext(newNode2);
-	
-	std::cout<<newNode1->getValue()<<"\n";
-	std::cout<<newNode2->getValue()<<"\n";
-	
-	traverse = newNode1;
-	
-	std::cout<<traverse->getValue()<<"\n";
-	
-	traverse = traverse->getNext();
-	
-	std::cout<<traverse->getValue()<<"\n";
-*/	
-	
-	
-	
-	
 }
