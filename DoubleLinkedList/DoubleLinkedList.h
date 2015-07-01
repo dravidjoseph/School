@@ -1,16 +1,20 @@
 /*******************************************************
-* @file: Node.h
+* @file: DoubleLinkedList.h
 * @author: Dravid Joseph
 * @date: 6/30/15
-* @brief: Header file for Node class
+* @brief: Header file for DoubleLinkedList class
 ********************************************************/
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef DOUBLE_LINKED_LIST_H
+#define DOUBLE_LINKED_LIST_H
+
+//User-defined libraries
+#include <stdexcept>
+
 
 template<typename T>;
 
-class Node{
+class DoubleLinkedList{
 	
 	/*******************************************************
 	* PUBLIC METHDOS
@@ -20,52 +24,67 @@ public:
 	
 	/*******************************************************
 	* @pre :  None
+	* @post : Initializes DoubleLinkedList class
+	* @return : Initialized Node
+	********************************************************/
+	DoubleLinkedList();
+	
+	/*******************************************************
+	* @pre :  None
 	* @post : Initializes Node class
 	* @return : Initialized Node
 	********************************************************/
-	Node();
+	~DoubleLinkedList();
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : gets stored value of node
-	* @return : T
-	********************************************************/
-	T getValue() const;
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : changes value of node
-	* @return : void
-	********************************************************/
-	void setValue(T& val);
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : return pointer to previous node
+	* @post : Initializes Node class
 	* @return : Initialized Node
 	********************************************************/
-	Node<T>* getPrevious() const;
+	bool isEmpty() const;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : changes pointer to previous node
-	* @return : void
-	********************************************************/
-	void setPrevious(Node<T>* val);
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : return pointer to next node
+	* @post : Initializes Node class
 	* @return : Initialized Node
 	********************************************************/
-	Node<T>* getNext() const;
+	int size() const;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : changes pointer to next node
-	* @return : void
+	* @post : Initializes Node class
+	* @return : Initialized Node
 	********************************************************/
-	void setNext(Node<T>* val);
+	void pushFront(T value);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes Node class
+	* @return : Initialized Node
+	********************************************************/
+	void pushBack(T value);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes Node class
+	* @return : Initialized Node
+	********************************************************/
+	bool remove(T value);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes Node class
+	* @return : Initialized Node
+	********************************************************/
+	void insertAhead(T listValue,T newValue) throw (std::runtime_error);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes Node class
+	* @return : Initialized Node
+	********************************************************/
+	void printList() const;
+	
 	
 	
 	/*******************************************************
@@ -75,20 +94,21 @@ public:
 private:
 	
 	/*******************************************************
-	*Value stored inside Node
+	*Pointer to front of list
 	********************************************************/
-	T m_value;
+	Node<T>* m_front;
 	
 	/*******************************************************
-	*Pointer to previous Node
+	*Pointer to back of list
 	********************************************************/
-	Node<T>* m_previous;
+	Node<T>* m_back;
 	
 	/*******************************************************
-	*Value stored inside Node
+	*Size of list
 	********************************************************/
-	Node<T>* m_next;
+	int m_size;
+	
 	
 };
-#include "Node.hpp"
+#include "DoubleLinkedList.hpp"
 #endif
