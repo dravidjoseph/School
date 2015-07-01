@@ -49,14 +49,17 @@ bool LinkedList::search(int value) const{
 }
 
 void LinkedList::printList() const{
-	Node* traverse = m_front;
 	
-	while(traverse->getNext() != nullptr){
-		std::cout<<traverse->getValue()<<" ";
-		traverse = traverse->getNext();
+	if(!isEmpty()){
+	
+		Node* traverse = m_front;
+	
+		while(traverse->getNext() != nullptr){
+			std::cout<<traverse->getValue()<<" ";
+			traverse = traverse->getNext();
+		}
+		std::cout<<traverse->getValue();
 	}
-	std::cout<<traverse->getValue();
-	
 	
 }
 

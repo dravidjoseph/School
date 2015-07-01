@@ -37,21 +37,21 @@ int main(){
 			std::cout<<"Input a value to add: ";
 			std::cin>>val;
 			
-			std::cout<<"Adding "<<val<<" to the front of list.";
+			std::cout<<"\nAdding "<<val<<" to the front of list.\n";
 			
 			list->addFront(val);
 			
 		}
 		else if(choice == 2){
-			std::cout<<"Input a value to add: ";
+			std::cout<<"Input a value to add: \n";
 			std::cin>>val;
 			
-			std::cout<<"Adding "<<val<<" to the back of list.";
+			std::cout<<"\nAdding "<<val<<" to the back of list.\n";
 			
 			list->addBack(val);
 		}
 		else if(choice == 3){
-			std::cout<<"Attempting removal from front of list.\n";
+			std::cout<<"\nAttempting removal from front of list.\n";
 			if(list->removeFront()){
 				std::cout<<"Removal successful\n";
 			}
@@ -60,7 +60,7 @@ int main(){
 			}
 		}
 		else if(choice == 4){
-			std::cout<<"Attempting removal from back of list.\n";
+			std::cout<<"\nAttempting removal from back of list.\n";
 			if(list->removeBack()){
 				std::cout<<"Removal successful\n";
 			}
@@ -69,21 +69,21 @@ int main(){
 			}
 		}
 		else if(choice == 5){
-			std::cout<<"Printing list:";
+			std::cout<<"\nPrinting list:";
 			list->printList();
 		}
 		else if(choice == 6){
-			std::cout<<"Enter a value to search for: ";
+			std::cout<<"\nEnter a value to search for: \n";
 			std::cin>>val;
 			if(list->search(val)){
-				std::cout<<val<<" is in the list";
+				std::cout<<val<<" is in the list\n";
 			}
 			else{
-				std::cout<<val<<" is not in the list";
+				std::cout<<val<<" is not in the list\n";
 			}
 		}
 		else if(choice == 7){
-			std::cout<<"Exiting...";
+			std::cout<<"\nExiting...\n";
 			flag = true;
 		}
 		else{
