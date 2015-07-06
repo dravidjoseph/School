@@ -8,12 +8,15 @@
 #ifndef DOUBLE_LINKED_LIST_H
 #define DOUBLE_LINKED_LIST_H
 
-//User-defined libraries
+
 #include <stdexcept>
+#include <iostream>
+
+//User-defined libraries
+#include "Node.h"
 
 
-template<typename T>;
-
+template<typename T>
 class DoubleLinkedList{
 	
 	/*******************************************************
@@ -25,63 +28,77 @@ public:
 	/*******************************************************
 	* @pre :  None
 	* @post : Initializes DoubleLinkedList class
-	* @return : Initialized Node
+	* @return : None
 	********************************************************/
 	DoubleLinkedList();
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
-	* @return : Initialized Node
+	* @post : Deallocates nodes in the list
+	* @return : None
 	********************************************************/
 	~DoubleLinkedList();
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
-	* @return : Initialized Node
+	* @post : Checks if list is empty
+	* @return : bool
 	********************************************************/
 	bool isEmpty() const;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
-	* @return : Initialized Node
+	* @post : size of list
+	* @return : int
 	********************************************************/
 	int size() const;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : pushes node to front of the list
 	* @return : Initialized Node
 	********************************************************/
 	void pushFront(T value);
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : pushes node on back of list
 	* @return : Initialized Node
 	********************************************************/
 	void pushBack(T value);
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : deletes first node containing passed value
 	* @return : Initialized Node
 	********************************************************/
 	bool remove(T value);
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
-	* @return : Initialized Node
+	* @post : insert ahead of first instance of certain value
+	* @return : void
 	********************************************************/
 	void insertAhead(T listValue,T newValue) throw (std::runtime_error);
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : insert behind first instance of certain value
 	* @return : Initialized Node
+	********************************************************/
+	void insertBehind(T listValue,T newValue) throw (std::runtime_error);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : returns pointer to first node that contains value
+	* @return : Node<T>*
+	********************************************************/
+	Node<T>* find(T value) const;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Assuesm T is overloaded to be printable
+	* @return : void
 	********************************************************/
 	void printList() const;
 	

@@ -8,8 +8,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-template<typename T>;
-
+template<typename T>
 class Node{
 	
 	/*******************************************************
@@ -37,7 +36,7 @@ public:
 	* @post : changes value of node
 	* @return : void
 	********************************************************/
-	void setValue(T& val);
+	void setValue(T val);
 	
 	/*******************************************************
 	* @pre :  None
