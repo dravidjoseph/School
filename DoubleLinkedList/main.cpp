@@ -28,6 +28,8 @@ int main(){
 	
 	DoubleLinkedList<int>* dll = new DoubleLinkedList<int>();
 	
-	dll->pushFront(35);
+	dll->pushFront(15);
+	dll->printList();
+	
 	
 }
