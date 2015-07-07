@@ -22,6 +22,7 @@ DoubleLinkedList<T>::~DoubleLinkedList(){
 	}
 	m_front = nullptr;
 	m_back = nullptr;
+	m_size = 0;
 }
 
 template<typename T>
@@ -36,31 +37,36 @@ int DoubleLinkedList<T>::size() const{
 
 template<typename T>
 void DoubleLinkedList<T>::pushFront(T value){
-	//create new node
+		
+	//Create new node
 	Node<T>* newNode = new Node<T>();
 	
-	//store value
+	//store value in node
 	newNode->setValue(value);
+	
+	//if empty list, link to list pointers
 	if(isEmpty()){
-		//list pointers point to new node
+		
+		//link list pointers to newNode
 		m_front = newNode;
 		m_back = newNode;
 		
-		//new node points back to list pointers
-		newNode->setPrevious(m_front);
-		newNode->setNext(m_back);
-		
 	}
+	//otherwise, link to m_front and node m_front is next to
 	else{
+		//temp node pointer to hold place
+		Node<T>* temp = m_front;
 		
-		Node<T>* traverse = m_front->getNext();
-		
-		newNode->setNext(traverse);
-		newNode->setPrevious(m_front);
+		//connect list pointer to new node and back
 		m_front = newNode;
-		traverse->setPrevious(newNode);
+		
+		//connect new node to rest of list
+		newNode->setNext(temp);
+		temp->setPrevious(newNode);
 	}
+	
 	m_size++;
+	
 }
 
 template<typename T>
@@ -73,47 +79,40 @@ void DoubleLinkedList<T>::pushBack(T value){
 	if(isEmpty()){
 		m_front = newNode;
 		m_back = newNode;
-		
-		newNode->setPrevious(m_front);
-		newNode->setNext(m_back);
 	}
 	else{
 		
-		Node<T>* traverse = m_back->getPrevious();
-		
-		newNode->setNext(m_back);
-		newNode->setPrevious(traverse);
+		Node<T>* temp = m_back;
 		m_back = newNode;
-		traverse->setNext(newNode);
+		newNode->setPrevious(temp);
+		temp->setNext(newNode);
 	}
 	
-	
 	m_size++;
-	
 }
 
 template<typename T>
 bool DoubleLinkedList<T>::remove(T value){
 	if(isEmpty()){
-		return false;
-	}
-	else{
+			return false;
+		}
+		else{
 		
-		Node<T>* traverse = find(value);
-		Node<T>* prev = traverse->getPrevious();
-		Node<T>* next = traverse->getNext();
+			Node<T>* traverse = find(value);
+			Node<T>* prev = traverse->getPrevious();
+			Node<T>* next = traverse->getNext();
 		
-		prev->setNext(next);
-		next->setPrevious(prev);
+			prev->setNext(next);
+			next->setPrevious(prev);
 		
-		delete traverse;
-		traverse = nullptr;
+			delete traverse;
+			traverse = nullptr;
 		
-		m_size--;
+			m_size--;
 		
-		return true;
+			return true;
 		
-	}
+		}
 }
 
 template<typename T>
@@ -148,61 +147,56 @@ void DoubleLinkedList<T>::insertBehind(T listValue,T newValue) throw (std::runti
 	
 	Node<T>* traverse = find(listValue);
 	
-	if(traverse == nullptr){
-		throw std::runtime_error("Value not found");
-	}
-	else{
-		Node<T>* next = traverse->getNext();
+		if(traverse == nullptr){
+			throw std::runtime_error("Value not found");
+		}
+		else{
+			Node<T>* next = traverse->getNext();
 		
-		//Create new node
-		Node<T>* newNode = new Node<T>();
-		newNode->setValue(newValue);
+			//Create new node
+			Node<T>* newNode = new Node<T>();
+			newNode->setValue(newValue);
 		
-		newNode->setPrevious(traverse);
-		newNode->setNext(next);
+			newNode->setPrevious(traverse);
+			newNode->setNext(next);
 		
-		traverse->setNext(newNode);
-		next->setPrevious(newNode);
+			traverse->setNext(newNode);
+			next->setPrevious(newNode);
 		
-		m_size++;
-	}
+			m_size++;
+		}
 	
 }
 
 template<typename T>
 Node<T>* DoubleLinkedList<T>::find(T value) const{
 	
-	if(isEmpty()){
-		return nullptr;
-	}
-	else{
-		
-		Node<T>* traverse = m_front;
-		while(traverse->getNext() != nullptr){
-			if(traverse->getValue() == value){
-				return traverse;
-			}
+	Node<T>* traverse = m_front;
+	
+	while(traverse->getNext() != nullptr){
+		if(traverse->getValue() == value){
+			return traverse;
+		}
+		else{
 			traverse = traverse->getNext();
 		}
-		return nullptr;
 	}
 	
+	return nullptr;
 	
 }
 
 template<typename T>
 void DoubleLinkedList<T>::printList() const{
-	if(isEmpty()){
-		std::cout<<"List Empty\n";
+	
+	Node<T>* traverse = m_front;
+	
+	while(traverse->getNext()!= nullptr){
+		std::cout<<traverse->getValue()<<" ";
+	
+		traverse = traverse->getNext();
 	}
-	else{
-		Node<T>* traverse = m_front;
-		
-		while(traverse->getNext() != nullptr){
-			std::cout<<traverse->getValue()<<" ";
-			traverse = traverse->getNext();
-		}
-		
-		std::cout<<traverse->getValue()<<"\n";
-	}
+	
+	std::cout<<traverse->getValue()<<" ";
+	
 }
