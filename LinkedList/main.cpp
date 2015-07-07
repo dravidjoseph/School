@@ -34,7 +34,7 @@ int main(){
 		std::cout<<"You chose: "<<choice;
 		
 		if(choice == 1){
-			std::cout<<"Input a value to add: ";
+			std::cout<<"\nInput a value to add: ";
 			std::cin>>val;
 			
 			std::cout<<"\nAdding "<<val<<" to the front of list.\n";
@@ -43,7 +43,7 @@ int main(){
 			
 		}
 		else if(choice == 2){
-			std::cout<<"Input a value to add: \n";
+			std::cout<<"\nInput a value to add: \n";
 			std::cin>>val;
 			
 			std::cout<<"\nAdding "<<val<<" to the back of list.\n";
@@ -87,7 +87,7 @@ int main(){
 			flag = true;
 		}
 		else{
-			std::cout<<"Invalid choice.\n";
+			std::cout<<"\nInvalid choice.\n";
 		}	
 		
 	}
