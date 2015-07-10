@@ -1,12 +1,11 @@
 /*******************************************************
 * @file: Node.h
 * @author: Dravid Joseph
-* @date: 6/30/15
+* @date: 7/8/15
 * @brief: Driver for DoubleLinkedList implementation
 ********************************************************/
 
 #include <iostream>
-#include <stdexcept>
 
 #include "DoubleLinkedList.h"
 
@@ -54,7 +53,7 @@ int main(){
 			
 			dll->pushBack(value);
 			
-			std::cout<<value<<" added to the front of list.";
+			std::cout<<value<<" added to the back of list.";
 		}
 		else if(choice == 3){
 			std::cout<<"Give a value to insert: ";

@@ -78,6 +78,7 @@ public:
 	* @pre :  None
 	* @post : insert ahead of first instance of certain value
 	* @return : void
+	* @throw : std::runtime_error
 	********************************************************/
 	void insertAhead(T listValue,T newValue) throw (std::runtime_error);
 	
@@ -85,6 +86,7 @@ public:
 	* @pre :  None
 	* @post : insert behind first instance of certain value
 	* @return : Initialized Node
+	* @throw : std::runtime_error
 	********************************************************/
 	void insertBehind(T listValue,T newValue) throw (std::runtime_error);
 	
@@ -97,7 +99,7 @@ public:
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Assuesm T is overloaded to be printable
+	* @post : Assumes T is overloaded to be printable
 	* @return : void
 	********************************************************/
 	void printList() const;
