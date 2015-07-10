@@ -19,17 +19,17 @@ The purpose of this lab was to write a basic double linked list.  This lab made 
 2. I can't find any information on the internet about this convention, but I generally use .hpp as the extension for templated classes.
 
 3.  Be careful when inserting into a linked list.  There are a few edge cases to look out for:
-	1. When the list is empty, have both list pointers pointing at the node.  The node's two pointers should be pointing at nullptr.
+	1. When the list is empty, have both list pointers pointing at the node.  The node's two pointers should be pointing at `nullptr`.
 	2. When inserting at the front or back of the list, create a temp pointer to hold the node the list pointer is holding, then move the list pointer to the new node.  The list pointer should point at the new node, but the new node should *not* point at the list pointer.
 	3. Insertion inside the list (not at the front or back) is largely the same as 2), but in this case the new node's pointers need to point at the nodes adjacent to it.  Make sure that all pointers are accounted for or you'll end up with segfaults on segfaults.
 	
 4. This implementation involved returning node pointers from a function.  The only important note here is when traversing a list using a *while* loop and making comparisons within that loop, the last node is not included for the comparison.  Therefore, there is some code duplication required in order to make sure all nodes are checked.
 
 5.  Removal of a node in a doubly linked list requires four cases:
-	1) If the list is empty or the *find* method cannot find the user-specified value, then no search is made.
-	2) If the list has only one node, then a node pointer is created to hold the node while the list pointers are cleared.
-	3) If the list has more than one node but that node is at the front of the list, a holding node pointer is created and the list pointer is advanced.
-	4) If the list has more than one node but that node is at the back of the list, a holding node pointer is created and the list pointer is reversed.
+	1. If the list is empty or the *find* method cannot find the user-specified value, then no search is made.
+	2. If the list has only one node, then a node pointer is created to hold the node while the list pointers are cleared.
+	3. If the list has more than one node but that node is at the front of the list, a holding node pointer is created and the list pointer is advanced.
+	4. If the list has more than one node but that node is at the back of the list, a holding node pointer is created and the list pointer is reversed.
 	
 6. Make sure all insertion and removal methods increment or decrement the size of the list.  Methods in linked lists generally are fairly dependent on size.
 
