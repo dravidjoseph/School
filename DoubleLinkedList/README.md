@@ -4,13 +4,13 @@
 The purpose of this lab was to write a basic double linked list.  This lab made further use of pointers than the previous linked list lab, while also introducing basic exception handling and the use of templating.
 
 ##Core Concepts
-1. Makefile use
+1. Makefile use:
 	This lab extended the use of makefiles for templated classes.  Use the flag -Wall.
-2. Pointers
+2. Pointers:
 	Unlike singly linked lists, double linked lists have two list pointers for easier list traversal in long lists.  As a result, doubly linked lists have certain edge cases that need to be taken care of that are not applicable to single linked lists.
-3. Exception Handling
+3. Exception Handling:
 	Very basic exception handling, essentially replacing conditionals in handling edge cases.
-4. Templating
+4. Templating:
 	By making more generic classes, the number of types used can be greatly expanded.  I don't think that the DoubleLinkedList class is *infinitely* extensible since you then need copy constructors and things, but it's good enough that you should be able to use it for strings.
 	
 ##Issues
