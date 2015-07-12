@@ -15,7 +15,8 @@ class PreconditionViolationException : public std::runtime_error{
 	/*******************************************************
 	* PUBLIC METHDOS
 	********************************************************/
-	
+public: 
+		
 	PreconditionViolationException(const char* msg);
 
 };

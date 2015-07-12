@@ -28,28 +28,28 @@ public:
 	* @post : None
 	* @return : void
 	********************************************************/
-	void setValue(int val);
+	void setValue(T val);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : valid integer
 	* @return : integer value
 	********************************************************/
-	int getValue() const;
+	T getValue() const;
 	
 	/*******************************************************
 	* @pre :  Valid Node reference
 	* @post : sets Node pointer to valid node reference
 	* @return : void
 	********************************************************/
-	void setNext(Node* prev);
+	void setNext(Node<T>* prev);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : Valid Node reference
 	* @return : Node*
 	********************************************************/
-	Node* getNext() const;
+	Node<T>* getNext() const;
 	
 	
 	
@@ -67,7 +67,7 @@ private:
 	/*******************************************************
 	* Pointer to next node
 	********************************************************/
-	Node* m_next;
+	Node<T>* m_next;
 	
 	
 };

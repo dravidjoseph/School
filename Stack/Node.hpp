@@ -11,21 +11,21 @@ Node<T>::Node():m_value(T()),m_next(nullptr){
 }
 
 template<typename T>
-void setValue(T val){
+void Node<T>::setValue(T val){
 	m_value = val;
 }
 
 template<typename T>
-T getValue() const{
+T Node<T>::getValue() const{
 	return m_value;
 }
 
 template<typename T>
-void setNext(Node<T>* prev){
+void Node<T>::setNext(Node<T>* prev){
 	m_next = prev;
 }
 
 template<typename T>
-Node<T>* getNext() const{
+Node<T>* Node<T>::getNext() const{
 	return m_next;
 }

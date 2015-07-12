@@ -1,5 +1,5 @@
 /*******************************************************
-* @file : Node.h
+* @file : StackInterface.h
 * @author : Dravid Joseph
 * @date : 7/9/2015
 * @brief : Stack Interface
@@ -21,7 +21,7 @@ class StackInterface{
 	* @post : Deallocates stack
 	* @return : None
 	********************************************************/
-	
+public: 
 	virtual ~StackInterface() {};
 	
 	/*******************************************************

@@ -8,14 +8,27 @@
 #ifndef STACK_H
 #define STACK_H
 
+
+#include <iostream>
+#include "PreconditionViolationException.h"
+#include "Node.h"
+#include "StackInterface.h"
+
 template<typename T>
 
 
-class Stack : public StackInterface{
+class Stack : public StackInterface<T>{
 	
 	/*******************************************************
 	* PUBLIC METHODS
 	********************************************************/
+public: 
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes Stack
+	* @return : None
+	********************************************************/
+	Stack();
 	
 	/*******************************************************
 	* @pre :  None
@@ -23,7 +36,7 @@ class Stack : public StackInterface{
 	* @return : None
 	********************************************************/
 	
-	~StackInterface() {};
+	~Stack();
 	
 	/*******************************************************
 	* @pre :  None
@@ -121,5 +134,23 @@ class Stack : public StackInterface{
 	
 	bool operator != (const StackInterface<T>& rhs) const;
 	
+	/*******************************************************
+	* PRIVATE MEMBERS
+	********************************************************/
+	
+private:
+	
+	/*******************************************************
+	*Pointer for Stack
+	********************************************************/
+	Node<T>* m_top;
+	
+	/*******************************************************
+	*Size of Stack
+	********************************************************/
+	int m_size;
+	
+	
 };
+#include "Stack.hpp"
 #endif

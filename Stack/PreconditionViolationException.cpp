@@ -5,7 +5,8 @@
 * @brief : Implementation for PreconditionViolationException class.
 *******************************************************************/
 
-template<typename T>
-PreconditionViolationException<T>::PreconditionViolationException(const char* msg):std::runtime_error(msg){
+#include "PreconditionViolationException.h"
+
+PreconditionViolationException::PreconditionViolationException(const char* msg):std::runtime_error(msg){
 	
 }

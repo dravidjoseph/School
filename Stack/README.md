@@ -12,4 +12,4 @@ This lab is designed to familiarize the concept of a stack as well as inheritanc
 
 ##Issues
 
-Coming soon.
+1. Makefiles won't work unless you have all the dependencies correct.  You have to make sure all your `#include` statements are in the right places.
