@@ -75,15 +75,25 @@ int main(){
 		}
 		else if(choice == 3){
 			std::cout<<"What is at the top of stack 1?: ";
-		
-			std::cout<<lane1->peek();
+			try{
+				std::cout<<lane1->peek();
+			}
+			catch(std::runtime_error& e){
+				std::cout<<e.what()<<std::endl;
+			}
 			
 		}
 		else if(choice == 4){
 			
 			std::cout<<"\nWhat is at the top of stack 2?: ";
 		
-			std::cout<<lane2->peek();
+			try{
+				std::cout<<lane2->peek();
+			}
+			catch(std::runtime_error& e){
+				std::cout<<e.what()<<std::endl;
+			}
+			
 			
 		}
 		else if(choice == 5){
@@ -93,11 +103,24 @@ int main(){
 			lane2->print();
 		}
 		else if(choice == 7){
-			std::cout<<lane2->pop()<< "removed from stack 1";
+			
+			try{
+				std::cout<<lane2->pop()<< "removed from stack 1";
+			}
+			catch(std::runtime_error& e){
+				std::cout<<e.what()<<std::endl;
+			}
 			
 		}
 		else if(choice == 8){
-			std::cout<<lane2->pop()<< "removed from stack 2";
+			
+			try{
+				std::cout<<lane2->pop()<< "removed from stack 2";
+			}
+			catch(std::runtime_error& e){
+				std::cout<<e.what()<<std::endl;
+			}
+			
 		}
 		else if(choice == 9){
 			compareStacks(*lane1,*lane2);
@@ -108,15 +131,7 @@ int main(){
 		}
 		else{
 			std::cout<<"Invalid choice.\n";
-		}
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 		
 	}
 	
