@@ -1,7 +1,7 @@
 /*******************************************************
 * @file : Node.h
 * @author : Dravid Joseph
-* @date : 7/9/2015
+* @date : 7/12/2015
 * @brief : Header file for Stack class.
 ********************************************************/
 
@@ -47,8 +47,8 @@ public:
 	bool isEmpty() const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid newEntry
+	* @post : pushes new entry onto stack
 	* @return : void
 	********************************************************/
 	
@@ -56,15 +56,16 @@ public:
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : removes value at top of stack, returning value
 	* @return : T
+	* @throw : PreconditionViolationException
 	********************************************************/
 	
 	T pop() throw(PreconditionViolationException);
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : returns value at top of stack
 	* @return : T
 	********************************************************/
 	
@@ -72,7 +73,7 @@ public:
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : size of stack
 	* @return : int
 	********************************************************/
 	
@@ -80,55 +81,55 @@ public:
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
+	* @post : prints all node values in stack
 	* @return : void
 	********************************************************/
 	
 	void print() const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack reference
+	* @post :  Returns true if Stack 1 size < Stack 2 size
 	* @return : bool
 	********************************************************/
 	
 	bool operator < (const StackInterface<T>& rhs) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack references
+	* @post :  Returns true if Stack 1 size <= Stack 2 size
 	* @return : bool
 	********************************************************/
 	
 	bool operator <= (const StackInterface<T>& rhs) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack references
+	* @post :  Returns true if Stack 1 size > Stack 2 size
 	* @return : bool
 	********************************************************/
 	
 	bool operator > (const StackInterface<T>& rhs) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack references
+	* @post : Returns true if Stack 1 size >= Stack 2 size
 	* @return : bool
 	********************************************************/
 	
 	bool operator >= (const StackInterface<T>& rhs) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack references
+	* @post : Returns true if the size of the two stacks are equal
 	* @return : bool
 	********************************************************/
 	
 	bool operator == (const StackInterface<T>& rhs) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Initializes Node class
+	* @pre :  valid stack references
+	* @post : Returns true if the size of the two stacks aren't equal
 	* @return : bool
 	********************************************************/
 	

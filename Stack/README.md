@@ -13,3 +13,7 @@ This lab is designed to familiarize the concept of a stack as well as inheritanc
 ##Issues
 
 1. Makefiles won't work unless you have all the dependencies correct.  You have to make sure all your `#include` statements are in the right places.
+
+2. Not so much an issue, but as a note: `Stack.h` only has to include methods that end with the `= 0`; anything else is a suggestion.
+
+3. Since the operator methods deal with pointers that have been dereferenced, you need to use the . instead of the `->`.

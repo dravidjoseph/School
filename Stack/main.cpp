@@ -1,12 +1,17 @@
 /*******************************************************
 * @file : main.cpp
 * @author : Dravid Joseph
-* @date : 7/9/2015
+* @date : 7/12/2015
 * @brief : Driver class for stack project
 ********************************************************/
 
 #include "Stack.h"
 
+/*******************************************************
+* @pre :  None
+* @post : Prints a menu of options
+* @return : void
+********************************************************/
 
 void printMenu(){
 	
@@ -24,6 +29,13 @@ void printMenu(){
 			<< 	"Enter choice: ";
 }
 
+/*******************************************************
+* @pre :  two valid StackInterface references
+* @post : Tests operator overloading
+* @return : void
+********************************************************/
+
+
 template <typename T>
 void compareStacks(const StackInterface<T>& s1, const StackInterface<T>& s2)
 {
@@ -36,11 +48,22 @@ void compareStacks(const StackInterface<T>& s1, const StackInterface<T>& s2)
 			<< "lane 1 != lane 2: " << (s1 != s2) 	<< "\n";
 }
 
+
+/*******************************************************
+* @pre :  None
+* @post : Driver method for program
+* @return : int
+********************************************************/
+
 int main(){
 	
+	
+	//Two StackInterface objects.
+	//Remember, parent pointers can take child objects.
 	StackInterface<std::string>* lane1 = new Stack<std::string>();
 	StackInterface<std::string>* lane2 = new Stack<std::string>();
 	
+	//Helper variables for main
 	int choice = 0;
 	std::string entry = "";
 	bool flag = false;
@@ -52,9 +75,11 @@ int main(){
 		std::cin>>choice;
 		std::cout<<"You chose: "<<choice<<"\n";
 		
+		
+		//push to stack 1
 		if(choice == 1){
 			
-			std::cout<<"\nWhat is going on in stack 1?: ";
+			std::cout<<"\nWhat is going on in stack 1?: \n";
 			
 			std::cin>>entry;
 		
@@ -62,6 +87,7 @@ int main(){
 			
 			std::cout<<""<<entry<<" successfully added to stack 1";
 		}
+		//push to stack 2
 		else if(choice == 2){
 			
 			std::cout<<"What is going on in stack 2?: ";
@@ -73,6 +99,7 @@ int main(){
 			std::cout<<"\n"<<entry<<" successfully added to stack 2";
 			
 		}
+		//peek stack 1, with exception handling
 		else if(choice == 3){
 			std::cout<<"What is at the top of stack 1?: ";
 			try{
@@ -83,6 +110,7 @@ int main(){
 			}
 			
 		}
+		//peek stack 2, with exception handling
 		else if(choice == 4){
 			
 			std::cout<<"\nWhat is at the top of stack 2?: ";
@@ -96,39 +124,48 @@ int main(){
 			
 			
 		}
+		//print stack 1
 		else if(choice == 5){
 			lane1->print();
 		}
+		//print stack 2
 		else if(choice == 6){
 			lane2->print();
 		}
+		
+		//remove from stack 1, with exception handling
 		else if(choice == 7){
 			
 			try{
-				std::cout<<lane2->pop()<< "removed from stack 1";
+				std::cout<<lane1->pop()<< " removed from stack 1";
 			}
 			catch(std::runtime_error& e){
 				std::cout<<e.what()<<std::endl;
 			}
 			
 		}
+		//remove from stack 2, with exception handling
 		else if(choice == 8){
 			
 			try{
-				std::cout<<lane2->pop()<< "removed from stack 2";
+				std::cout<<lane2->pop()<< " removed from stack 2";
 			}
 			catch(std::runtime_error& e){
 				std::cout<<e.what()<<std::endl;
 			}
 			
 		}
+		//calls compareStacks references, uses dereferenced pointers
 		else if(choice == 9){
 			compareStacks(*lane1,*lane2);
 		}
+		
+		//ends program
 		else if(choice == 10){
 			std::cout<<"Program ending";
 			flag = true;
 		}
+		//last case to handle
 		else{
 			std::cout<<"Invalid choice.\n";
 		}	
