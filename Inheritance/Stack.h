@@ -88,54 +88,6 @@ public:
 	void print() const;
 	
 	/*******************************************************
-	* @pre :  valid stack reference
-	* @post :  Returns true if Stack 1 size < Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	bool operator < (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post :  Returns true if Stack 1 size <= Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	bool operator <= (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post :  Returns true if Stack 1 size > Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	bool operator > (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if Stack 1 size >= Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	bool operator >= (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if the size of the two stacks are equal
-	* @return : bool
-	********************************************************/
-	
-	bool operator == (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if the size of the two stacks aren't equal
-	* @return : bool
-	********************************************************/
-	
-	bool operator != (const StackInterface<T>& rhs) const;
-	
-	/*******************************************************
 	* PRIVATE MEMBERS
 	********************************************************/
 	
