@@ -9,25 +9,25 @@
 #include "AnimalPen.h"
 
 AnimalPen::AnimalPen(){
-	Stack();
+	Stack<FarmAnimal*>::Stack();
 }
 
 AnimalPen::~AnimalPen(){
-	~Stack();
+	Stack<FarmAnimal*>::~Stack();
 }
 
 void AnimalPen::addAnimal(FarmAnimal* animal){
-	push(animal);
+	Stack<FarmAnimal*>::push(animal);
 }
 
 FarmAnimal* AnimalPen::peekAtNextAnimal(){
-	peek()
+	return Stack<FarmAnimal*>::peek();
 }
 
 void AnimalPen::releaseAnimal(){
-	pop();
+	Stack<FarmAnimal*>::pop();
 }
 
 bool AnimalPen::isPenEmpty(){
-	return isEmpty();
+	return Stack<FarmAnimal*>::isEmpty();
 }

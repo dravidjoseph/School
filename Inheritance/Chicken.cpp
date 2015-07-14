@@ -7,7 +7,11 @@
 
 #include "Chicken.h"
 
-Chicken::Chicken():m_name("Chicken"),m_sound("Cluck"){
+Chicken::Chicken(){
+	
+	m_eggs = 0;
+	FarmAnimal::m_name = "Chicken";
+	FarmAnimal::m_sound = "Cluck";
 	
 }
 

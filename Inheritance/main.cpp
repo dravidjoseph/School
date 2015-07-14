@@ -7,14 +7,16 @@
 
 #include <iostream>
 #include "AnimalPen.h"
-#include "Cow.h"
-#include "CyberChicken.h"
+#include "FarmAnimal.h"
+#include "Stack.h"
 
+/**
 void goodbyeMessage(const FarmAnimal& animal){
 	
 	std::cout<<"Upon release the"<<animal.getName()<<" said "<<animal.getSound()<<".\n";
 	
 }
+*/
 
 void printMenu(){
 	
@@ -27,6 +29,8 @@ void printMenu(){
 
 int main(){
 	
+	printMenu();
+/**	
 	int choice = 0;
 	bool flag = false;
 	
@@ -41,11 +45,11 @@ int main(){
 	while(!flag){
 	
 		printMenu();
-		std::cout<<"Choice: "
+		std::cout<<"Choice: ";
 		std::cin>>choice;
 	
 		if(choice == 1){
-			std::cout"\nHow many gallons of milk did this cow produce?";
+			std::cout<<"\nHow many gallons of milk did this cow produce?";
 			std::cin>>value;
 			totGallons += value;
 		}
@@ -68,5 +72,7 @@ int main(){
 		}
 	
 	}	
+*/
 	
+	return 0;	
 }

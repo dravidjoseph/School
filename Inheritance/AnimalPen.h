@@ -9,8 +9,9 @@
 #define ANIMAL_PEN_H
 
 #include "Stack.h"
+#include "FarmAnimal.h"
 
-class AnimalPen : public Stack<FarmAnimal>{
+class AnimalPen : public Stack<FarmAnimal*>{
 	
 	
 public: 

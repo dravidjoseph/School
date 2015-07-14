@@ -64,14 +64,6 @@ public:
 	********************************************************/
 	
 	virtual int size() const = 0;
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : prints all node values in stack
-	* @return : void
-	********************************************************/
-	
-	virtual void print() const = 0;
 
 	
 };

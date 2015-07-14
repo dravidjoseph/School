@@ -92,25 +92,3 @@ template<typename T>
 int Stack<T>::size() const{
 	return m_size;
 }
-
-template<typename T>
-void Stack<T>::print() const{
-	
-	//if no nodes exist
-	if(isEmpty()){
-		std::cout<<"List empty";
-	}
-	else{
-		//moving node pointer
-		Node<T>* traverse = m_top;
-	
-		//traverses, then prints first n-1 nodes
-		while(traverse->getNext() != nullptr){
-			std::cout<<traverse->getValue()<<", ";
-			traverse = traverse->getNext();
-		}
-		
-		//prints nth node.
-		std::cout<<traverse->getValue();
-	}
-}

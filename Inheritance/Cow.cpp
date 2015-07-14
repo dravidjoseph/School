@@ -7,8 +7,10 @@
 
 #include "Cow.h"
 
-Cow::Cow():m_name("Cow"),m_sound("Moo"){
-	
+Cow::Cow(){
+	m_milkProduced = 0;
+	FarmAnimal::m_name = "Cow";
+	FarmAnimal::m_sound = "Moo";
 }
 
 double Cow::getMilkProduced() const{
