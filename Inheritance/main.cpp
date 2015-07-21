@@ -1,11 +1,13 @@
 /*******************************************************
 * @file : main.cpp
 * @author : Dravid Joseph
-* @date : 7/12/2015
+* @date : 7/20/2015
 * @brief : Driver for Inheritance program
 ********************************************************/
 
 #include <iostream>
+
+//user-defined libraries
 #include "Stack.h"
 #include "Node.h"
 #include "PreconditionViolationException.h"
@@ -15,38 +17,69 @@
 #include "CyberChicken.h"
 
 
+/*******************************************************
+* @pre :  valid FarmAnimal reference (NOT pointer)
+* @post : prints a message
+* @return : void
+********************************************************/
+
 
 void goodByeMessage(const FarmAnimal& animal){
       std::cout<<"Upon release the "<<animal.getName()<<" said "<<animal.getSound()<<".\n";
 }
 
+/*******************************************************
+* @pre : None
+* @post : prints a menu
+* @return : void
+********************************************************/
+void printMenu(){
+	
+    std::cout<<"Select an animal to add to the pen: \n";
+    std::cout<<"1.) Cow (produces milk)\n";
+    std::cout<<"2.) Chicken (cannot lay eggs)\n";
+    std::cout<<"3.) Cyber Chicken (seems dangerous, but lays eggs)";
+    std::cout<<"\n---------------------------------------------------\n";
 
+    std::cout<<"choice: ";
+	
+}
+
+/*******************************************************
+* @pre :  None
+* @post : Drives Inheritance program
+* @return : int
+********************************************************/
 int main(){
 
-      AnimalPen pen;
-
-
+     
+	  //Pen
+	  AnimalPen pen;
+	  
+	  //Pointers to different farm animals
+      Cow* cow = nullptr;
+	  Chicken* chicken = nullptr;
+	  CyberChicken* cyber = nullptr;
+      FarmAnimal* animal = nullptr;
+	  
+	  
+	  //local variables needed for program
       bool flag = false;
       int choice = 0;
       double value = 0.0;
       double totalMilk = 0.0;
       double totalEggs = 0.0;
       std::string done = "";
-      Cow* cow = nullptr;
-      Chicken* chicken = nullptr;
-      CyberChicken* cyber = nullptr;
-      FarmAnimal *animal = nullptr;
 
-      while(!flag){
-            std::cout<<"Select an animal to add to the pen: \n";
-            std::cout<<"1.) Cow (produces milk)\n";
-            std::cout<<"2.) Chicken (cannot lay eggs)\n";
-            std::cout<<"3.) Cyber Chicken (seems dangerous, but lays eggs)";
-            std::cout<<"\n---------------------------------------------------\n";
-
-            std::cout<<"choice: ";
+      while(!flag){	
+			
+		 	printMenu();
+			
+			//user input
             std::cin>>choice;
 
+
+			//selects cow
             if(choice == 1){
                   cow = new Cow();
 
@@ -54,7 +87,7 @@ int main(){
                   std::cin>>value;
                   cow->setMilkProduced(value);
                   pen.addAnimal(cow);
-                  totalMilk = totalMilk + value;
+                  totalMilk += value;
 
             }
             else if(choice == 2){
@@ -71,7 +104,7 @@ int main(){
                   std::cin>>value;
                   cyber->setCyberEggs(value);
                   pen.addAnimal(cyber);
-                  totalEggs = totalEggs + value;
+                  totalEggs += value;
 
             }
             std::cout<<"Done adding animals? (y/n):";
@@ -79,18 +112,24 @@ int main(){
             if(done == "y"){
                   flag = true;
             }
-
-
-
       }
+
+
+	  //Release all animals
 
       std::cout<<"Releasing all animals!\n";
       std::cout<<"-------------------------\n";
+	  
+	  //Keep releasing until pen is empty
       while(!pen.isPenEmpty()){
-
+		  	
+			
+		  //stores animal's name locally while minimizing function calls
             animal = pen.peekAtNextAnimal();
             done = animal->getName();
-
+			
+			
+			//depending on animal, static_cast to child class in order to use appropriate methods
 
             if(done == "Cow"){
                   cow = static_cast<Cow*>(animal);
@@ -105,7 +144,8 @@ int main(){
                   cyber = static_cast<CyberChicken*>(animal);
                   std::cout<<"This "<<done<<" produced "<<cyber->getCyberEggs()<<" eggs\n";
             }
-
+			
+			//deference in order to use goodByeMessage
             goodByeMessage(*pen.peekAtNextAnimal());
             std::cout<<done<< " destructor called.\n";
             pen.releaseAnimal();

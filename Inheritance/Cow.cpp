@@ -1,7 +1,7 @@
 /*******************************************************
 * @file : Cow.cpp
 * @author : Dravid Joseph
-* @date : 7/12/2015
+* @date : 7/20/2015
 * @brief : Implementation file for Cow class
 ********************************************************/
 
@@ -19,9 +19,11 @@ double Cow::getMilkProduced() const{
 
 void Cow::setMilkProduced(double gallons){
 	
+	//if gallons is a positive value, set.
 	if(gallons > 0){
 		m_milkProduced = gallons;
 	}
+	//otherwise, set to zero.
 	else{
 		m_milkProduced = 0;
 	}
