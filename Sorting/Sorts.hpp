@@ -17,9 +17,7 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 			
 			if(arr[i]<arr[j]){
 				
-				T temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+				swap(arr,i,j);
 				swapped = true;		//flag to terminate sort early if list is already sorted
 			}
 		}
@@ -87,9 +85,7 @@ void Sorts<T>::selectionSort(T arr[], int size){
 			}
 			
 		}
-		T temp = arr[i];
-		arr[i] = arr[min];
-		arr[min] = temp;
+		swap(arr,i,min);
 		
 	}
 	
@@ -116,11 +112,19 @@ void Sorts<T>::shuffle(T arr[], int size,std::default_random_engine& generator){
 	std::uniform_int_distribution<int> distribution(0,size-1);
 	
 	for(int i = 0;i<size;i++){
-		T temp = arr[i];
+		
 		int index = distribution(generator);
-		arr[i] = arr[index];
-		arr[index] = temp;
+		swap(arr,i,index);
 	}
 	
 	
+}
+
+template<typename T>
+void Sorts<T>::swap(T arr[], int firstIndex, int secondIndex){
+	
+	T temp = arr[firstIndex];
+	arr[firstIndex] = arr[secondIndex];
+	arr[secondIndex] = temp;
+		
 }

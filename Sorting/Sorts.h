@@ -73,6 +73,15 @@ public:
 	
 	static void shuffle(T arr[], int size,std::default_random_engine& generator);
 	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : swaps array at index points
+	* @return : void
+	********************************************************/
+	
+	static void swap(T arr[],int firstIndex,int secondIndex);
+	
+	
 };
 #include "Sorts.hpp"
 #endif
