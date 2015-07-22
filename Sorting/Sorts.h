@@ -8,6 +8,7 @@
 #ifndef SORTS_H
 #define SORTS_H
 
+#include <random>
 #include <ctime>
 #include <cassert>
 
