@@ -60,11 +60,11 @@ public:
 	********************************************************/
 	
 	static bool isSorted(T arr[], int size);
-	
+
 	/*******************************************************
 	* PRIVATE METHDOS
 	********************************************************/
-	
+private:
 	/*******************************************************
 	* @pre :  Valid array, valid size, valid generator reference
 	* @post : Shuffles array according to generator
