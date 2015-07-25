@@ -1,0 +1,5 @@
+#No .o files
+*.o
+
+#No .txt files
+*.txt
