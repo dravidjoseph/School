@@ -10,11 +10,11 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 	
 	//This bubble sort bubbles towards the end of the list
 	
-	bool swapped = false; //flag to terminate sort early if list is already sorted
+	
 	
 	//iterates through every element of the list
 	for(int i = 0;i<size;i++){
-		
+		bool swapped = false; //flag to terminate sort early if list is already sorted
 		//iterates through every element of the list but the last
 		for(int j = 0;j<size-1;j++){
 			//swap if case holds
@@ -28,11 +28,7 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 		if(!swapped){
 			//then list is sorted
 			return;
-		}
-		else{
-			swapped = false;	//reset flag for next comparison
-		}
-		
+		}	
 	}
 	
 	assert(Sorts<T>::isSorted(arr, size));
@@ -91,15 +87,19 @@ void Sorts<T>::selectionSort(T arr[], int size){
 	for(int i = 0;i<size-1;i++){
 		
 		int min = i;
-		
+		bool swapped = false; //flag so unnecessary swap doesn't happen
 		for(int j = i+1; j< size; j++){
 			
 			if(arr[j]<arr[min]){
 				min = j;
+				swapped = true;
 			}
 			
 		}
-		swap(arr,i,min);
+		if(swapped){
+			swap(arr,i,min);
+			
+		}
 		
 	}
 	
