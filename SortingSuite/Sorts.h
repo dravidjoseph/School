@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.h
 * @author: Dravid Joseph
-* @date: 7/20/15
+* @date: 7/24/15
 * @brief: Templated header for Sorts class
 ********************************************************/
 
@@ -11,6 +11,7 @@
 #include <random>
 #include <ctime>
 #include <cassert>
+#include <functional>
 
 template<typename T>
 class Sorts{
@@ -31,11 +32,28 @@ public:
 	
 	/*******************************************************
 	* @pre :  Valid array, valid size
-	* @post : Sorts array using bogoSort
+	* @post : Sorts array using quickSort, without median pivot
 	* @return : void
 	********************************************************/
 	
-	static void bogoSort(T arr[], int size);
+	//static void quickSort(T arr[], int size);
+	
+	/*******************************************************
+	* @pre :  Valid array, valid size
+	* @post : Sorts array using quickSort, with a median pivot
+	* @return : void
+	********************************************************/
+	
+	//static void quickSortMedian(T arr[], int size);
+	
+	
+	/*******************************************************
+	* @pre :  Valid array, valid size
+	* @post : Sorts array using mergeSort
+	* @return : void
+	********************************************************/
+	
+	static void mergeSort(T arr[], int size);
 	
 	/*******************************************************
 	* @pre :  Valid array, valid size
@@ -62,16 +80,18 @@ public:
 	static bool isSorted(T arr[], int size);
 	
 	/*******************************************************
-	* PRIVATE METHDOS
+	* @pre :  Valid array, valid size,valid function
+	* @post : Times each sort
+	* @return : double
 	********************************************************/
+	
+	//static double sortTimer(std::function<void(T[],int)>,T arr[], int size);
+	
 	
 	/*******************************************************
-	* @pre :  Valid array, valid size, valid generator reference
-	* @post : Shuffles array according to generator
-	* @return : void
+	* PRIVATE METHDOS
 	********************************************************/
-	
-	static void shuffle(T arr[], int size,std::default_random_engine& generator);
+private:	
 	
 	/*******************************************************
 	* @pre :  Valid array, two valid indices
@@ -81,6 +101,45 @@ public:
 	
 	static void swap(T arr[],int firstIndex,int secondIndex);
 	
+	/*******************************************************
+	* @pre :  Valid array pointers, two valid indices
+	* @post : combines two arrays using mergeSort
+	* @return : void
+	********************************************************/
+	
+	static void merge(T* a1, T* a2, int size1, int size2);
+	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : sorts array by partitioning array
+	* @return : void
+	********************************************************/
+	
+	//static void quickSortRec(T arr[], int first, int last, bool median);
+	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : puts median value of array in last position
+	* @return : void
+	********************************************************/
+	
+	//static void setMedianPivot(T arr[], int first, int last);
+	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : partitions array based on flag
+	* @return : void
+	********************************************************/
+	
+	//static int partition(T arr[], int first, int last, bool median);
+	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : swaps array at index points
+	* @return : void
+	********************************************************/
+	
+	//static void shuffle(T arr[], int size);
 	
 };
 #include "Sorts.hpp"

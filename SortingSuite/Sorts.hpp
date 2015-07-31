@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.hpp
 * @author: Dravid Joseph
-* @date: 7/20/15
+* @date: 7/24/15
 * @brief: Templated implementation file for Sorts class
 ********************************************************/
 
@@ -37,17 +37,40 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 	
 	assert(Sorts<T>::isSorted(arr, size));
 }
+/**
+void Sorts<T>::quickSort(T arr[], int size){
+	
+	
+	quickSortRec(arr,size,false);
+	
+	assert(Sorts<T>::isSorted(arr, size));
+	
+}
 
+void Sorts<T>::quickSortMedian(T arr[], int size){
+	
 
+	quickSortRec(arr,size,true);
+
+	assert(Sorts<T>::isSorted(arr, size));
+	
+}
+*/
 template<typename T>
-void Sorts<T>::bogoSort(T arr[], int size){
+void Sorts<T>::mergeSort(T arr[], int size){
 	
-	std::default_random_engine generator(time(nullptr));
+	int mid = size/2;
 	
-	//while array is not sorted
-	while(!isSorted(arr,size)){
-		shuffle(arr,size,generator);	//shuffle
+	T* a1 = arr + 0;
+	T* a2 = arr + mid;
+	
+	if(mid > 0){
+		mergeSort(a1,mid);
+		mergeSort(a2,size-mid);
+		
+		merge(a1,a2,mid,size-mid);
 	}
+	
 	
 	
 	assert(Sorts<T>::isSorted(arr, size));
@@ -99,7 +122,10 @@ void Sorts<T>::selectionSort(T arr[], int size){
 			}
 			
 		}
-		swap(arr,i,min);
+		
+		if(arr[min]!= i){
+			swap(arr,i,min);
+		}
 		
 	}
 	
@@ -122,26 +148,12 @@ bool Sorts<T>::isSorted(T arr[], int size){
 	return true;
 	
 }
-
-template<typename T>
-void Sorts<T>::shuffle(T arr[], int size,std::default_random_engine& generator){
-	
-	//creates a uniform distribution of integers from min to max.
-	std::uniform_int_distribution<int> distribution(0,size-1);
-	
-	
-	//run throuh array
-	for(int i = 0;i<size;i++){
-		
-		//choose a random index
-		int index = distribution(generator);
-		
-		//swap index with the random index
-		swap(arr,i,index);
-	}
-	
-	
+/**
+double Sorts<T>::sortTimer(std::function<void(T[],int)>,T arr[], int size){
+	return 0.0;
 }
+*/
+
 
 template<typename T>
 void Sorts<T>::swap(T arr[], int firstIndex, int secondIndex){
@@ -150,7 +162,86 @@ void Sorts<T>::swap(T arr[], int firstIndex, int secondIndex){
 	T temp = arr[firstIndex];
 	
 	//swap 
+	
 	arr[firstIndex] = arr[secondIndex];
 	arr[secondIndex] = temp;
 		
 }
+
+template<typename T>
+void Sorts<T>::merge(T* a1, T* a2, int size1, int size2){
+	
+	T* arr = new int[size1+size2];
+	
+	int first1 = 0;
+	int last1 = size1-1;
+	
+	int first2 = 0;
+	int last2 = size2-1;
+	
+	int index = first1;
+	
+	while((first1 <= last1 && first2 <= last2)){
+		
+		if(a1[first1]<=a2[first2]){
+			arr[index] = a1[first1];
+			first1++;
+		}
+		else{
+			arr[index] = a2[first2];
+			first2++;
+		}
+		index++;	
+	}
+	
+	while(first1 <= last1){
+		arr[index] = a1[first1];
+		first1++;
+		index++;
+	}
+	
+	while(first2 <=last2){
+		arr[index] = a2[first2];
+		first2++;
+		index++;
+	}
+	
+	
+	for(index = 0;index <= size1+size2-1;index++){
+		a1[index] = arr[index];
+	}
+	
+		
+	delete arr;
+	arr = nullptr;
+	
+}
+/**
+template<typename T>
+void Sorts<T>::quickSortRec(T arr[], int first, int last, bool median){
+	
+}
+
+void setMedianPivot(T arr[], int first, int last){
+	
+}
+
+
+int partition(T arr[], int first, int last, bool median){
+	
+}
+
+
+void shuffle(T arr[], int size){
+	
+	std::default_random_engine generator(time(nullptr));
+	std::uniform_int_distribution<int> distribution(0,size-1);
+	
+	for(int i = 0;i<size;i++){
+		
+		swap(arr,i,distribution(generator));
+		
+	}
+	
+}
+*/
