@@ -37,25 +37,27 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 	
 	assert(Sorts<T>::isSorted(arr, size));
 }
-/**
+
+template<typename T>
 void Sorts<T>::quickSort(T arr[], int size){
 	
 	
-	quickSortRec(arr,size,false);
+	quickSortRec(arr,0,size-1,false);
 	
 	assert(Sorts<T>::isSorted(arr, size));
 	
 }
 
+template<typename T>
 void Sorts<T>::quickSortMedian(T arr[], int size){
 	
 
-	quickSortRec(arr,size,true);
+	quickSortRec(arr,0,size-1,true);
 
-	assert(Sorts<T>::isSorted(arr, size));
+	//assert(Sorts<T>::isSorted(arr, size));
 	
 }
-*/
+
 template<typename T>
 void Sorts<T>::mergeSort(T arr[], int size){
 	
@@ -75,7 +77,6 @@ void Sorts<T>::mergeSort(T arr[], int size){
 	
 	assert(Sorts<T>::isSorted(arr, size));
 }
-
 
 template<typename T>
 void Sorts<T>::insertionSort(T arr[], int size){
@@ -106,7 +107,6 @@ void Sorts<T>::insertionSort(T arr[], int size){
 	
 	assert(Sorts<T>::isSorted(arr, size));
 }
-
 
 template<typename T>
 void Sorts<T>::selectionSort(T arr[], int size){
@@ -149,6 +149,7 @@ bool Sorts<T>::isSorted(T arr[], int size){
 	
 }
 /**
+template<typename T>
 double Sorts<T>::sortTimer(std::function<void(T[],int)>,T arr[], int size){
 	return 0.0;
 }
@@ -212,27 +213,72 @@ void Sorts<T>::merge(T* a1, T* a2, int size1, int size2){
 	}
 	
 		
-	delete arr;
+	delete[] arr;
 	arr = nullptr;
 	
 }
-/**
+
 template<typename T>
 void Sorts<T>::quickSortRec(T arr[], int first, int last, bool median){
 	
+	if(first < last){
+			
+			int pivotIndex = partition(arr,first,last,median);
+			
+			quickSortRec(arr,first,pivotIndex-1,median);
+			
+			quickSortRec(arr,pivotIndex+1,last,median);
+	}
+	
 }
 
-void setMedianPivot(T arr[], int first, int last){
+template<typename T>
+void Sorts<T>::setMedianPivot(T arr[], int first, int last){
 	
 }
 
 
-int partition(T arr[], int first, int last, bool median){
+template<typename T>
+int Sorts<T>::partition(T arr[], int first, int last, bool median){
+	
+	if(median){
+		setMedianPivot(arr,first,last);
+	}
+	int pivotIndex = last;
+	
+	int indexFromLeft = first;
+	int indexFromRight = last-1;
+	
+	bool done = false;
+		
+	while(!done){
+		while(arr[indexFromLeft] < arr[pivotIndex]){
+			indexFromLeft++;
+		}
+		
+		while(arr[indexFromRight] > arr[pivotIndex]){
+			indexFromRight--;
+		}
+		
+		if(indexFromLeft < indexFromRight){
+			swap(arr,indexFromLeft,indexFromRight);
+			indexFromLeft++;
+			indexFromRight--;
+		}
+		else{
+			done = true;
+		}
+	}
+	
+	swap(arr,pivotIndex,indexFromLeft);
+	pivotIndex = indexFromLeft;
+	return pivotIndex;
 	
 }
 
 
-void shuffle(T arr[], int size){
+template<typename T>
+void Sorts<T>::shuffle(T arr[], int size){
 	
 	std::default_random_engine generator(time(nullptr));
 	std::uniform_int_distribution<int> distribution(0,size-1);
@@ -244,4 +290,3 @@ void shuffle(T arr[], int size){
 	}
 	
 }
-*/
