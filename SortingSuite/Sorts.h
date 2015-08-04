@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.h
 * @author: Dravid Joseph
-* @date: 7/24/15
+* @date: 8/2/15
 * @brief: Templated header for Sorts class
 ********************************************************/
 
@@ -36,7 +36,7 @@ public:
 	* @return : void
 	********************************************************/
 	
-	//static void quickSort(T arr[], int size);
+	static void quickSort(T arr[], int size);
 	
 	/*******************************************************
 	* @pre :  Valid array, valid size
@@ -44,7 +44,7 @@ public:
 	* @return : void
 	********************************************************/
 	
-	//static void quickSortMedian(T arr[], int size);
+	static void quickSortMedian(T arr[], int size);
 	
 	
 	/*******************************************************
@@ -85,7 +85,7 @@ public:
 	* @return : double
 	********************************************************/
 	
-	//static double sortTimer(std::function<void(T[],int)>,T arr[], int size);
+	static double sortTimer(std::function<void(T[],int)>,T arr[], int size);
 	
 	
 	/*******************************************************
@@ -115,7 +115,7 @@ private:
 	* @return : void
 	********************************************************/
 	
-	//static void quickSortRec(T arr[], int first, int last, bool median);
+	static void quickSortRec(T arr[], int first, int last, bool median);
 	
 	/*******************************************************
 	* @pre :  Valid array, two valid indices
@@ -123,23 +123,23 @@ private:
 	* @return : void
 	********************************************************/
 	
-	//static void setMedianPivot(T arr[], int first, int last);
+	static void setMedianPivot(T arr[], int first, int last);
 	
 	/*******************************************************
 	* @pre :  Valid array, two valid indices
-	* @post : partitions array based on flag
-	* @return : void
+	* @post : partitions array around pivotIndex
+	* @return : int
 	********************************************************/
 	
-	//static int partition(T arr[], int first, int last, bool median);
+	static int partition(T arr[], int first, int last, bool median);
 	
 	/*******************************************************
-	* @pre :  Valid array, two valid indices
-	* @post : swaps array at index points
+	* @pre :  Valid array, valid size
+	* @post : shuffles array
 	* @return : void
 	********************************************************/
 	
-	//static void shuffle(T arr[], int size);
+	static void shuffle(T arr[], int size);
 	
 };
 #include "Sorts.hpp"

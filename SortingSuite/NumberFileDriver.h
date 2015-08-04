@@ -8,6 +8,10 @@
 #ifndef NUMBER_FILE_DRIVER_H
 #define NUMBER_FILE_DRIVER_H
 
+#include <iostream>
+
+#include "NumberFileGenerator.h"
+
 class NumberFileDriver{
 	
 public:
