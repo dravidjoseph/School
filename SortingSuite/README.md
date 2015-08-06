@@ -16,10 +16,15 @@ You read from a file using `fileObject >> thing_to_be_read;` and write using `fi
 
 ##Command-line arguments
 
-when you start the program by using this line or something like it `./Program arg1 arg2 arg3 arg4`.  Those args get stored in a 2D character array called `argv` (assuming your main function is set up for it, of course).  The best way to access the arguments is by accessing them via string: `std::string argument1 = argv[index]` where the zeroth index is `./Program` and the indices correspond sequentially.  You can then do necessary comparisons and so on. You can access the number of arguments using the `argc` parameter, of course.
+When you start the program by using this line or something like it `./Program arg1 arg2 arg3 arg4`.  Those args get stored in a 2D character array called `argv` (assuming your main function is set up for it, of course).  The best way to access the arguments is by accessing them via string: `std::string argument1 = argv[index]` where the zeroth index is `./Program` and the indices correspond sequentially.  You can then do necessary comparisons and so on. You can access the number of arguments using the `argc` parameter, of course.
+
+##Function Pointers
+
+See code for example.
 
 ##Issues
 
 1) You can't use switch statements on strings.  Use enumerated types, or conditionals.
+2) You should find a better way to convert strings to integers
 
 
