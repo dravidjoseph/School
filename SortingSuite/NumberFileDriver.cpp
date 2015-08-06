@@ -40,10 +40,10 @@ void NumberFileDriver::run(int argc, char** argv){
 		else if(flag == "-d"){
 			NumberFileGenerator::descending(fileName,amount);
 		}
-		else if(flag == "s"){
+		else if(flag == "-r"){
 			NumberFileGenerator::random(fileName,amount,min,max);
 		}
-		else{
+		else if(flag == "-s"){
 			NumberFileGenerator::singleValue(fileName,amount,value);
 		}
 	}

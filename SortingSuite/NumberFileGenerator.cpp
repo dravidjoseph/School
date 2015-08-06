@@ -10,7 +10,7 @@
 
 void NumberFileGenerator::ascending(std::string fileName, int amount){
 		
-	std::ofstream output("ascending.dat");
+	std::ofstream output(fileName);
 	
 	output << amount <<"\n";
 	
@@ -23,11 +23,11 @@ void NumberFileGenerator::ascending(std::string fileName, int amount){
 
 void NumberFileGenerator::descending(std::string fileName, int amount){
 	
-	std::ofstream output("descending.dat");
+	std::ofstream output(fileName);
 	
 	output << amount <<"\n";
 	
-	for(int i = 50; i < 1;i--){
+	for(int i = 50; i >= 1;i--){
 		output << i <<"\n";
 	}
 	
@@ -37,7 +37,7 @@ void NumberFileGenerator::descending(std::string fileName, int amount){
 	
 void NumberFileGenerator::random(std::string fileName, int amount, int min, int max){
 	
-	std::ofstream output("randomValueFile.dat");
+	std::ofstream output(fileName);
 	output << amount <<"\n";
 	
 	std::default_random_engine generator(time(nullptr));
@@ -54,7 +54,7 @@ void NumberFileGenerator::random(std::string fileName, int amount, int min, int 
 }
 
 void NumberFileGenerator::singleValue(std::string fileName, int amount, int value){
-	std::ofstream output("SingleValueFile.dat");
+	std::ofstream output(fileName);
 	
 	output << amount <<"\n";
 	

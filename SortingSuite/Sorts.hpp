@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.hpp
 * @author: Dravid Joseph
-* @date: 8/2/15
+* @date: 8/5/15
 * @brief: Templated implementation file for Sorts class
 ********************************************************/
 
@@ -352,7 +352,6 @@ int Sorts<T>::partition(T arr[], int first, int last, bool median){
 	return pivotIndex;
 	
 }
-
 
 template<typename T>
 void Sorts<T>::shuffle(T arr[], int size){

@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: SortDriver.h
 * @author: Dravid Joseph
-* @date: 8/3/15
+* @date: 8/5/15
 * @brief: Implementation file for SortDriver class
 ********************************************************/
 
@@ -21,7 +21,7 @@ void SortDriver::run(int argc, char** argv){
 		
 		int* arr = createArray(input,amount);
 		
-		std::cout<<"Calculating sort timing information...";
+		std::cout<<"Calculating sort timing information...\n";
 		
 		double time0 = 0.0;
 		double time1 = 0.0;
@@ -30,108 +30,105 @@ void SortDriver::run(int argc, char** argv){
 		double time4 = 0.0;
 		double time5 = 0.0;
 		
-		
+		if(sortType == "-bubble"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::bubbleSort,arr,amount);
+		}
+		else if(sortType == "-insertion"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,arr,amount);
+		}
+		else if(sortType == "-selection"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,arr,amount);
+		}
+		else if(sortType == "-quick"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::quickSort,arr,amount);
+		}
+		else if(sortType == "-quick3"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::quickSortMedian,arr,amount);
+		}
+		else if(sortType == "-merge"){
+			time0 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,arr,amount);
+		}
+		else if(sortType == "-all"){
+				
+			int* copy = new int[amount];
+				
+			copyArray(arr,copy,amount);
+				
+			time0 = Sorts<int>::sortTimer(Sorts<int>::bubbleSort,copy,amount);
+				
+			copyArray(arr,copy,amount);
+				
+			time1 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,copy,amount);
+				
+			copyArray(arr,copy,amount);
+				
+			time2 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,copy,amount);
+				
+			copyArray(arr,copy,amount);
+				
+			time3 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
+				
+			copyArray(arr,copy,amount);
+				
+			time4 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
+				
+			copyArray(arr,copy,amount);
+				
+			time5 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,copy,amount);
+				
+				
+				
+			delete[] copy;
+			copy = nullptr;
+					
+		}
+		else{
+			std::cout<<"Invalid flag";
+		}
 			
+		std::cout<<"Calculations finished.  Results stored in "<<outputFileName<<".\n";
 			
-			if(sortType == "-bubble"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::bubbleSort,arr,amount);
-			}
-			else if(sortType == "-insertion"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,arr,amount);
-			}
-			else if(sortType == "-selection"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,arr,amount);
-			}
-			else if(sortType == "-quick"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::quickSort,arr,amount);
-			}
-			else if(sortType == "-quick3"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::quickSortMedian,arr,amount);
-			}
-			else if(sortType == "-merge"){
-				time0 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,arr,amount);
-			}
-			else if(sortType == "-all"){
-				
-				int* copy = new int[amount];
-				
-				copyArray(arr,copy,amount);
-				
-				time0 = Sorts<int>::sortTimer(Sorts<int>::bubbleSort,copy,amount);
-				
-				copyArray(arr,copy,amount);
-				
-				time1 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,copy,amount);
-				
-				copyArray(arr,copy,amount);
-				
-				time2 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,copy,amount);
-				
-				copyArray(arr,copy,amount);
-				
-				time3 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
-				
-				copyArray(arr,copy,amount);
-				
-				time4 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
-				
-				copyArray(arr,copy,amount);
-				
-				time5 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,copy,amount);
-				
-				
-				
-				delete[] copy;
-				copy = nullptr;
-				
-			}
-			else{
-				std::cout<<"Invalid flag";
-			}
+		std::ofstream output(outputFileName);
 			
-			std::cout<<"Calculations finished.  Results stored in "<<outputFileName<<".";
+		if(sortType == "-bubble"){
+			output<<"Bubble Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+		}
+		else if(sortType == "-insertion"){
+			output<<"Insertion Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+				
+		}
+		else if(sortType == "-selection"){
+			output<<"Selection Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
 			
-			std::ofstream output(outputFileName);
+		}
+		else if(sortType == "-quick"){
+			output<<"Quick Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
 			
-			if(sortType == "-bubble"){
-				output<<"Bubble Sort sorted "<<amount<<" in "<<time0<<" seconds.\n";
-			}
-			else if(sortType == "-insertion"){
-				output<<"Insertion Sort sorted "<<amount<<" in "<<time0<<" seconds.\n";
+		}
+		else if(sortType == "-quick3"){
+			output<<"Quick Sort (with median) sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
 				
-			}
-			else if(sortType == "-selection"){
-				output<<"Selection Sort sorted "<<amount<<" in "<<time0<<" seconds.\n";
+		}
+		else if(sortType == "-merge"){
+			output<<"Merge Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
 				
-			}
-			else if(sortType == "-quick"){
-				output<<"Quick Sort sorted "<<amount<<" in "<<time0<<" seconds.\n";
-				
-			}
-			else if(sortType == "-quick3"){
-				output<<"Quick Sort (with median) sorted "<<amount<<" in "<<time0<<" seconds.\n";
-				
-			}
-			else if(sortType == "-merge"){
-				output<<"Merge Sort sorted "<<amount<<" in "<<time0<<" seconds.\n";
-				
-			}
-			else if(sortType == "-all"){
+		}
+		else if(sortType == "-all"){
 
-				output<<"Bubble Sort sorted "<<amount<<" in "<<time0<<"seconds.\n";
-				output<<"Insertion Sort sorted "<<amount<<" in "<<time1<<" seconds.\n";
-				output<<"Selection Sort sorted "<<amount<<" in "<<time2<<" seconds.\n";
-				output<<"Quick Sort sorted "<<amount<<" in "<<time3<<" seconds.\n";
-				output<<"Quick Sort (with median) sorted "<<amount<<" in "<<time4<<" seconds.\n";
-				output<<"Merge Sort sorted "<<amount<<" in "<<time5<<" seconds.\n";
+			output<<"Bubble Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+			output<<"Insertion Sort sorted "<<amount<<" numbers in "<<time1<<" seconds.\n";
+			output<<"Selection Sort sorted "<<amount<<" numbers in "<<time2<<" seconds.\n";
+			output<<"Quick Sort sorted "<<amount<<" numbers in "<<time3<<" seconds.\n";
+			output<<"Quick Sort (with median) sorted "<<amount<<" numbers in "<<time4<<" seconds.\n";
+			output<<"Merge Sort sorted "<<amount<<" numbers in "<<time5<<" seconds.\n";
 				
-			}
+		}
 			
-			input.close();
-			output.close();
+		input.close();
+		output.close();
 			
-			delete[] arr;
-			arr = nullptr;
+		delete[] arr;
+		arr = nullptr;
 		
 		
 	}
