@@ -9,8 +9,14 @@
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
 
+#include <iostream>
+
+#include "BSTI.h"
+#include "Node.h"
+
+
 template<typename T>
-class BinarySearchTree : public BSTI{
+class BinarySearchTree : public BSTI<T>{
 	
 	/*******************************************************
 	* PUBLIC METHODS
@@ -57,6 +63,14 @@ public:
 	
 	bool isEmpty() const;
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree
+	* @return : void
+	********************************************************/
+	
+	bool add(T value);
+	
 	
 	/*******************************************************
 	* @pre :  None
@@ -71,12 +85,14 @@ public:
 	* @post : prints tree inorder
 	* @return : void
 	********************************************************/
-	void sortedPrint()
+	void sortedPrint() const;
 	
-	
-	
-	
-	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : void
+	********************************************************/
+	T search(T value) const throw (ValueNotFoundException);
 	
 	/*******************************************************
 	* PRIVATE MEMBERS
@@ -84,6 +100,44 @@ public:
 private:
 	
 	Node<T>* m_root;	//pointer that is always looking at the root of the tree
+	
+	
+	/*******************************************************
+	* PRIVATE METHODS
+	********************************************************/
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : void
+	********************************************************/
+	
+	bool add(T value, Node<T>* subTree);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : void
+	********************************************************/
+	
+	void deleteTree(Node<T>* subTree);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : void
+	********************************************************/
+	T search(T value, Node<T>* subTree) const throw (ValueNotFoundException);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : void
+	********************************************************/
+	void printTree(Node<T>* subTree, Order order) const;
+	
+	
+	
 	
 };
 #include "BinarySearchTree.hpp"

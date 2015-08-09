@@ -8,7 +8,7 @@
 #ifndef BSTI_H
 #define BSTI_H
 
-#include "Node.h"
+
 #include "ValueNotFoundException.h"
 
 enum Order {PRE_ORDER,IN_ORDER,POST_ORDER};
@@ -56,7 +56,7 @@ public:
 	* @return : false if value couldn't be added
 	********************************************************/
 	
-	virtual bool add(T value);
+	virtual bool add(T value) = 0;
 	
 	/*******************************************************
 	* @pre :  Type T comparable by ==

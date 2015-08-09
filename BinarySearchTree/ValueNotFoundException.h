@@ -10,7 +10,7 @@
 
 #include <stdexcept>
 
-class ValueNotFoundException: std::runtime_error{
+class ValueNotFoundException: public std::runtime_error{
 	
 public:
 	
