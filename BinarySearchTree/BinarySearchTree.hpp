@@ -59,7 +59,13 @@ void BinarySearchTree<T>::sortedPrint() const{
 
 template<typename T>
 T BinarySearchTree<T>::search(T value) const throw (ValueNotFoundException){
-	return search(value,m_root);
+	
+	if(isEmpty()){
+		throw ValueNotFoundException("Tree is empty.\n");
+	}
+	else{
+		return search(value,m_root);
+	}
 }
 
 /*******************************************************
@@ -132,39 +138,30 @@ void BinarySearchTree<T>::deleteTree(Node<T>* subTree){
 
 template<typename T>
 T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFoundException){
-	if(subTree != nullptr){
-		
-		if(value == subTree->getValue()){
-			return subTree->getValue();
+	//Tree has been checked as not empty.
+	
+	if(value == subTree->getValue()){
+		return subTree->getValue();
+	}
+	else if(value < subTree->getValue()){
+		if(subTree->getLeft() == nullptr){
+			throw ValueNotFoundException("Value not in tree.\n");
 		}
-		else if(value < (subTree->getValue())){
-			
-			if(subTree->getLeft()!= nullptr){
-				search(value,subTree->getLeft());
-			}
-			else{
-				throw ValueNotFoundException("Value is not in tree.\n");
-			}
-			
-			
+		else{
+			this->search(value, subTree->getLeft());
 		}
-		else if(value > (subTree->getValue())){
-			
-			if(subTree->getRight()!= nullptr){
-				search(value,subTree->getRight());
-			}
-			else{
-				throw ValueNotFoundException("Value is not in tree.\n");
-			}
-			
-			
-		}
-		
-		
 		
 	}
+	else if(value > subTree->getValue()){
+		if(subTree->getRight() == nullptr){
+			throw ValueNotFoundException("Value not in tree.\n");
+		}
+		else{	
+			this->search(value, subTree->getRight());
+		}
+	}
 	else{
-		throw ValueNotFoundException("Tree is empty");
+		throw ValueNotFoundException("Value not in tree.\n");
 	}
 }
 

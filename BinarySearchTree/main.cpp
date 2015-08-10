@@ -34,10 +34,22 @@ void printMenu(){
 
 int main(int argc, char** argv){
 	
+	if(argc != 2){
+		std::cout<<"Invalid number of arguments.  Program terminated.\n";
+		return 0;
+	}
+	
+	int numNodes = atoi(argv[1]);
+	
+	if(numNodes < 0){
+		std::cout<<"Cannot make a tree with negative number of nodes.\n ";
+		return 0;
+	}
+	
 	/*******************************************************
 	* Local Primitive Variable Declaration
 	********************************************************/
-	int numNodes = atoi(argv[1]);
+	
 	int randomNumber = 0;
 	int choice = 0;
 	int choice2 = 0;
@@ -64,15 +76,9 @@ int main(int argc, char** argv){
 	* INITIAL TREE POPULATION
 	********************************************************/
 	
-	if(argc != 2){
-		std::cout<<"Invalid number of arguments.  Program terminated.\n";
-		return 0;
-	}
 	
-	if(numNodes < 0){
-		std::cout<<"Cannot make a tree with negative number of nodes.\n ";
-		return 0;
-	}
+	
+	
 	
 	std::cout<<"Filling original tree with "<<numNodes<<" values.\n";
 	
@@ -154,7 +160,7 @@ int main(int argc, char** argv){
 				std::cout<<"Tree does not exist. Cannot print.\n";
 			}
 			else{
-				std::cout<<"Print order options: ";
+				std::cout<<"Print order options: \n";
 				std::cout<<"\t0 - pre-order\n";
 				std::cout<<"\t1 - in-order\n";
 				std::cout<<"\t2 - post-order\n";
@@ -187,7 +193,7 @@ int main(int argc, char** argv){
 			
 				try{
 					value = original->search(choice2);
-					std::cout<<value<<" is in the list.\n";
+					std::cout<<choice2<<" is in the list.\n";
 				}
 				catch(ValueNotFoundException& e){
 					std::cout<<e.what();
@@ -204,20 +210,17 @@ int main(int argc, char** argv){
 				std::cout<<"Choose a value you wish to search for: \n";
 				std::cin>>choice2;
 			
-				if(copy == nullptr){
-					std::cout<<"This tree doesn't exist.  Cannot print.\n";
+	
+				try{
+					value = copy->search(choice2);
+					std::cout<<choice2<<" is in the list.\n";
 				}
-				else{
-					try{
-						value = copy->search(choice2);
-						std::cout<<value<<" is in the list.\n";
-					}
-					catch(ValueNotFoundException& e){
-						std::cout<<e.what();
-					}
+				catch(ValueNotFoundException& e){
+					std::cout<<e.what();
 				}
 			}
 		}
+
 		else if(choice == 8){
 			flag = true;
 		}
