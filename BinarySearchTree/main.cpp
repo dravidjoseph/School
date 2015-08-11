@@ -1,19 +1,18 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 8/5/15
+* @date: 8/10/15
 * @brief: Driver for Binary Search Tree Class
 ********************************************************/
 
 
-#include <iostream>
-#include <climits>
-#include <random>
-#include <ctime>
+#include <iostream>		//input/output
+#include <climits>		//allows us to use INT_MIN and INT_MAX
+#include <random>		//generate random numbers
+#include <ctime>		//seeds the generator
 
-#include "BSTI.h"
-#include "BinarySearchTree.h"
-#include "ValueNotFoundException.h"
+#include "BinarySearchTree.h"	//Binary Search Tree
+#include "ValueNotFoundException.h"		//Allows us to use exception. Check to see if needed
 
 void printMenu(){
 	
@@ -114,7 +113,7 @@ int main(int argc, char** argv){
 		}
 		else if(choice == 2){
 			
-			copy = new BinarySearchTree<int>(*original);
+			copy = original->clone();
 			std::cout<<"Original tree copied.\n";
 			
 		}
@@ -193,7 +192,7 @@ int main(int argc, char** argv){
 			
 				try{
 					value = original->search(choice2);
-					std::cout<<choice2<<" is in the list.\n";
+					std::cout<<choice2<<" is in the list.\n";	//hacky
 				}
 				catch(ValueNotFoundException& e){
 					std::cout<<e.what();

@@ -5,8 +5,8 @@
 * @brief: Header file for ValueNotFoundException Class
 ********************************************************/
 
-#ifndef VALUE_NOT_FOUND_EXCEPTION
-#define VALUE_NOT_FOUND_EXCEPTION
+#ifndef VALUE_NOT_FOUND_EXCEPTION_H
+#define VALUE_NOT_FOUND_EXCEPTION_H
 
 #include <stdexcept>
 
