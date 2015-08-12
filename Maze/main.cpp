@@ -5,7 +5,10 @@
 * @brief: Driver for Maze Program
 ********************************************************/
 
-
+#include <iostream>
+#include "MazeWalker.h"
+#include "MazeReader.h"
+#include "MazeCreationException.h"
 
 int main(int argc, char** argv){
 	
