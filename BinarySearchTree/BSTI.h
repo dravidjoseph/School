@@ -1,8 +1,8 @@
 /*******************************************************
 * @file: BSTI.h
 * @author: Dravid Joseph
-* @date: 6/30/15
-* @brief: Header file for Node class
+* @date: 8/10/15
+* @brief: Header file for BST Interface
 ********************************************************/
 
 #ifndef BSTI_H

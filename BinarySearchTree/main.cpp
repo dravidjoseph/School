@@ -113,7 +113,7 @@ int main(int argc, char** argv){
 		}
 		else if(choice == 2){
 			
-			copy = original->clone();
+			copy = new BinarySearchTree<int>(*original);
 			std::cout<<"Original tree copied.\n";
 			
 		}
