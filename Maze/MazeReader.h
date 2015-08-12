@@ -8,6 +8,8 @@
 #ifndef MAZEREADER_H
 #define MAZEREADER_H
 
+#include <iostream>
+#include <fstream>
 
 class MazeReader{
 	
@@ -15,7 +17,7 @@ class MazeReader{
 public:
 	
 	
-	MazeReader(std::stringn file) throw (MazeCreationException);
+	MazeReader(std::string file) throw (MazeCreationException);
 	
 	~MazeReader();
 	
@@ -35,7 +37,21 @@ protected:
 	void readMaze() throw (MazeCreationException);
 	
 	
+private:
 	
+	int m_rows;
+	
+	int m_cols;
+	
+	int m_startRow;
+	
+	int m_startCol;
+	
+	std::ifstream input;
+	
+	std::string fileName;
+	
+	char** maze;
 	
 	
 };

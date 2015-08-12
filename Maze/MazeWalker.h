@@ -10,6 +10,7 @@
 
 #include <stack>
 #include <queue>
+#include <iostream>
 
 #include "Position.h"
 
@@ -18,6 +19,8 @@ class MazeWalker{
 public:
 	
 	MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols);
+	
+	~MazeWalker();
 	
 	void walkMaze();
 	

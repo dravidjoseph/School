@@ -10,6 +10,15 @@
 
 MazeWalker::MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols){
 	
+	
+	m_maze = mazePtr;
+	m_rows = rows;
+	
+	
+}
+
+MazeWalker::~MazeWalker(){
+	
 }
 	
 void MazeWalker::walkMaze(){
