@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: MazeWalker.h
 * @author: Dravid Joseph
-* @date: 8/10/15
+* @date: 8/12/15
 * @brief: Header file for MazeWalker Class
 ********************************************************/
 
@@ -16,39 +16,87 @@
 
 class MazeWalker{
 	
+	/*******************************************************
+	* PUBLIC METHODS
+	********************************************************/
+	
 public:
+	
+	/*******************************************************
+	* @pre :  Valid parameters
+	* @post : MazeWalker Initialized
+	* @return : None
+	********************************************************/
 	
 	MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols);
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Deallocates MazeWalker
+	* @return : None
+	********************************************************/
+	
 	~MazeWalker();
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : traverses maze searching for exit
+	* @return : None
+	********************************************************/
 	
 	void walkMaze();
 	
+	/*******************************************************
+	* PROTECTED METHODS
+	********************************************************/
+	
 protected:
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Stores valid moves in stack or queue
+	* @return : void
+	********************************************************/
 	
 	void storeValidMoves();
 	
+	/*******************************************************
+	* @pre :  Valid position
+	* @post : Moves based on position
+	* @return : void
+	********************************************************/
+	
 	void move(Position& p);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Returns true if exit is reached, false otherwise.
+	* @return : bool
+	********************************************************/
 	
 	bool isGoalReached() const;
 	
-	bool m_isDFS;
+	/*******************************************************
+	* PROTECTED MEMBERS
+	********************************************************/
 	
-	char** m_maze;
+	bool m_isDFS;	//true if dfs, false if bfs
 	
-	bool** m_visited;
+	char** m_maze;	//2D array which holds characters for maze
 	
-	int m_rows;
+	bool** m_visited;	//2D boolean array.
 	
-	int m_cols;
+	int m_rows;		//field to hold rows
 	
-	Position m_curPos;
+	int m_cols;		//field to hold columns
 	
-	Position m_startPos;
+	Position m_curPos;		//current position
 	
-	std::stack<Position> m_moveStack;
+	Position m_startPos;	//starting position
 	
-	std::queue<Position> m_moveQueue;
+	std::stack<Position> m_moveStack;	//stack which holds positions
+	
+	std::queue<Position> m_moveQueue;	//queue which holds positions.
 	
 	
 };

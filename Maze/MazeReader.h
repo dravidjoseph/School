@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: MazeReader.h
 * @author: Dravid Joseph
-* @date: 8/10/15
+* @date: 8/12/15
 * @brief: Header file for MazeReader Class
 ********************************************************/
 
@@ -13,29 +13,85 @@
 
 class MazeReader{
 	
+	/*******************************************************
+	* PUBLIC METHODS
+	********************************************************/
 	
 public:
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
 	
 	MazeReader(std::string file) throw (MazeCreationException);
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
+	
 	~MazeReader();
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
 	
 	char** getMaze() const;
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
+	
 	int getCols() const;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
 	
 	int getRows() const;
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
+	
 	int getStartCol() const;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
 	
 	int getStartRow() const;
 	
+	/*******************************************************
+	* PROTECTED METHODS
+	********************************************************/
 	
 protected:
 	
+	/*******************************************************
+	* @pre :  None
+	* @post : Binary Search Tree initialized
+	* @return : None
+	********************************************************/
+	
 	void readMaze() throw (MazeCreationException);
 	
+	/*******************************************************
+	* PRIVATE MEMBERS
+	********************************************************/
 	
 private:
 	
