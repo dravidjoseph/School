@@ -191,8 +191,7 @@ int main(int argc, char** argv){
 				std::cin>>choice2;
 			
 				try{
-					value = original->search(choice2);
-					std::cout<<choice2<<" is in the list.\n";	//hacky
+					std::cout<<original->search(choice2)<<" is in the list.\n";
 				}
 				catch(ValueNotFoundException& e){
 					std::cout<<e.what();
@@ -211,8 +210,7 @@ int main(int argc, char** argv){
 			
 	
 				try{
-					value = copy->search(choice2);
-					std::cout<<choice2<<" is in the list.\n";
+					std::cout<<copy->search(choice2)<<" is in the list.\n";
 				}
 				catch(ValueNotFoundException& e){
 					std::cout<<e.what();
