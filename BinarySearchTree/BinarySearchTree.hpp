@@ -144,20 +144,20 @@ T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFo
 		return subTree->getValue();
 	}
 	else if(value < subTree->getValue()){
-		if(subTree->getLeft() == nullptr){
-			throw ValueNotFoundException("Value not in tree.\n");
+		if(subTree->getLeft() != nullptr){
+			search(value,subTree->getLeft());
 		}
 		else{
-			this->search(value, subTree->getLeft());
+			throw ValueNotFoundException("Value not found in tree.\n");
 		}
 		
 	}
 	else if(value > subTree->getValue()){
-		if(subTree->getRight() == nullptr){
-			throw ValueNotFoundException("Value not in tree.\n");
+		if(subTree->getRight() != nullptr){
+			search(value,subTree->getLeft());
 		}
 		else{	
-			search(value, subTree->getRight());
+			throw ValueNotFoundException("Value not found in tree.\n");
 		}
 	}
 }
