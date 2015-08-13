@@ -9,12 +9,12 @@
 #include "AnimalPen.h"
 
 AnimalPen::AnimalPen(){
-	Stack<FarmAnimal*>::Stack();
+	
 }
 
 AnimalPen::~AnimalPen(){
 	
-	Node<FarmAnimal*>* temp = Stack::m_top;
+	Node<FarmAnimal*>* temp = m_top;
 	while(m_top != nullptr){
 		temp = m_top;
 		m_top = m_top -> getNext();
