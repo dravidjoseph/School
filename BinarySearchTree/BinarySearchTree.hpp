@@ -139,27 +139,27 @@ void BinarySearchTree<T>::deleteTree(Node<T>* subTree){
 template<typename T>
 T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFoundException){
 	//Tree has been checked as not empty.
-	
-	if(value == subTree->getValue()){
-		return subTree->getValue();
-	}
-	else if(value < subTree->getValue()){
-		if(subTree->getLeft() != nullptr){
-			search(value,subTree->getLeft());
+	if(value < subTree -> getValue()){
+		if(subTree -> getLeft() != nullptr){
+			return search(value,subTree->getLeft());
 		}
 		else{
-			throw ValueNotFoundException("Value not found in tree.\n");
-		}
-		
-	}
-	else if(value > subTree->getValue()){
-		if(subTree->getRight() != nullptr){
-			search(value,subTree->getLeft());
-		}
-		else{	
-			throw ValueNotFoundException("Value not found in tree.\n");
+			throw ValueNotFoundException("Value does not exist in tree.\n");
 		}
 	}
+	else if(value > subTree -> getValue()){
+		if(subTree -> getRight() != nullptr){
+			return search(value,subTree->getRight());
+		}
+		else{
+			throw ValueNotFoundException("Value does not exist in tree.\n");
+		}
+	}
+	else{
+		return subTree->getValue();
+	}
+	
+	
 }
 
 template<typename T>
