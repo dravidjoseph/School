@@ -13,7 +13,19 @@ AnimalPen::AnimalPen(){
 }
 
 AnimalPen::~AnimalPen(){
-	Stack<FarmAnimal*>::~Stack();
+	
+	Node<FarmAnimal*>* temp = Stack::m_top;
+	while(m_top != nullptr){
+		temp = m_top;
+		m_top = m_top -> getNext();
+		
+		delete temp;
+		temp = nullptr;
+	}
+	
+	delete m_top;
+	m_top = nullptr;
+	
 }
 
 void AnimalPen::addAnimal(FarmAnimal* animal){
