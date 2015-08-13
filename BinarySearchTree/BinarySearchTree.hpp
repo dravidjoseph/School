@@ -157,11 +157,8 @@ T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFo
 			throw ValueNotFoundException("Value not in tree.\n");
 		}
 		else{	
-			this->search(value, subTree->getRight());
+			search(value, subTree->getRight());
 		}
-	}
-	else{
-		throw ValueNotFoundException("Value not in tree.\n");
 	}
 }
 
