@@ -5,7 +5,7 @@
 * @brief: Header file for Position Class
 ********************************************************/
 
-#include POSITION_H
+#ifndef POSITION_H
 #define POSITION_H
 
 class Position{

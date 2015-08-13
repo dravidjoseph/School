@@ -11,6 +11,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "MazeCreationException.h"
+
 class MazeReader{
 	
 	/*******************************************************

@@ -42,7 +42,7 @@ MazeWalker::MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int
 MazeWalker::~MazeWalker(){
 	
 	for(int i = 0; i < m_cols; i++){
-		delete[] m_visited[i]
+		delete[] m_visited[i];
 		m_visited[i] = nullptr;
 	}
 	
@@ -142,7 +142,7 @@ void MazeWalker::storeValidMoves(){
 			}
 			if(down){
 				if(m_maze[rowBelow][col] != 'W' && !m_visited[rowBelow][col]){
-					m_moveStack.push(Position(rowBelow,col);
+					m_moveStack.push(Position(rowBelow,col));
 				}
 			}
 			if(left){
@@ -169,7 +169,7 @@ void MazeWalker::storeValidMoves(){
 			}
 			if(left){
 				if(m_maze[row][colLeft] != 'W' && !m_visited[row][colLeft]){
-					m_moveQueue.push(Position(row,colLeft);
+					m_moveQueue.push(Position(row,colLeft));
 				}
 			}
 			if(right){
@@ -200,10 +200,10 @@ void MazeWalker::printVisited() const{
 		std::cout<<"\n";
 		
 	}
-	std::cout<<"\n"'
+	std::cout<<"\n";
 	
 }
 	
 bool MazeWalker::isGoalReached() const{
-	return m_maze[m_curPos.getRow][m_curPos.getCol()]) == 'E';
+	return m_maze[m_curPos.getRow()][m_curPos.getCol()] == 'E';
 }

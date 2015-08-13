@@ -59,7 +59,7 @@ void MazeReader::readMaze() throw (MazeCreationException){
 		input >> m_startCol;
 	}
 	
-	if(m_rows <= 0 || m_cols <= 0 || m_startRow < 0 || m_startCol < 0 || m_startCol > m_columns || m_startRow > m_rows){
+	if(m_rows <= 0 || m_cols <= 0 || m_startRow < 0 || m_startCol < 0 || m_startCol > m_cols || m_startRow > m_rows){
 		throw MazeCreationException("Error with Parameters");
 	}
 	

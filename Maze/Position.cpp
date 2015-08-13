@@ -7,7 +7,7 @@
 
 #include "Position.h"
 
-Position::Position(int row, int col):row(0),col(0){
+Position::Position(int row, int col):m_row(0),m_col(0){
 	
 }
 

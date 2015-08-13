@@ -6,6 +6,7 @@
 ********************************************************/
 
 #include <iostream>
+
 #include "MazeWalker.h"
 #include "MazeReader.h"
 #include "MazeCreationException.h"
@@ -21,6 +22,9 @@ int main(int argc, char** argv){
 	std::string search = argv[2];
 	bool searchFlag = false;
 	
+	MazeReader* reader = nullptr;
+	MazeWalker* walker = nullptr;
+	
 	if(!(search == "-dfs" && search == "-bfs")){
 		std::cout<<"Not a valid search option.\n";
 	}
@@ -30,17 +34,17 @@ int main(int argc, char** argv){
 	
 	
 	try{
-		MazeReader* reader = new MazeReader(fileName);
+		reader = new MazeReader(fileName);
 	}
 	catch(MazeCreationException& e){
 		std::cout<<e.what();
 	}
 	
 	try{
-		MazeWalker walker = new MazeWalker(reader->getMaze(),reader->getStartRow(),reader->getStartCol(),reader->getRows(),reader->getCols(),searchFlag);
+		walker = new MazeWalker(reader->getMaze(),reader->getStartRow(),reader->getStartCol(),reader->getRows(),reader->getCols(),searchFlag);
 	}
 	catch(MazeCreationException& e){
-		std::cout<<e.what()
+		std::cout<<e.what();
 	}
 	
 	walker->walkMaze();

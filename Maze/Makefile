@@ -1,5 +1,5 @@
 Maze: main.o MazeWalker.o MazeReader.o MazeCreationException.o Position.o
-	g++ -g -std=c++11 main.o MazeReader.o MazeCreationException.o Position.o -o Maze
+	g++ -g -std=c++11 main.o MazeWalker.o MazeReader.o MazeCreationException.o Position.o -o Maze
 	
 main.o: main.cpp MazeWalker.h MazeReader.h MazeCreationException.h
 	g++ -g -std=c++11 -c main.cpp

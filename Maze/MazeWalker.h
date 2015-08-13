@@ -28,7 +28,7 @@ public:
 	* @return : None
 	********************************************************/
 	
-	MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols);
+	MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols,bool dfs);
 	
 	/*******************************************************
 	* @pre :  None
@@ -67,6 +67,14 @@ protected:
 	********************************************************/
 	
 	void move(Position& p);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints visited boolean array
+	* @return : void
+	********************************************************/
+	
+	void printVisited() const;
 	
 	/*******************************************************
 	* @pre :  None
