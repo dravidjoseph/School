@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cassert>
 #include <functional>
+#include <chrono>
 
 template<typename T>
 class Sorts{
