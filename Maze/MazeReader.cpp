@@ -23,6 +23,11 @@ MazeReader::MazeReader(std::string file) throw (MazeCreationException){
 	
 MazeReader::~MazeReader(){
 	
+	for(int i = 0;i < m_cols;i++){
+		delete[] maze[i];
+	}
+	
+	delete[] maze;
 }
 	
 char** MazeReader::getMaze() const{
@@ -76,5 +81,4 @@ void MazeReader::readMaze() throw (MazeCreationException){
 		}
 		
 	}
-	
 }

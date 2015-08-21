@@ -20,17 +20,26 @@ int main(int argc, char** argv){
 	
 	std::string fileName = argv[1];
 	std::string search = argv[2];
-	bool searchFlag = false;
+	
+	std::cout<<fileName<<"\n";
+	std::cout<<search<<"\n";
+	
+	bool searchFlag;
 	
 	MazeReader* reader = nullptr;
 	MazeWalker* walker = nullptr;
 	
-	if(!(search == "-dfs" && search == "-bfs")){
-		std::cout<<"Not a valid search option.\n";
-	}
-	else if(search == "-dfs"){
+	if(search == "-dfs"){
 		searchFlag = true;
 	}
+	else if(search == "-bfs"){
+		searchFlag = false;
+	}
+	else{
+		std::cout<<"Invalid search option.  Defaulting to bfs.";
+	}
+	
+	std::cout<<searchFlag<<"\n";
 	
 	
 	try{
@@ -39,6 +48,7 @@ int main(int argc, char** argv){
 	catch(MazeCreationException& e){
 		std::cout<<e.what();
 	}
+	
 	
 	try{
 		walker = new MazeWalker(reader->getMaze(),reader->getStartRow(),reader->getStartCol(),reader->getRows(),reader->getCols(),searchFlag);

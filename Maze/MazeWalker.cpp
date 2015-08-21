@@ -16,11 +16,19 @@ MazeWalker::MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int
 	
 	m_visited = nullptr;
 	
-	m_rows = rows;		//field to hold rows
+	m_rows = rows;		
 	
-	m_cols = cols;		//field to hold columns
+	m_cols = cols;		
 	
-	m_visited = new bool*[m_rows];	//2D boolean array.
+	m_visited = new bool*[m_rows];	
+	
+	//initialize all values in boolean array to false
+	
+	for(int i = 0;i < m_rows;i++){
+		
+		m_visited[i] = new bool[m_cols];
+		
+	}
 	
 	for(int i = 0;i<m_rows;i++){
 		
@@ -32,6 +40,7 @@ MazeWalker::MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int
 		
 	}
 	
+	//initialize start position as true
 	m_visited[m_startPos.getRow()][m_startPos.getCol()] = true;
 	
 	
@@ -57,7 +66,6 @@ void MazeWalker::walkMaze(){
 	
 	if(m_isDFS){
 		//do dfs
-		
 	
 		while(!m_moveStack.empty()){
 			
@@ -77,10 +85,12 @@ void MazeWalker::walkMaze(){
 				return;
 			}
 			
-			std::cout<<"No exit";
+			
 			
 			
 		}
+		
+		std::cout<<"No exit";
 		
 	}
 	else{
@@ -104,15 +114,11 @@ void MazeWalker::walkMaze(){
 				return;
 			}
 			
-			std::cout<<"No exit";
 			
-			
-		}
+		}	
 		
-		
-		
-	}
-	
+		std::cout<<"No exit";	
+	}	
 }
 
 
