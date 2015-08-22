@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Colosseum.cpp
 * @author: Dravid Joseph
-* @date: 8/10/15
+* @date: 8/22/15
 * @brief: Implementation file for Colosseum class
 ********************************************************/
 
@@ -79,13 +79,16 @@ bool Colosseum::attack(const Pokemon& attacker,Pokemon& defender){
     //if damage
     if(attacker.getAttackLevel()+attackBonus>defender.getDefenseLevel()+defenseBonus){
           std::cout<<"The attack hits dealing 3-D6 damage!\n";
-          int roll1 = d6.roll();
+          //Calculate damage
+		  int roll1 = d6.roll();
           int roll2 = d6.roll();
           int roll3 = d6.roll();
           int damage = roll1+roll2+roll3;
-          std::cout<<"The rolls are "<<roll1<<", "<<roll2<<", and "<<roll3<< " totaling: "<<
+          
+		  std::cout<<"The rolls are "<<roll1<<", "<<roll2<<", and "<<roll3<< " totaling: "<<
           damage<<" damage!\n";
-          defender.reduceHP(damage);
+          
+		  defender.reduceHP(damage);
 
     }
     //otherwise attack misses
@@ -109,43 +112,29 @@ void Colosseum::play(Pokemon& p1, Pokemon& p2){
 	std::cout<<"Choosing which player to go first: \n";
     Dice d2 = Dice(2);
 
-
+	bool flag = false;		//terminates round early if necessary
+	
     if(d2.roll() == 1){
           //p1 goes first
           std::cout<<"Player 1 will go first.";
             //runs for 10 rounds or if user is defeated
-          for(int i = 1;i<=10;i++){
-                std::cout<<"\n\nRound "<<i<<"!\n\n";
-                bool flag = false;
+          for(int i = 1;i<=10 || flag;i++){
+                
+				std::cout<<"\n\nRound "<<i<<"!\n\n";
+				
                 flag = attack(p1,p2);
-                if(flag){
-                      i = 11;
-                      break;
-                }
-                flag = attack(p2,p1);
-                if(flag){
-                      i = 11;     //breaks loop
-                      break;
-                }
+                flag = attack(p2,p1);      
           }
     }
     else{
 
           std::cout<<"Player 2 will go first.";
 
-          for(int i = 1;i<=10;i++){
+          for(int i = 1;i<=10 || flag;i++){
                 std::cout<<"\n\nRound "<<i<<"!\n\n";
-                bool flag = false;
-                flag = attack(p2,p1);
-                if(flag){
-                      i = 11;
-                      break;
-                }
-                flag = attack(p1,p2);
-                if(flag){
-                      i = 11;
-                      break;
-                }
+                
+				flag = attack(p2,p1);
+                flag = attack(p1,p2);       
           }
     }
 }

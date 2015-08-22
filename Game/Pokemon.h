@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Pokemon.h
 * @author: Dravid Joseph
-* @date: 8/21/15
+* @date: 8/22/15
 * @brief: Header file for Pokemon Class
 ********************************************************/
 
