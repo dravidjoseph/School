@@ -1,7 +1,7 @@
 LinkedList: main.o Node.o LinkedList.o
 	g++ -g -std=c++11 main.o Node.o LinkedList.o -o LinkedList
 	
-main.o: main.cpp Node.h
+main.o: main.cpp LinkedList.h
 	g++ -g -std=c++11 -c main.cpp
 	
 Node.o: Node.h Node.cpp
