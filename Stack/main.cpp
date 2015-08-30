@@ -172,6 +172,11 @@ int main(){
 		
 	}
 	
+	delete lane1;
+	delete lane2;
+	lane1 = nullptr;
+	lane2 = nullptr;
+	
 	return 0;
 	
 }

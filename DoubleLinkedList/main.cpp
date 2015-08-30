@@ -112,6 +112,8 @@ int main(){
 		}
 	}
 	
+	delete dll;
+	dll = nullptr;
 	
 	
 }

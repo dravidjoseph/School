@@ -153,6 +153,15 @@ int main(){
 
 
       std::cout<<"Your farm produced "<<totalMilk<<" gallons of milk and "<<totalEggs<<" eggs.\n";
+	  
+	  delete cow;
+	  delete chicken;
+	  delete cyber;
+	  delete animal;
+	  cow = nullptr;
+	  chicken = nullptr;
+	  cyber = nullptr;
+	  animal = nullptr;
 
 
 return 0;
