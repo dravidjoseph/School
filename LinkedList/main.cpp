@@ -91,5 +91,8 @@ int main(){
 		}	
 		
 	}
+	
+	delete list;
+	list = nullptr;
 
 }
