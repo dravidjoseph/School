@@ -123,7 +123,7 @@ void Colosseum::play(Pokemon& p1, Pokemon& p2){
           std::cout<<"Player 2 will go first.";
     }
 	
-    for(int i = 1;i<=10 || flag;i++){
+    for(int i = 1;i<=10 || !flag;i++){
           
 		std::cout<<"\n\nRound "<<i<<"!\n\n";
 		
