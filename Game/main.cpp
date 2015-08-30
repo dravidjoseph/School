@@ -33,7 +33,7 @@ void run(Pokemon& p1,Pokemon& p2,Colosseum& arena){
     //determine whether the user still wants to play
     std::string flag = "y";
  
-	while(flag.compare("y")){
+	while(flag == "y"){
 		  
 		build(p1,p2,arena);
 

@@ -18,7 +18,7 @@ void Colosseum::userBuild(Pokemon& p){
     std::string name = "";
     std::cin>>name;
       //check name
-    while(!name.compare("")){
+    while(name == ""){
 		
           std::cout<<"Your name must be at least one character long: ";
           std::cin>>name;
