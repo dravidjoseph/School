@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Colosseum.cpp
 * @author: Dravid Joseph
-* @date: 8/22/15
+* @date: 8/31/15
 * @brief: Implementation file for Colosseum class
 ********************************************************/
 
@@ -117,24 +117,20 @@ void Colosseum::play(Pokemon& p1, Pokemon& p2){
     if(d2.roll() == 1){
           //p1 goes first
           std::cout<<"Player 1 will go first.";
-            //runs for 10 rounds or if user is defeated
-          for(int i = 1;i<=10 || flag;i++){
-                
-				std::cout<<"\n\nRound "<<i<<"!\n\n";
-				
-                flag = attack(p1,p2);
-                flag = attack(p2,p1);      
-          }
+          
     }
     else{
-
           std::cout<<"Player 2 will go first.";
-
-          for(int i = 1;i<=10 || flag;i++){
-                std::cout<<"\n\nRound "<<i<<"!\n\n";
-                
-				flag = attack(p2,p1);
-                flag = attack(p1,p2);       
-          }
+    }
+	
+    for(int i = 1;i<=10 || flag;i++){
+          
+		std::cout<<"\n\nRound "<<i<<"!\n\n";
+		
+          flag = attack(p1,p2);
+		if(flag){
+			break;
+		}
+          flag = attack(p2,p1);      
     }
 }

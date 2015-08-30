@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 8/22/15
+* @date: 8/31/15
 * @brief: Driver class for main program
 ********************************************************/
 
@@ -27,20 +27,13 @@ void build(Pokemon& p1,Pokemon& p2,Colosseum& arena){
     arena.userBuild(p2);
 	
 }
-
-int main(){
+//runs game
+void run(Pokemon& p1,Pokemon& p2,Colosseum& arena){
 	
-    //Declaration of stack-allocated Pokemon instances
-    Pokemon p1 = Pokemon();
-    Pokemon p2 = Pokemon();
-
-    //declaration of stack-allocated Colosseum instance
-    Colosseum arena = Colosseum();
-	  
     //determine whether the user still wants to play
     std::string flag = "y";
  
-	while(flag == "y"){
+	while(flag.compare("y")){
 		  
 		build(p1,p2,arena);
 
@@ -51,10 +44,22 @@ int main(){
       	//store user input
       	std::cin>>flag;
 	
-	}
-
+	}	
     //runs after games are over.
     std::cout<<"\nThanks for playing!\n\n";
+	
+}
 
+int main(){
+	
+    //Declaration of stack-allocated Pokemon instances
+    Pokemon p1 = Pokemon();
+    Pokemon p2 = Pokemon();
+
+    //declaration of stack-allocated Colosseum instance
+    Colosseum arena = Colosseum();
+	
+	run(p1,p2,arena);
+	
     return 0;
 }
