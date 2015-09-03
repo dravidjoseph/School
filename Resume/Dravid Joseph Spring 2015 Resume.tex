@@ -1,0 +1,147 @@
+\documentclass[10pt, oneside]{article}
+\usepackage{geometry}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\pagestyle{empty}
+\usepackage{multicol}
+\errorcontextlines 10000
+
+\geometry{letterpaper, tmargin=.5in, bmargin=.5in, lmargin=.5in, rmargin=.5in, headheight=0in, headsep=0in, footskip=.3in}
+\def\labelitemii{$\bullet$}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+% \renewcommand*{\sfdefault}{helvet}
+\renewcommand*{\familydefault}{\sfdefault}
+
+
+
+\newcommand{\lr}[2]{#1\hfill#2}
+
+\newcommand{\name}{Dravid Ken Joseph}
+\newcommand{\addr}{1140 Parkside Circle, Lawrence, KS 66049}
+\newcommand{\phone}{(785) 764-6901}
+\newcommand{\email}{dravidjoseph@ku.edu}
+\newcommand{\website}{www.dravidjoseph.com}
+\newcommand{\github}{github.com/dravidjoseph}
+
+\newcommand{\resname}[4]{
+  \begin{center}
+    \selectfont\LARGE\scshape #1
+    \normalfont
+    \footnotesize
+    \itshape
+    \rule{\textwidth}{1pt}
+    #2 $\bullet$ #3 $\bullet$ #4
+    \normalfont
+  \end{center}
+}
+
+\newcommand{\reseducation}[6]{
+  \begin{ressection}{Education}
+  \item[] \lr{\bfseries \selectfont #1\normalfont} {Expected #2}
+    \vspace{-8pt}
+    \begin{itemize} \itemsep-2pt
+    \item[] #4
+    \item[] \textsl{Minor: }#5
+    \item[] \textsl{GPA: }#3
+    \item[] \textsl{Engineering GPA:}#6
+    \end{itemize}
+  \end{ressection}
+}
+\newcommand{\skills}[1]{
+\item[] \textsl{Skills:} #1
+}
+
+\newenvironment{ressection}[1]{
+  \section{\normalsize \scshape \selectfont #1 \normalfont}
+  \vspace{-4pt}
+  \begin{itemize} \itemsep-2pt
+  }{
+  \end{itemize}
+  \vspace{-20pt}
+}
+
+\newenvironment{resitem}[4]{
+\item[] \lr{\bfseries \selectfont #1\normalfont, #2} {#3}
+\item[] \textsl{#4}
+  \vspace{-4pt}
+  \begin{itemize} \itemsep-2pt
+  }{
+  \end{itemize}
+}
+
+\newenvironment{resclasses}
+{
+  \section{\normalsize \scshape \selectfont Relevant Courses \normalfont}
+  \normalfont
+  \vspace{-12pt}
+  \begin{flushleft}
+  \begin{multicols}{3}
+    \begin{itemize} \itemsep -3pt
+      }{
+      \end{itemize}
+    \end{multicols}
+    \end{flushleft}
+  \vspace{-20pt}
+}
+
+
+\begin{document}
+\resname{\name}{\addr}{\phone}{\email}
+\setcounter{secnumdepth}{-1} %disables section numbering
+
+ %----------------EXPERIENCE----------------%
+\begin{ressection}{Experience}
+
+    \begin{resitem}{Garmin International}{Lawrence, KS}{May 2015-August 2015}{Software Development Intern}
+  \item Work with consumer GPS team to develop software for handheld computing devices
+   \skills{Software-hardware interaction.}
+  \end{resitem}
+
+  \begin{resitem}{KU Information Technology}{University of Kansas-Lawrence, KS}{August 2014-Present}{Student IT Assistant} 
+  \item Provide technical assistance to faculty using IT systems throughout the main auditoriums on campus
+  \item Install, maintain and troubleshoot Polycom video conferencing tool for various university meetings and classes throughout campus through interdepartmental communication with other IT units.
+    \skills{Operating Systems Windows(7,8), Mac OS X}
+  \end{resitem}
+  
+
+  
+  \begin{resitem}{AllofE Solutions}{Lawrence, KS}{January 2013-March 2013}{Software Development Intern}
+  \item Created internal bug processing interface using HTML, CSS, and Javascript for client-side interaction; PHP for server-side interaction
+  \item Assisted Academic Developer team in importing test records from school districts nationwide for further data analysis.
+  \item Created internal email tracking interface using HTML, CSS, and Javascript client-side; used MySQL to pull from a database containing relevant records
+  \item Created technical documentation for interfaces described above
+   \skills{HTML, Javascript, CSS, PHP, MySQL, Git, technical writing}
+  \end{resitem}
+  
+  \begin{resitem}{Center for Remote Sensing of Ice Sheets (CReSIS)}{Lawrence, KS}{November 2012-December 2012}{Student Research Assistant}
+  \item Processed CryoSAT satellite data from the European Space Agency using MATLAB
+  \item Successfully proved ground-based radar provided higher fidelity than CryoSAT data
+    \skills{MATLAB, SVN}
+  \end{resitem}
+   \begin{resitem}{NSF Research Experience for Undergraduates}{Lawrence, KS}{June 2011-August 2011}{Student Research Assistant}
+  \item Tested and utilized a new method for automated processing of Ku-band radar data from NASA's Operation IceBridge 2011
+  \item Used for course credit (EECS 399)
+    \skills{MATLAB}
+  \end{resitem}\end{ressection}
+\begin{ressection}{Independent Projects/Extracurricular Activities}
+  \begin{resitem}{Trajectory}{Lawrence, KS}{Fall 2013-present}{Developer}
+    \item Attempts to model projectile flight in multiple directions while taking into account external forces
+  \item Based on a previous MATLAB modeling project (code available upon request)
+  \item Written in Python to gain familiarity with the language
+  \skills{Python, Differential Equations}
+  \end{resitem}
+  
+  \begin{resitem}{KU InfoSec Club}{Lawrence, KS}{Spring 2015-present}{Team Member}
+  \item Learn about basic security tools and breach prevention techniques.
+  
+  \end{resitem}
+  
+\end{ressection}
+
+\end{document}
