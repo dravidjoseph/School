@@ -13,19 +13,9 @@ LinkedList::LinkedList():m_front(nullptr),m_size(0){
 
 LinkedList::~LinkedList(){
 	
-	while(m_front != nullptr){
-		Node* deletePtr = m_front;
-		m_front = m_front->getNext();
-		
-		//Return node to system
-		deletePtr->setNext(nullptr);
-		
-		delete deletePtr;
-		deletePtr = nullptr;
+	while(!isEmpty()){
+		removeFront();
 	}
-	delete m_front;
-	m_front = nullptr;
-	m_size = 0;
 	
 }
 
