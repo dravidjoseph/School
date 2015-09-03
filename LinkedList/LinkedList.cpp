@@ -23,6 +23,8 @@ LinkedList::~LinkedList(){
 		delete deletePtr;
 		deletePtr = nullptr;
 	}
+	delete m_front;
+	m_front = nullptr;
 	m_size = 0;
 	
 }
