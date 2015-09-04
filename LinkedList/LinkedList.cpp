@@ -61,6 +61,9 @@ void LinkedList::printList() const{
 		}
 		std::cout<<traverse->getValue();
 	}
+	else{
+		std::cout<<"List empty.\n";
+	}
 	
 }
 
@@ -103,21 +106,34 @@ bool LinkedList::removeBack(){
 	if(isEmpty()){
 		return false;
 	}
-	else{
-		Node* traverse1 = m_front;
-		Node* traverse2 = m_front->getNext();
-		while(traverse2->getNext() != nullptr){
-			traverse1 = traverse1->getNext();
-			traverse2 = traverse2->getNext();
-		}
-		delete traverse2;
-		traverse2 = nullptr;
-		traverse1->setNext(nullptr);
-		
-		m_size--;
-		
-		return true;
+	
+	Node* endPtr = m_front;
+	
+	if(m_size == 1){
+		m_front = nullptr;
 	}
+	//2+ node list
+	else{
+		//endPtr is one node ahead of firstPtr
+		Node* penPtr = m_front;
+		endPtr = m_front -> getNext();
+		
+		//advance until secondPtr is at end of list
+		while(endPtr->getNext() != nullptr){
+			penPtr = penPtr->getNext();
+			endPtr = endPtr->getNext();
+		}
+		//now endPtr points to the last node in list	
+		penPtr->setNext(nullptr);
+	}
+	
+	delete endPtr;
+	endPtr = nullptr;
+	m_size--;
+	
+	return true;
+	
+	
 }
 
 bool LinkedList::removeFront(){
