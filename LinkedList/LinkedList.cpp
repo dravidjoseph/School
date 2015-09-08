@@ -13,11 +13,17 @@ LinkedList::LinkedList():m_front(nullptr),m_size(0){
 
 LinkedList::~LinkedList(){
 	
-	while(removeFront()){
+	if(!isEmpty()){
+		
+		Node* deletePtr = m_front;
+		m_front = m_front->getNext();
+		
+		delete deletePtr;
+		deletePtr = nullptr;
+		
+		m_size--;
+		
 	}
-	m_front = nullptr;
-	m_size = 0;
-	
 }
 
 bool LinkedList::isEmpty() const{
@@ -63,7 +69,7 @@ void LinkedList::printList() const{
 		std::cout<<traverse->getValue();
 	}
 	else{
-		std::cout<<"List empty.\n";
+		std::cout<<"";
 	}
 	
 }

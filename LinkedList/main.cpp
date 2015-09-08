@@ -6,6 +6,7 @@
 ********************************************************/
 
 #include "LinkedList.h"
+#include "Test.h"
 #include <iostream>
 
 void printMenu(){
@@ -87,12 +88,12 @@ int main(){
 			std::cout<<"\nExiting...\n";
 			flag = true;
 		}
-		/*
+		
 		else if(choice == 8){
 			Test testers(std::cout);	//declares test instance
 			testers.runTests();
 		}
-		*/
+		
 		else{
 			std::cout<<"\nInvalid choice.\n";
 		}	
