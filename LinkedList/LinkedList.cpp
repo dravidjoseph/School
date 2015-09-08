@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: LinkedList.cpp
 * @author: Dravid Joseph
-* @date: 6/28/15
+* @date: 9/8/15
 * @brief: Implementation file for LinkedList.h
 ********************************************************/
 
@@ -16,9 +16,13 @@ LinkedList::~LinkedList(){
 	if(!isEmpty()){
 		
 		Node* deletePtr = m_front;
-		m_front = m_front->getNext();
 		
+		//move m_front to next node, or nullptr if last node
+		m_front = m_front->getNext();
+		 
+		//delete the node pointed at by deletePtr
 		delete deletePtr;
+		//just to remove reference, not strictly necessary
 		deletePtr = nullptr;
 		
 		m_size--;
@@ -42,13 +46,17 @@ bool LinkedList::search(int value) const{
 	}
 	else{
 		Node* traverse = m_front;
-		while(traverse != nullptr){
+		while(traverse->getNext() != nullptr){
 			if(traverse->getValue() == value){
 				return true;
 			}
 			else{
 				traverse = traverse->getNext();
 			}
+		}
+		//Do last comparison
+		if(traverse->getValue() == value){
+			return true;
 		}
 		
 		return false;
