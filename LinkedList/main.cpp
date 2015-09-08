@@ -17,6 +17,7 @@ void printMenu(){
 			<< "5) Print the list\n"
 			<< "6) Search for value\n"
 			<< "7) Exit\n"
+			<< "8) Run tests\n"
 			<< "Enter your choice: ";
 }
 
@@ -86,6 +87,12 @@ int main(){
 			std::cout<<"\nExiting...\n";
 			flag = true;
 		}
+		/*
+		else if(choice == 8){
+			Test testers(std::cout);	//declares test instance
+			testers.runTests();
+		}
+		*/
 		else{
 			std::cout<<"\nInvalid choice.\n";
 		}	

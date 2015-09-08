@@ -13,9 +13,10 @@ LinkedList::LinkedList():m_front(nullptr),m_size(0){
 
 LinkedList::~LinkedList(){
 	
-	while(!isEmpty()){
-		removeFront();
+	while(removeFront()){
 	}
+	m_front = nullptr;
+	m_size = 0;
 	
 }
 
