@@ -1,8 +1,8 @@
 /*******************************************************
 * @file: LinkedList.h
 * @author: Dravid Joseph
-* @date: 9/8/15
-* @brief: Implementation file for LinkedList.h
+* @date: 9/14/15
+* @brief: Header file for LinkedList class
 ********************************************************/
 
 #ifndef LINKEDLIST_H

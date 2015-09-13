@@ -1,8 +1,8 @@
 /*******************************************************
 * @file: LinkedList.cpp
 * @author: Dravid Joseph
-* @date: 9/8/15
-* @brief: Implementation file for LinkedList.h
+* @date: 9/14/15
+* @brief: Implementation file for LinkedList class
 ********************************************************/
 
 #include "LinkedList.h"
@@ -15,6 +15,7 @@ LinkedList::~LinkedList(){
 	
 	if(!isEmpty()){
 		
+		//temp node to hold node to delete
 		Node* deletePtr = m_front;
 		
 		//move m_front to next node, or nullptr if last node
@@ -40,32 +41,39 @@ int LinkedList::size() const{
 
 bool LinkedList::search(int value) const{
 	
-	
+	//If empty list, automatically return false
 	if(isEmpty()){
 		return false;
 	}
+	//search list
 	else{
+		//Temp node to traverse
 		Node* traverse = m_front;
+		//while the next pointer doesn't point to NULL
 		while(traverse->getNext() != nullptr){
+			//If match, return true
 			if(traverse->getValue() == value){
 				return true;
 			}
+			//else, advance
 			else{
 				traverse = traverse->getNext();
 			}
 		}
-		//Do last comparison
+		
+		//If method is still executing here, it's on last node
+		//Do final comparison
 		if(traverse->getValue() == value){
 			return true;
 		}
-		
+		//at this point, value doesn't exist in list
 		return false;
 	}
 	
 }
 
 void LinkedList::printList() const{
-	
+	//As long as the list isn't empty
 	if(!isEmpty()){
 	
 		Node* traverse = m_front;
@@ -74,8 +82,10 @@ void LinkedList::printList() const{
 			std::cout<<traverse->getValue()<<" ";
 			traverse = traverse->getNext();
 		}
+		//prints last value
 		std::cout<<traverse->getValue();
 	}
+	//print empty string if list is empty
 	else{
 		std::cout<<"";
 	}
@@ -83,19 +93,27 @@ void LinkedList::printList() const{
 }
 
 void LinkedList::addBack(int value){
+	
+	//Just add to m_front if list is empty
 	if(isEmpty()){
 		m_front = new Node();
 		m_front->setValue(value);
 	}
 	else{
+		//create node and stuff value in it.
 		Node* newNode = new Node();
 		newNode->setValue(value);
+		
+		//create node pointer to traverse to end of list
 		Node* traverse = m_front;
 		
 		while(traverse->getNext()!=nullptr){
 			traverse = traverse->getNext();
 		}
+		//traverse is now pointing to last node in list
+		//setNext makes the traverse node point at newNode
 		traverse->setNext(newNode);
+		//Now we're done.
 	}
 	m_size++;
 }
@@ -103,13 +121,17 @@ void LinkedList::addBack(int value){
 void LinkedList::addFront(int value){
 	
 	if(isEmpty()){
+		//same as with addBack
 		m_front = new Node();
 		m_front->setValue(value);
 	}
 	else{
+		
+		//create node and stuff value in it.
 		Node* newNode = new Node();
 		newNode->setValue(value);
 		newNode->setNext(m_front);
+		//move m_front to point at newNode
 		m_front = newNode;
 	}
 	
@@ -118,12 +140,14 @@ void LinkedList::addFront(int value){
 }
 
 bool LinkedList::removeBack(){
+	
+	//Can't remove from empty list
 	if(isEmpty()){
 		return false;
 	}
-	
+
 	Node* endPtr = m_front;
-	
+	//m_front node being held by endPtr
 	if(m_size == 1){
 		m_front = nullptr;
 	}
@@ -152,13 +176,18 @@ bool LinkedList::removeBack(){
 }
 
 bool LinkedList::removeFront(){
+	//Can't remove from empty list
 	if(isEmpty()){
 		return false;
 	}
+	//Works for any nonzero list
 	else{
-		Node* traverse = m_front;
-		m_front = m_front->getNext();
 		
+		//create traverse node
+		Node* traverse = m_front;
+		//move m_front to next node
+		m_front = m_front->getNext();
+		//delete node that was previously at front
 		delete traverse;
 		traverse = nullptr;
 		
