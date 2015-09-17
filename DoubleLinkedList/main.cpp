@@ -1,13 +1,14 @@
 /*******************************************************
-* @file: Node.h
+* @file: main.cpp
 * @author: Dravid Joseph
-* @date: 7/8/15
+* @date: 9/21/15
 * @brief: Driver for DoubleLinkedList implementation
 ********************************************************/
 
 #include <iostream>
 
 #include "DoubleLinkedList.h"
+#include "Test.h"
 
 void printMenu()
 {
@@ -16,9 +17,12 @@ void printMenu()
 		<<	"2) push value onto back\n"
 		<<	"3) insert behind a value\n"
 		<<	"4) insert ahead of a value\n"
-		<<	"5) remove value\n"
-		<<	"6) print list\n"
-		<<	"7) Quit\n"
+		<<	"5) remove front value\n"
+		<<	"6) remove back value\n"
+		<<	"7) remove specific value\n"
+		<<	"8) print list\n"
+		<<	"9) Quit\n"
+		<<	"10) Run Tests\n"
 		<< 	"Your choice: ";
 }
 
@@ -89,6 +93,25 @@ int main(){
 			}
 		}
 		else if(choice == 5){
+			std::cout<<"Removing front node.";
+			if(dll->removeFront()){
+				std::cout<<"Front node removed.";
+			}
+			else{
+				std::cout<<"Removal failed.";
+			}
+			
+		}
+		else if(choice == 6){
+			std::cout<<"Removing back node.";
+			if(dll->removeBack()){
+				std::cout<<"Back node removed.";
+			}
+			else{
+				std::cout<<"Removal failed.";
+			}
+		}
+		else if(choice == 7){
 			std::cout<<"Give a value to remove: ";
 			std::cin>>value;
 			std::cout<<"You gave "<<value<<"\n";
@@ -100,13 +123,18 @@ int main(){
 				std::cout<<value<<" could not be removed from list.";
 			}
 		}
-		else if(choice == 6){
+		else if(choice == 8){
 			dll->printList();
 		}
-		else if(choice == 7){
+		else if(choice == 9){
 			std::cout<<"Program ending...";
 			flag = true;
 		}
+		else if(choice == 10){
+			Test myTest(std::cout);
+			myTest.runTests();
+		}
+		
 		else{
 			std::cout<<"Invalid choice.\n";
 		}

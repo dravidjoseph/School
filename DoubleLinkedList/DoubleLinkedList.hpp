@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: DoubleLinkedList.hpp
 * @author: Dravid Joseph
-* @date: 7/8/15
+* @date: 9/21/15
 * @brief: Implementation for DoubleLinkedList class
 ********************************************************/
 
@@ -24,7 +24,7 @@ DoubleLinkedList<T>::~DoubleLinkedList(){
 		m_front = m_front->getNext();
 		
 		
-		//delet node, reducing size of list
+		//delete node, reducing size of list
 		delete traverse;
 		traverse = nullptr;
 		m_size--;
@@ -109,61 +109,114 @@ void DoubleLinkedList<T>::pushBack(T value){
 }
 
 template<typename T>
+bool DoubleLinkedList<T>::removeFront(){
+	
+	if(isEmpty()){
+		return false;
+	}
+	else{
+		
+		Node<T>* traverse = m_front;
+		
+		if(size() == 1){
+			m_front = nullptr;
+			m_back = nullptr;
+		}
+		else{
+			m_front = m_front->getNext();
+			m_front->setPrevious(nullptr);
+		}
+		delete traverse;
+		traverse = nullptr;
+		
+		m_size--;
+		return true;
+	}
+	
+}
+
+template<typename T>
+bool DoubleLinkedList<T>::removeBack(){
+	if(isEmpty()){
+		return false;
+	}
+	else{
+		
+		Node<T>* traverse = m_back;
+		
+		if(size() == 1){
+			m_front = nullptr;
+			m_back = nullptr;
+		}
+		else{
+			m_back = m_back->getPrevious();
+			m_back->setNext(nullptr);
+		}
+		delete traverse;
+		traverse = nullptr;
+		
+		m_size--;
+		return true;
+	}
+}
+
+template<typename T>
 bool DoubleLinkedList<T>::remove(T value){
 	
 	//If list is empty or the value isn't in the list, let user handle
 	if(isEmpty() || (find(value) == nullptr)){
-			return false;
-		}
+		return false;
+	}
 		
 	//removal	
 	else{
-		//hand of pointer to specified value
-			Node<T>* traverse = find(value);
+		//hand off pointer to specified value
+		Node<T>* traverse = find(value);
 			
 			
-			//if there is one node
-			if(size() == 1){
-				m_front = nullptr;
-				m_back = nullptr;
+		//if there is one node
+		if(size() == 1){
+			m_front = nullptr;
+			m_back = nullptr;
+			//traverse is pointing at deleted node-deletion happens at end of branching statement
+		}
+		else{
+			//if value is at the beginning of the list
+			if(traverse == m_front){
+				//advance list pointer.traverse holds the node
+				m_front = m_front->getNext();
+					
+				//set the m_front pointer to nullptr
+				m_front->setPrevious(nullptr);
 			}
-			else{
-				//if value is at the beginning of the list
-				if(traverse == m_front){
-					//advance list pointer.traverse holds the node
-					m_front = m_front->getNext();
+			//if value is at the end of the list
+			else if(traverse == m_back){
+				//reverse list pointer.traverse holds the node
+				m_back = m_back->getPrevious();
 					
-					//set the m_front pointer to nullptr
-					m_front->setPrevious(nullptr);
-				}
-				//if value is at the end of the list
-				else if(traverse == m_back){
-					//reverse list pointer.traverse holds the node
-					m_back = m_back->getPrevious();
-					
-					//set the m_back pointer of the node to nullptr
-					m_back->setNext(nullptr);
-				}
+				//set the m_back pointer of the node to nullptr
+				m_back->setNext(nullptr);
+			}
 				
-				//if value is anywhere else in the list
-				else{
-					//Create pointers to the adjacent nodes of the target
-					Node<T>* prev = traverse->getPrevious();
-					Node<T>* next = traverse->getNext();
+			//if value is anywhere else in the list
+			else{
+				//Create pointers to the adjacent nodes of the target
+				Node<T>* prev = traverse->getPrevious();
+				Node<T>* next = traverse->getNext();
 					
-					//Link the adjacent nodes so the target node can be removed
-					prev->setNext(next);
-					next->setPrevious(prev);
-				}
+				//Link the adjacent nodes so the target node can be removed
+				prev->setNext(next);
+				next->setPrevious(prev);
 			}
+		}
 			
-			//can include outside the conditionals since this is common
-			delete traverse;
-			traverse = nullptr;
+		//can include outside the conditionals since this is common
+		delete traverse;
+		traverse = nullptr;
 			
 			
-			m_size--;	//decrement
-			return true;
+		m_size--;	//decrement
+		return true;
 		
 	}
 }
@@ -185,19 +238,21 @@ void DoubleLinkedList<T>::insertAhead(T listValue,T newValue) throw (std::runtim
 		
 		//if node is at the front of the list
 		if(traverse == m_front){
-			m_front = newNode;
-			newNode->setNext(traverse);
-			traverse->setPrevious(newNode);
+			m_front = newNode;		//m_front points to newNode, the new front of the list
+			newNode->setNext(traverse);		//newNode's next pointer points to traverse, previous pointer at nullptr
+			traverse->setPrevious(newNode);		//Previous pointer now points at newnode, next pointer is fine
 		}
 		else{
 			
 			//pointer to node previous to the list
-			Node<T>* prev = traverse->getPrevious();
-			newNode->setPrevious(prev);
+			Node<T>* prev = traverse->getPrevious();	//node prior to node traverse is pointing at
+			
+			//link newNode's pointers to the list
+			newNode->setPrevious(prev);		
 			newNode->setNext(traverse);
 			
-			prev->setNext(newNode);
-			traverse->setPrevious(newNode);
+			prev->setNext(newNode);		//link prev Node to newNode
+			traverse->setPrevious(newNode);		//link traverse node to newNode
 			
 		}
 		
@@ -278,16 +333,21 @@ Node<T>* DoubleLinkedList<T>::find(T value) const{
 
 template<typename T>
 void DoubleLinkedList<T>::printList() const{
+	if(isEmpty()){
+		std::cout<<"";
+	}
+	else{
+		Node<T>* traverse = m_front;
+		//moves until last node, but doesn't print last node.
+		while(traverse->getNext()!= nullptr){
+			std::cout<<traverse->getValue()<<" ";
 	
-	Node<T>* traverse = m_front;
-	//moves until last node, but doesn't print last node.
-	while(traverse->getNext()!= nullptr){
-		std::cout<<traverse->getValue()<<", ";
-	
-		traverse = traverse->getNext();
+			traverse = traverse->getNext();
+		}
+		//prints last node's value
+		std::cout<<traverse->getValue()<<" ";
 	}
 	
-	//prints last node's value
-	std::cout<<traverse->getValue()<<" ";
+	
 	
 }

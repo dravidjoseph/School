@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: DoubleLinkedList.h
 * @author: Dravid Joseph
-* @date: 6/30/15
+* @date: 9/21/15
 * @brief: Header file for DoubleLinkedList class
 ********************************************************/
 
@@ -66,6 +66,20 @@ public:
 	* @return : Initialized Node
 	********************************************************/
 	void pushBack(T value);
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : deletes first node containing passed value
+	* @return : Initialized Node
+	********************************************************/
+	bool removeFront();
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : deletes first node containing passed value
+	* @return : Initialized Node
+	********************************************************/
+	bool removeBack();
 	
 	/*******************************************************
 	* @pre :  None
