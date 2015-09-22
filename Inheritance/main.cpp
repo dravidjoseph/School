@@ -54,7 +54,7 @@ int main(){
 
      
 	  //Pen
-	  AnimalPen pen;
+	  AnimalPen* pen = new AnimalPen();
 	  
 	  //Pointers to different farm animals
       Cow* cow = nullptr;
@@ -86,7 +86,7 @@ int main(){
                   std::cout<<"How many gallons of milk did this cow produce?: ";
                   std::cin>>value;
                   cow->setMilkProduced(value);
-                  pen.addAnimal(cow);
+                  pen->addAnimal(cow);
                   totalMilk += value;
 
             }
@@ -94,7 +94,7 @@ int main(){
                   chicken = new Chicken();
 
                   std::cout<<"Add eggless chicken to the pen? OK. You're the boss.\n ";
-                  pen.addAnimal(chicken);
+                  pen->addAnimal(chicken);
 
             }
             else if(choice == 3){
@@ -103,7 +103,7 @@ int main(){
                   std::cout<<"How many eggs did this cyber chicken produce?: ";
                   std::cin>>value;
                   cyber->setCyberEggs(value);
-                  pen.addAnimal(cyber);
+                  pen->addAnimal(cyber);
                   totalEggs += value;
 
             }
@@ -121,11 +121,11 @@ int main(){
       std::cout<<"-------------------------\n";
 	  
 	  //Keep releasing until pen is empty
-      while(!pen.isPenEmpty()){
+      while(!pen->isPenEmpty()){
 		  	
 			
 		  //stores animal's name locally while minimizing function calls
-            animal = pen.peekAtNextAnimal();
+            animal = pen->peekAtNextAnimal();
             done = animal->getName();
 			
 			
@@ -146,14 +146,16 @@ int main(){
             }
 			
 			//deference in order to use goodByeMessage
-            goodByeMessage(*pen.peekAtNextAnimal());
+            goodByeMessage(*pen->peekAtNextAnimal());
             std::cout<<done<< " destructor called.\n";
-            pen.releaseAnimal();
+            pen->releaseAnimal();
       }
 
 
       std::cout<<"Your farm produced "<<totalMilk<<" gallons of milk and "<<totalEggs<<" eggs.\n";
 
+	  delete pen;
+	  pen = nullptr;
 
 return 0;
 

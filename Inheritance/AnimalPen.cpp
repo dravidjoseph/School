@@ -14,17 +14,11 @@ AnimalPen::AnimalPen(){
 
 AnimalPen::~AnimalPen(){
 	
-	Node<FarmAnimal*>* temp = m_top;
-	while(m_top != nullptr){
-		temp = m_top;
-		m_top = m_top -> getNext();
-		
-		delete temp;
-		temp = nullptr;
+	while(!isPenEmpty()){
+		releaseAnimal();	
 	}
-	
-	delete m_top;
 	m_top = nullptr;
+	m_size = 0;
 	
 }
 
@@ -37,7 +31,7 @@ FarmAnimal* AnimalPen::peekAtNextAnimal(){
 }
 
 void AnimalPen::releaseAnimal(){
-	Stack<FarmAnimal*>::pop();
+	FarmAnimal* animal = Stack<FarmAnimal*>::pop();
 }
 
 bool AnimalPen::isPenEmpty(){
