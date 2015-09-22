@@ -14,7 +14,7 @@ template<typename T>
 Stack<T>::~Stack(){
 	//remove from top of Stack while the stack isn't empty.
 	while(!isEmpty()){
-		pop();
+		T value = pop();
 	}
 	
 	//reset Stack members
