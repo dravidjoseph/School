@@ -1,7 +1,7 @@
 /*******************************************************
 * @file : Stack.hpp
 * @author : Dravid Joseph
-* @date : 7/12/2015
+* @date : 9/28/15
 * @brief : Implementation file for Stack class.
 ********************************************************/
 
@@ -34,7 +34,7 @@ void Stack<T>::push(const T newEntry){
 	Node<T>* newNode = new Node<T>();
 	newNode->setValue(newEntry);
 	
-	//if node is empty, have m_top point to newNode
+	//if stack is empty, have m_top point to newNode
 	if(isEmpty()){
 		m_top = newNode;
 	}
@@ -118,67 +118,37 @@ void Stack<T>::print() const{
 template<typename T>
 bool Stack<T>::operator < (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
-	if(rhs.size() < size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() < size();
 }
 
 template<typename T>
 bool Stack<T>::operator <= (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
 	
-	if(rhs.size() <= size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() <= size();
 }
 
 template<typename T>
 bool Stack<T>::operator > (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
-	if(rhs.size() > size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() > size();
 }
 
 
 template<typename T>
 bool Stack<T>::operator >= (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
-	if(rhs.size() >= size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() >= size();
 }
 
 template<typename T>
 bool Stack<T>::operator == (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
-	if(rhs.size() == size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() == size();
 }
 
 template<typename T>
 bool Stack<T>::operator != (const StackInterface<T>& rhs) const{
 	//use dot operator since not dealing with pointer
-	if(rhs.size() != size()){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return rhs.size() != size();
 }
