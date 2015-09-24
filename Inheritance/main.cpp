@@ -149,6 +149,9 @@ int main(){
             goodByeMessage(*pen->peekAtNextAnimal());
             std::cout<<done<< " destructor called.\n";
             pen->releaseAnimal();
+			
+			delete animal;
+			
       }
 
 
