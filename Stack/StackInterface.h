@@ -47,7 +47,7 @@ public:
 	* @throw : PreconditionViolationException
 	********************************************************/
 	
-	virtual T pop() throw(PreconditionViolationException) = 0;
+	virtual void pop() throw(PreconditionViolationException) = 0;
 	
 	/*******************************************************
 	* @pre :  None
@@ -72,54 +72,5 @@ public:
 	********************************************************/
 	
 	virtual void print() const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack reference
-	* @post :  Returns true if Stack 1 size < Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator < (const StackInterface<T>& rhs) const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post :  Returns true if Stack 1 size <= Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator <= (const StackInterface<T>& rhs) const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post :  Returns true if Stack 1 size > Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator > (const StackInterface<T>& rhs) const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if Stack 1 size >= Stack 2 size
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator >= (const StackInterface<T>& rhs) const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if the size of the two stacks are equal
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator == (const StackInterface<T>& rhs) const = 0;
-	
-	/*******************************************************
-	* @pre :  valid stack references
-	* @post : Returns true if the size of the two stacks aren't equal
-	* @return : bool
-	********************************************************/
-	
-	virtual bool operator != (const StackInterface<T>& rhs) const = 0;
-	
 };
 #endif

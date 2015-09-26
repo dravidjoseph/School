@@ -48,7 +48,7 @@ void Stack<T>::push(const T newEntry){
 }
 
 template<typename T>
-T Stack<T>::pop() throw(PreconditionViolationException){
+void Stack<T>::pop() throw(PreconditionViolationException){
 	//throws exception if list is empty
 	if(isEmpty()){
 		throw PreconditionViolationException("Pop attempted on empty stack.\n");
@@ -61,17 +61,12 @@ T Stack<T>::pop() throw(PreconditionViolationException){
 		//move m_top pointer so traverse is the only pointer holding node to be deleted
 		m_top = m_top->getNext();
 		
-		//create temp value to return
-		T value = traverse->getValue();
-		
 		//delete node and set traverse to nullptr
 		delete traverse;
 		traverse = nullptr;
 		
 		//decrement to reflect that one fewer node exists
 		m_size--;
-		
-		return value;
 	}
 }
 
@@ -98,7 +93,7 @@ void Stack<T>::print() const{
 	
 	//if no nodes exist
 	if(isEmpty()){
-		std::cout<<"List empty";
+		std::cout<<"";
 	}
 	else{
 		//moving node pointer
@@ -106,49 +101,11 @@ void Stack<T>::print() const{
 	
 		//traverses, then prints first n-1 nodes
 		while(traverse->getNext() != nullptr){
-			std::cout<<traverse->getValue()<<", ";
+			std::cout<<traverse->getValue()<<" ";
 			traverse = traverse->getNext();
 		}
 		
 		//prints nth node.
 		std::cout<<traverse->getValue();
 	}
-}
-
-template<typename T>
-bool Stack<T>::operator < (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	return rhs.size() < size();
-}
-
-template<typename T>
-bool Stack<T>::operator <= (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	
-	return rhs.size() <= size();
-}
-
-template<typename T>
-bool Stack<T>::operator > (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	return rhs.size() > size();
-}
-
-
-template<typename T>
-bool Stack<T>::operator >= (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	return rhs.size() >= size();
-}
-
-template<typename T>
-bool Stack<T>::operator == (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	return rhs.size() == size();
-}
-
-template<typename T>
-bool Stack<T>::operator != (const StackInterface<T>& rhs) const{
-	//use dot operator since not dealing with pointer
-	return rhs.size() != size();
 }
