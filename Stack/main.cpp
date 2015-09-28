@@ -81,7 +81,6 @@ int main(){
 			catch(PreconditionViolationException& e){
 				std::cout<<e.what()<<std::endl;
 			}
-			std::cout<<"Removal successful";
 		}	
 		else if(choice == 5){
 			std::cout<<"Quitting...\n";
