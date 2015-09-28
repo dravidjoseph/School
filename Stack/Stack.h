@@ -1,5 +1,5 @@
 /*******************************************************
-* @file : Node.h
+* @file : Stack.h
 * @author : Dravid Joseph
 * @date : 9/28/15
 * @brief : Header file for Stack class.
