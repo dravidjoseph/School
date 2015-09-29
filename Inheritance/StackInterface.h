@@ -46,7 +46,7 @@ public:
 	* @throw : PreconditionViolationException
 	********************************************************/
 	
-	virtual T pop() throw(PreconditionViolationException) = 0;
+	virtual void pop() throw(PreconditionViolationException) = 0;
 	
 	/*******************************************************
 	* @pre :  None

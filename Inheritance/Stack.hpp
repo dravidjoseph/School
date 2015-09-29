@@ -14,7 +14,7 @@ template<typename T>
 Stack<T>::~Stack(){
 	//remove from top of Stack while the stack isn't empty.
 	while(!isEmpty()){
-		T value = pop();
+		pop();
 	}
 	
 	//reset Stack members
@@ -48,7 +48,7 @@ void Stack<T>::push(const T newEntry){
 }
 
 template<typename T>
-T Stack<T>::pop() throw(PreconditionViolationException){
+void Stack<T>::pop() throw(PreconditionViolationException){
 	//throws exception if list is empty
 	if(isEmpty()){
 		throw PreconditionViolationException("Pop attempted on empty stack.\n");
@@ -61,17 +61,12 @@ T Stack<T>::pop() throw(PreconditionViolationException){
 		//move m_top pointer so traverse is the only pointer holding node to be deleted
 		m_top = m_top->getNext();
 		
-		//create temp value to return
-		T value = traverse->getValue();
-		
 		//delete node and set traverse to nullptr
 		delete traverse;
 		traverse = nullptr;
 		
 		//decrement to reflect that one fewer node exists
 		m_size--;
-		
-		return value;
 	}
 }
 

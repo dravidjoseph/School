@@ -16,9 +16,7 @@ AnimalPen::~AnimalPen(){
 	
 	while(!isPenEmpty()){
 		releaseAnimal();	
-	}
-	m_top = nullptr;
-	
+	}	
 }
 
 void AnimalPen::addAnimal(FarmAnimal* animal){
@@ -30,7 +28,7 @@ FarmAnimal* AnimalPen::peekAtNextAnimal(){
 }
 
 void AnimalPen::releaseAnimal(){
-	FarmAnimal* animal = Stack<FarmAnimal*>::pop();
+	Stack<FarmAnimal*>::pop();
 }
 
 bool AnimalPen::isPenEmpty(){
