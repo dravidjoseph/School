@@ -128,12 +128,12 @@ int main(){
 			
 			//depending on animal, static_cast to child class in order to use appropriate methods
 
-            if(done == "Cow"){
+            if(done.compare("Cow") == 0){
                   cow = static_cast<Cow*>(animal);
                   std::cout<<"This "<<done<<" produced "<<cow->getMilkProduced()<<" gallons of milk\n";
 
             }
-            else if(done == "Chicken"){
+            else if(done.compare("Chicken") == 0){
                   chicken = static_cast<Chicken*>(animal);
                   std::cout<<"Chicken unable to lay eggs.  Perhaps Cybornetic implants will help?\n";
             }

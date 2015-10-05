@@ -12,8 +12,10 @@ CyberChicken::CyberChicken(){
 	m_eggs = 0;
 	
 	//initialization of protected members
+
 	FarmAnimal::m_name = "CyberChicken";
 	FarmAnimal::m_sound = "Resistance is futile";
+	
 }
 
 int CyberChicken::getCyberEggs() const{

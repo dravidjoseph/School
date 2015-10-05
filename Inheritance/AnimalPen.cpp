@@ -20,17 +20,17 @@ AnimalPen::~AnimalPen(){
 }
 
 void AnimalPen::addAnimal(FarmAnimal* animal){
-	Stack<FarmAnimal*>::push(animal);
+	push(animal);
 }
 
 FarmAnimal* AnimalPen::peekAtNextAnimal(){
-	return Stack<FarmAnimal*>::peek();
+	return peek();
 }
 
 void AnimalPen::releaseAnimal(){
-	Stack<FarmAnimal*>::pop();
+	pop();
 }
 
 bool AnimalPen::isPenEmpty(){
-	return Stack<FarmAnimal*>::isEmpty();
+	return isEmpty();
 }
