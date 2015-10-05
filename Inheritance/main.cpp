@@ -1,19 +1,16 @@
 /*******************************************************
 * @file : main.cpp
 * @author : Dravid Joseph
-* @date : 7/20/2015
+* @date : 10/19/2015
 * @brief : Driver for Inheritance program
 ********************************************************/
 
 #include <iostream>
 
 //user-defined libraries
-#include "Stack.h"
-#include "Node.h"
 #include "PreconditionViolationException.h"
 #include "AnimalPen.h"
 #include "Cow.h"
-#include "Chicken.h"
 #include "CyberChicken.h"
 
 

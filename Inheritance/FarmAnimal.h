@@ -1,13 +1,14 @@
 /*******************************************************
 * @file : FarmAnimal.h
 * @author : Dravid Joseph
-* @date : 7/20/2015
+* @date : 10/19/2015
 * @brief : Header file for FarmAnimal class.
 ********************************************************/
 
 #ifndef FARM_ANIMAL_H
 #define FARM_ANIMAL_H
 
+//used for the std::string class
 #include <iostream>
 
 class FarmAnimal{

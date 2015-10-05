@@ -1,7 +1,7 @@
 /*******************************************************
 * @file : Stack.hpp
 * @author : Dravid Joseph
-* @date : 7/12/2015
+* @date : 10/19/2015
 * @brief : Implementation file for Stack class.
 ********************************************************/
 
@@ -13,13 +13,14 @@ Stack<T>::Stack():m_top(nullptr),m_size(0){
 template<typename T>
 Stack<T>::~Stack(){
 	//remove from top of Stack while the stack isn't empty.
+	/**
+	* will only run  on nonempty list
+	*/
 	while(!isEmpty()){
-		pop();
+		pop();	//pop resets stack members automatically when list is clear
 	}
 	
-	//reset Stack members
-	m_top = nullptr;
-	m_size = 0;
+	
 }
 
 template<typename T>
@@ -38,7 +39,7 @@ void Stack<T>::push(const T newEntry){
 	if(isEmpty()){
 		m_top = newNode;
 	}
-	//otherwise, have newNode point to m_top and move m_top forward.
+	//otherwise, have newNode point to m_top and move m_top to point at newNode.
 	else{
 		newNode->setNext(m_top);
 		m_top = newNode;

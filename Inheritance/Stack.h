@@ -1,18 +1,16 @@
 /*******************************************************
-* @file : Node.h
+* @file : Stack.h
 * @author : Dravid Joseph
-* @date : 7/12/2015
+* @date : 10/19/2015
 * @brief : Header file for Stack class.
 ********************************************************/
 
 #ifndef STACK_H
 #define STACK_H
 
-
-#include <iostream>
 #include "PreconditionViolationException.h"
-#include "Node.h"
 #include "StackInterface.h"
+#include "Node.h"
 
 template<typename T>
 
@@ -78,10 +76,6 @@ public:
 	********************************************************/
 	
 	int size() const;
-	
-	/*******************************************************
-	* PROTECTED MEMBERS
-	********************************************************/
 	
 	/*******************************************************
 	* PRIVATE MEMBERS
