@@ -168,7 +168,8 @@ int main(){
 			flag = true;
 		}
 		
-		
+		delete[] arr;
+		arr = nullptr;
 		
 		
 	}

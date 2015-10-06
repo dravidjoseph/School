@@ -14,21 +14,22 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 	
 	//iterates through every element of the list
 	for(int i = 0;i<size;i++){
-		bool swapped = false; //flag to terminate sort early if list is already sorted
+		//bool swapped = false; //flag to terminate sort early if list is already sorted
 		//iterates through every element of the list but the last
 		for(int j = 0;j<size-1;j++){
 			//swap if case holds
 			if(arr[i]<arr[j]){
 				
 				swap(arr,i,j);
-				swapped = true;	//flag to continue bubble sort	
+				//swapped = true;	//flag to continue bubble sort	
 			}
 		}
-		
+		/*
 		if(!swapped){
 			//then list is sorted
 			return;
 		}	
+		*/
 	}
 	
 	assert(Sorts<T>::isSorted(arr, size));
