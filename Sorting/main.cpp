@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 7/20/15
+* @date: 10/26/15
 * @brief: Driver for Sorts program
 ********************************************************/
 
@@ -10,8 +10,6 @@
 #include <chrono>
 
 #include "Sorts.h"
-
-
 
 int* createRandomIntArray(int size, int min, int max){
 	
@@ -33,48 +31,6 @@ int* createRandomIntArray(int size, int min, int max){
 	
 }
 
-template<typename T>
-void printArray(T arr[],int size, bool flag){
-	
-	std::string confirm = "";
-	
-	if(!flag){
-		
-		std::cout<<"Do you want to print the unsorted array? (y/n): ";
-		std::cin>>confirm;
-		
-		if(confirm == "y"){
-			
-			std::cout<<"\nHere is the unsorted array:\n";
-			std::cout<<"[";
-			for(int i = 0;i<size-1;i++){
-				std::cout<<arr[i]<<",";
-			}
-			std::cout<<arr[size-1]<<"]\n\n";
-			
-		}
-	}
-	else{
-		
-		std::cout<<"Do you want to print the sorted array? (y/n): ";
-		std::cin>>confirm;
-		
-		if(confirm == "y"){
-			
-			std::cout<<"\nHere is the sorted array:\n";
-			std::cout<<"[";
-			for(int i = 0;i<size-1;i++){
-				std::cout<<arr[i]<<",";
-			}
-			std::cout<<arr[size-1]<<"]\n\n";
-			
-			
-		}
-		
-	}
-		
-}
-
 void printMenu(){
 	std::cout 	<< "\n\nSelect a sort:\n"
 			<< "1) Bubble Sort\n"
@@ -82,6 +38,16 @@ void printMenu(){
 			<< "3) Selection Sort\n"
 			<< "4) Bogo Sort (use only with very small arrays!)\n"
 			<< "Enter choice: ";
+}
+
+void printArray(int* arr, int size){
+	std::cout<<"[";
+	for(int i = 0;i<size-1;i++){
+		std::cout<<arr[i];
+		std::cout<<",";
+	}
+	std::cout<<arr[size-1];
+	std::cout<<"]\n";
 }
 
 
@@ -95,7 +61,6 @@ int main(){
 	
 	std::string confirm = "";
 	bool flag = false;
-	bool sort = false;
 	int choice = 0;
 	int size = 0;
 	int min = 0;
@@ -117,10 +82,11 @@ int main(){
 		
 		int* arr = createRandomIntArray(size,min,max);
 		
-		
-		printArray(arr,size,sort);
-		
-		sort = true;
+		std::cout<<"Do you want to print the unsorted array? (y/n): ";
+		std::cin>>confirm;
+		if((confirm.compare("y") == 0)){
+			printArray(arr,size);
+		} 
 		
 		if(choice == 1){
 			std::cout<<"Sorting with bubble sort...\n";
@@ -154,17 +120,24 @@ int main(){
 		else{
 			std::cout<<"Invalid choice";
 		}
+		if(choice == 1 || choice == 2 || choice == 3 || choice == 4){
+			
+			std::cout<<"Do you want to print the sorted array? (y/n): ";
+			std::cin>>confirm;
+			if((confirm.compare("y") == 0)){
+				printArray(arr,size);
+			} 
+			
+			elapsed = end - start;
 		
-		elapsed = end - start;
+			std::cout<<size<<" numbers were sorted in "<<elapsed.count()<<" seconds.";
+		}
 		
-		printArray(arr,size,sort);
-		
-		std::cout<<size<<" numbers were sorted in "<<elapsed.count()<<" seconds.";
 		
 		std::cout<<"\nDo you want to quit? (y/n): ";
 		std::cin>>confirm;
 		
-		if(confirm == "y"){
+		if(confirm.compare("y") == 0){
 			flag = true;
 		}
 		
