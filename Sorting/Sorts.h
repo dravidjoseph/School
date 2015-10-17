@@ -11,6 +11,7 @@
 #include <random>
 #include <ctime>
 #include <cassert>
+#include <functional>
 
 template<typename T>
 class Sorts{
@@ -62,16 +63,29 @@ public:
 	static bool isSorted(T arr[], int size);
 
 	/*******************************************************
-	* PRIVATE METHDOS
-	********************************************************/
-private:
-	/*******************************************************
 	* @pre :  Valid array, valid size, valid generator reference
 	* @post : Shuffles array according to generator
 	* @return : void
 	********************************************************/
 	
 	static void shuffle(T arr[], int size,std::default_random_engine& generator);
+	
+	/*******************************************************
+	* @pre :  Valid array, two valid indices
+	* @post : swaps array at index points
+	* @return : void
+	********************************************************/
+	
+	static double sortTimer(std::function<void(T[],int)> sort,T arr[], int size);
+	
+	/*******************************************************
+	* @pre :  Valid array, minimum and max values
+	* @post : creates an array on heap of size
+	* @return : int*
+	********************************************************/
+	
+	static int* createTestArray(int size, int min, int max);
+	
 	
 	/*******************************************************
 	* @pre :  Valid array, two valid indices

@@ -130,6 +130,51 @@ void Sorts<T>::shuffle(T arr[], int size,std::default_random_engine& generator){
 }
 
 template<typename T>
+double Sorts<T>::sortTimer(std::function<void(T[],int)> sort,T arr[], int size){
+	
+	//Timer stuff
+	std::chrono::system_clock::time_point start;
+	std::chrono::system_clock::time_point end;
+	std::chrono::duration<double> elapsed;
+	
+	//starts clock
+	start = std::chrono::system_clock::now();
+	//sorts according to the sort parameter
+	sort(arr,size);
+	
+	//stops clock
+	end = std::chrono::system_clock::now();
+	
+	//difference between start and end
+	elapsed = end-start;
+	
+	//returns difference
+	return elapsed.count();
+	
+}
+
+template<typename T>
+int* Sorts<T>::createTestArray(int size, int min, int max){
+	
+	//declares and seeds the generator
+	std::default_random_engine generator(time(nullptr));
+	
+	//creates a uniform distribution of integers from min to max.
+	std::uniform_int_distribution<int> distribution(min,max);
+	
+	//declare the array pointer
+	int* arr = new int[size];
+	
+	//insert entries into array
+	for(int i = 0;i<size;i++){
+		arr[i] = distribution(generator);
+	}
+	
+	return arr;
+	
+}
+
+template<typename T>
 void Sorts<T>::swap(T arr[], int firstIndex, int secondIndex){
 	
 	//create a temporary holding variable
