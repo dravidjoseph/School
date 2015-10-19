@@ -49,16 +49,22 @@ void Sorts<T>::bogoSort(T arr[], int size){
 template<typename T>
 void Sorts<T>::insertionSort(T arr[], int size){
 	
+	//assume first element is "sorted"
 	for(int i = 1;i < size; i++){
 		
+		//consider first element in "unsorted section"
 		T next = arr[i];
+		//store index
 		int index = i;
 		
+		
+		//shift as long as not looking at leftmost index and arr[index]-1 isn't larger than next
 		while((index > 0) && (arr[index-1] > next)){
 			arr[index] = arr[index - 1];
 
 			index--;
 		}
+		//arr[index] is now "empty", so fill with proper sorted value
 		arr[index] = next;
 		
 	}
@@ -66,7 +72,6 @@ void Sorts<T>::insertionSort(T arr[], int size){
 	
 	assert(Sorts<T>::isSorted(arr, size));
 }
-
 
 template<typename T>
 void Sorts<T>::selectionSort(T arr[], int size){
