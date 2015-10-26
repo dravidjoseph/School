@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: NumberFileGenerator.h
 * @author: Dravid Joseph
-* @date: 8/5/15
+* @date: 10/26/15
 * @brief: Templated header for NumberFileGenerator class
 ********************************************************/
 
@@ -14,7 +14,7 @@ void NumberFileGenerator::ascending(std::string fileName, int amount){
 	
 	output << amount <<"\n";
 	
-	for(int i = 1; i <= amount;i++){
+	for(int i = 1; i < amount;i++){
 		output << i <<"\n";
 	}
 	output.close();
@@ -27,7 +27,7 @@ void NumberFileGenerator::descending(std::string fileName, int amount){
 	
 	output << amount <<"\n";
 	
-	for(int i = 50; i >= 1;i--){
+	for(int i = amount; i > 1;i--){
 		output << i <<"\n";
 	}
 	
@@ -44,7 +44,7 @@ void NumberFileGenerator::random(std::string fileName, int amount, int min, int 
 	
 	std::uniform_int_distribution<int> distribution(min,max);
 	
-	for(int i = 0; i < amount;i++){
+	for(int i = 1; i < amount;i++){
 		
 		output << distribution(generator) <<"\n";
 	}
@@ -58,7 +58,7 @@ void NumberFileGenerator::singleValue(std::string fileName, int amount, int valu
 	
 	output << amount <<"\n";
 	
-	for(int i = 0;i < amount;i++){
+	for(int i = 1;i < amount;i++){
 		output << value << "\n";
 	}
 	

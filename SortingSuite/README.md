@@ -10,7 +10,7 @@ You can find writeups on the sorts on dravidjoseph.com, pending editing (they're
 
 ##File I/O 
 
-File objects aren't bad to use, but have some different specifications.  The big thing to realize is that files need to be open and then closed after use to be properly used.  The other thing to note is that when you open a file, the name of the file and the name of the file object are two separate items.  You need to make sure you're interacting with the file object, not the file name, because ultimately the file name isn't used much in the actual code..
+File objects aren't bad to use, but have some different specifications.  The big thing to realize is that files need to be open and then closed after use to be properly used.  The other thing to note is that when you open a file, the name of the file and the name of the file object are two separate items.  You need to make sure you're interacting with the file object, not the file name, because ultimately the file name isn't used much in the actual code.
 
 You read from a file using `fileObject >> thing_to_be_read;` and write using `fileObject << thing_to_read`.  If you want to check whether the file is accessible, the syntax `fileObject.good()` will return a boolean depending on the accessibility of the file.  That's pretty much all you need to get through this lab.
 

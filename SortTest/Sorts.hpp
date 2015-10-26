@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.hpp
 * @author: Dravid Joseph
-* @date: 11/2/15
+* @date: 10/26/15
 * @brief: Templated implementation file for Sorts class
 ********************************************************/
 
@@ -35,6 +35,8 @@ void Sorts<T>::bubbleSort(T arr[], int size){
 template<typename T>
 void Sorts<T>::bogoSort(T arr[], int size){
 	
+	std::default_random_engine generator(time(nullptr));
+	
 	//while array is not sorted
 	while(!isSorted(arr,size)){
 		shuffle(arr,size);	//shuffle
@@ -56,7 +58,7 @@ void Sorts<T>::quickSort(T arr[], int size){
 }
 
 template<typename T>
-void Sorts<T>::quickSortWithMedian(T arr[], int size){
+void Sorts<T>::quickSortMedian(T arr[], int size){
 	
 	//calls quickSortRec with flag set true
 	//this does the actual sorting
@@ -89,22 +91,18 @@ void Sorts<T>::mergeSort(T arr[], int size){
 template<typename T>
 void Sorts<T>::insertionSort(T arr[], int size){
 	
-	//assume first element is "sorted"
+	//Taken from Lab 6
+	
 	for(int i = 1;i < size; i++){
 		
-		//consider first element in "unsorted section"
 		T next = arr[i];
-		//store index
 		int index = i;
 		
-		
-		//shift as long as not looking at leftmost index and arr[index]-1 isn't larger than next
 		while((index > 0) && (arr[index-1] > next)){
 			arr[index] = arr[index - 1];
 
 			index--;
 		}
-		//arr[index] is now "empty", so fill with proper sorted value
 		arr[index] = next;
 		
 	}
@@ -115,6 +113,8 @@ void Sorts<T>::insertionSort(T arr[], int size){
 
 template<typename T>
 void Sorts<T>::selectionSort(T arr[], int size){
+	
+	//taken from lab 6
 	
 	//find minimum of array
 	int minIndex = 0;
@@ -177,31 +177,6 @@ double Sorts<T>::sortTimer(std::function<void(T[],int)> sort,T arr[], int size){
 	return elapsed.count();
 
 }
-
-template<typename T>
-int* Sorts<T>::createTestArray(int size, int min, int max){
-	
-	//declares and seeds the generator
-	std::default_random_engine generator(time(nullptr));
-	
-	//creates a uniform distribution of integers from min to max.
-	std::uniform_int_distribution<int> distribution(min,max);
-	
-	//declare the array pointer
-	int* arr = new int[size];
-	
-	//insert entries into array
-	for(int i = 0;i<size;i++){
-		arr[i] = distribution(generator);
-	}
-	
-	return arr;
-	
-}
-
-/*******************************************************
-* PRIVATE METHDOS
-********************************************************/
 
 template<typename T>
 void Sorts<T>::swap(T arr[], int firstIndex, int secondIndex){
@@ -394,5 +369,26 @@ void Sorts<T>::shuffle(T arr[], int size){
 		swap(arr,i,distribution(generator));
 		
 	}
+	
+}
+
+template<typename T>
+int* Sorts<T>::createTestArray(int size, int min, int max){
+	
+	//declares and seeds the generator
+	std::default_random_engine generator(time(nullptr));
+	
+	//creates a uniform distribution of integers from min to max.
+	std::uniform_int_distribution<int> distribution(min,max);
+	
+	//declare the array pointer
+	int* arr = new int[size];
+	
+	//insert entries into array
+	for(int i = 0;i<size;i++){
+		arr[i] = distribution(generator);
+	}
+	
+	return arr;
 	
 }

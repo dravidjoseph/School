@@ -1,18 +1,22 @@
-SortingSuite: main.o NumberFileDriver.o NumberFileGenerator.o SortDriver.o
-	g++ -g -std=c++11 -Wall main.o NumberFileDriver.o NumberFileGenerator.o SortDriver.o -o SortingSuite
+SortingSuite: main.o NumberFileDriver.o NumberFileGenerator.o SortDriver.o Test.o
+	g++ -g -std=c++11 -Wall main.o NumberFileDriver.o NumberFileGenerator.o SortDriver.o Test.o -o SortingSuite
 	
-main.o: main.cpp Sorts.h Sorts.hpp NumberFileDriver.h NumberFileGenerator.h SortDriver.h
+main.o: main.cpp Sorts.h Sorts.hpp NumberFileDriver.h NumberFileGenerator.h SortDriver.h Test.h
 	g++ -g -std=c++11 -Wall -c main.cpp
 	
 NumberFileDriver.o: NumberFileDriver.h NumberFileGenerator.h NumberFileGenerator.cpp
-	g++ -g -std=c++11 -Wall -c main.cpp NumberFileDriver.cpp
+	g++ -g -std=c++11 -Wall -c NumberFileDriver.cpp
 	
 NumberFileGenerator.o: NumberFileGenerator.h NumberFileGenerator.cpp
-	g++ -g -std=c++11 -Wall -c main.cpp NumberFileGenerator.cpp
+	g++ -g -std=c++11 -Wall -c NumberFileGenerator.cpp
 	
 SortDriver.o: NumberFileGenerator.h SortDriver.h Sorts.h Sorts.hpp SortDriver.cpp
-	g++ -g -std=c++11 -Wall -c main.cpp SortDriver.cpp
+	g++ -g -std=c++11 -Wall -c SortDriver.cpp
+	
+Test.o: Test.h Test.cpp
+	g++ -g -std=c++11 -Wall -c Test.cpp
+	
 	
 clean:
-	rm *.o SortingSuite
+	rm *.o *.dat *.out SortingSuite
 	echo clean done

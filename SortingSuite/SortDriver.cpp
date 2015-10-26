@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: SortDriver.h
 * @author: Dravid Joseph
-* @date: 8/5/15
+* @date: 11/2/15
 * @brief: Implementation file for SortDriver class
 ********************************************************/
 
@@ -43,7 +43,7 @@ void SortDriver::run(int argc, char** argv){
 			time0 = Sorts<int>::sortTimer(Sorts<int>::quickSort,arr,amount);
 		}
 		else if(sortType == "-quick3"){
-			time0 = Sorts<int>::sortTimer(Sorts<int>::quickSortMedian,arr,amount);
+			time0 = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian,arr,amount);
 		}
 		else if(sortType == "-merge"){
 			time0 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,arr,amount);
@@ -55,29 +55,42 @@ void SortDriver::run(int argc, char** argv){
 			copyArray(arr,copy,amount);
 				
 			time0 = Sorts<int>::sortTimer(Sorts<int>::bubbleSort,copy,amount);
+			
+			delete[] copy;
+			copy = new int[amount];
 				
 			copyArray(arr,copy,amount);
 				
-			time1 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,copy,amount);
+			time1 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,copy,amount);
+			
+			delete[] copy;
+			copy = new int[amount];
 				
 			copyArray(arr,copy,amount);
 				
-			time2 = Sorts<int>::sortTimer(Sorts<int>::selectionSort,copy,amount);
+			time2 = Sorts<int>::sortTimer(Sorts<int>::insertionSort,copy,amount);
+			
+			delete[] copy;
+			copy = new int[amount];
 				
 			copyArray(arr,copy,amount);
 				
-			time3 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
+			time3 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,copy,amount);
+			
+			delete[] copy;
+			copy = new int[amount];
 				
 			copyArray(arr,copy,amount);
 				
 			time4 = Sorts<int>::sortTimer(Sorts<int>::quickSort,copy,amount);
+			
+			delete[] copy;
+			copy = new int[amount];
 				
 			copyArray(arr,copy,amount);
 				
-			time5 = Sorts<int>::sortTimer(Sorts<int>::mergeSort,copy,amount);
-				
-				
-				
+			time5 = Sorts<int>::sortTimer(Sorts<int>::quickSortWithMedian,copy,amount);
+					
 			delete[] copy;
 			copy = nullptr;
 					
@@ -91,36 +104,36 @@ void SortDriver::run(int argc, char** argv){
 		std::ofstream output(outputFileName);
 			
 		if(sortType == "-bubble"){
-			output<<"Bubble Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
-		}
-		else if(sortType == "-insertion"){
-			output<<"Insertion Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
-				
+			output<<"bubble "<<amount<<" "<<time0<<"\n";
 		}
 		else if(sortType == "-selection"){
-			output<<"Selection Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+			output<<"selection "<<amount<<" "<<time0<<"\n";
+				
+		}
+		else if(sortType == "-insertion"){
+			output<<"insertion "<<amount<<" "<<time0<<"\n";
+			
+		}
+		else if(sortType == "-merge"){
+			output<<"merge "<<amount<<" "<<time0<<"\n";
 			
 		}
 		else if(sortType == "-quick"){
-			output<<"Quick Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
-			
-		}
-		else if(sortType == "-quick3"){
-			output<<"Quick Sort (with median) sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+			output<<"quick "<<amount<<" "<<time0<<"\n";
 				
 		}
-		else if(sortType == "-merge"){
-			output<<"Merge Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
+		else if(sortType == "-quick3"){
+			output<<"quick3 "<<amount<<" "<<time0<<"\n";
 				
 		}
 		else if(sortType == "-all"){
 
-			output<<"Bubble Sort sorted "<<amount<<" numbers in "<<time0<<" seconds.\n";
-			output<<"Insertion Sort sorted "<<amount<<" numbers in "<<time1<<" seconds.\n";
-			output<<"Selection Sort sorted "<<amount<<" numbers in "<<time2<<" seconds.\n";
-			output<<"Quick Sort sorted "<<amount<<" numbers in "<<time3<<" seconds.\n";
-			output<<"Quick Sort (with median) sorted "<<amount<<" numbers in "<<time4<<" seconds.\n";
-			output<<"Merge Sort sorted "<<amount<<" numbers in "<<time5<<" seconds.\n";
+			output<<"bubble "<<amount<<" "<<time0<<"\n";
+			output<<"selection "<<amount<<" "<<time1<<"\n";
+			output<<"insertion "<<amount<<" "<<time2<<"\n";
+			output<<"merge "<<amount<<" "<<time3<<"\n";
+			output<<"quick "<<amount<<" "<<time4<<"\n";
+			output<<"quick3 "<<amount<<" "<<time5<<"\n";
 				
 		}
 			
@@ -134,11 +147,7 @@ void SortDriver::run(int argc, char** argv){
 	}
 	else{
 		printHelpMenu();
-	}
-	
-	
-	
-	
+	}	
 }
 	
 void SortDriver::printHelpMenu(){
@@ -163,47 +172,41 @@ void SortDriver::printHelpMenu(){
 				<< "\toutputFile must be to a valid path. It will hold the timing results\n";
 	
 }
+
+/*******************************************************
+* PRIVATE METHDOS
+********************************************************/
 	
 bool SortDriver::isFileAccessible(std::string fileName){
 	
 	std::ifstream file(fileName);
+	bool isFileGood = file.good();
+	file.close();
 	
-	if(file.good()){
-		file.close();
-		return true;
-	}
-	else{
-		file.close();
-		return false;
-	}
-	
+	return isFileGood;
 }
 	
 bool SortDriver::isSortValid(std::string sortParameter){
 	
-	if(sortParameter == "-bubble" || sortParameter == "-selection"){
+	
+	//broken up for readability
+	if(sortParameter.compare("-bubble") == 0 || sortParameter.compare("-selection") == 0){
 		return true;
 	}
-	else if(sortParameter == "-insertion" || sortParameter == "-quick"){
+	else if(sortParameter.compare("-insertion") == 0 || sortParameter.compare("-quick") == 0){
 		return true;
 	}
-	else if(sortParameter == "-quick3" || sortParameter == "-merge" || sortParameter == "-all"){
+	else if(sortParameter.compare("-quick3") == 0 || sortParameter.compare("-merge") == 0 || sortParameter.compare("-all") == 0){
 		return true;
 	}
 	else{
 		return false;
 	}
-	
 }
 	
 bool SortDriver::areParametersValid(std::string sortName, std::string inputFileName){
 	
-	if(isSortValid(sortName) && isFileAccessible(inputFileName)){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return isSortValid(sortName) && isFileAccessible(inputFileName);
 	
 }
 	

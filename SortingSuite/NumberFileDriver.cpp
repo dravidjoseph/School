@@ -1,7 +1,7 @@
-/*******************************************************
+o/*******************************************************
 * @file: NumberFileDriver.cpp
 * @author: Dravid Joseph
-* @date: 7/24/15
+* @date: 10/26/15
 * @brief: Implementation for NumberFileDriver class
 ********************************************************/
 
@@ -11,40 +11,37 @@ void NumberFileDriver::run(int argc, char** argv){
 	
 	std::string flag = argv[2];
 	std::string fileName = argv[3];
-	std::string amt = argv[4];
-	
-	int amount = 0;
-	amount = atoi(amt.c_str());
-	
+
+	int amount = atoi(argv[4]);
 	
 	int value = 0;
 	int min = 0;
 	int max = 0;
 	
 	if(argc == 6){
-		std::string val = argv[5];
-		value = atoi(val.c_str());
-		
+		value = atoi(argv[5]);	
 	}
 	if(argc == 7){
-		std::string mini = argv[5];
-		min = atoi(mini.c_str());
-		std::string maxi = argv[6];
-		max = atoi(maxi.c_str());
+		min = atoi(argv[5]);
+		max = atoi(argv[6]);
 	}
 	
 	if(isValidOption(flag)){
-		if(flag == "-a"){
+		if(flag.compare("-a") == 0){
 			NumberFileGenerator::ascending(fileName,amount);
+			std::cout<<amount<<" numbers stored in "<<fileName;
 		}
-		else if(flag == "-d"){
+		else if(flag.compare("-d") == 0){
 			NumberFileGenerator::descending(fileName,amount);
+			std::cout<<amount<<" numbers stored in "<<fileName;
 		}
-		else if(flag == "-r"){
+		else if(flag.compare("-r") == 0){
 			NumberFileGenerator::random(fileName,amount,min,max);
+			std::cout<<amount<<" numbers stored in "<<fileName;
 		}
-		else if(flag == "-s"){
+		else if(flag.compare("-s") == 0){
 			NumberFileGenerator::singleValue(fileName,amount,value);
+			std::cout<<amount<<" numbers stored in "<<fileName;
 		}
 	}
 	else{
@@ -75,10 +72,6 @@ void NumberFileDriver::printHelpMenu(){
 }
 
 bool NumberFileDriver::isValidOption(std::string option){
-	if(option == "-a" || option == "-d" || option == "-s" || option == "-r"){
-		return true;
-	}
-	else{
-		return false;
-	}
+	return option.compare("-a") == 0  || option.compare("-d") == 0 || option.compare("-s") == 0 || option.compare("-r") == 0;
+
 }

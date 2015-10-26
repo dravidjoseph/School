@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: Sorts.h
 * @author: Dravid Joseph
-* @date: 11/2/15
+* @date: 10/26/15
 * @brief: Templated header for Sorts class
 ********************************************************/
 
@@ -53,7 +53,7 @@ public:
 	* @return : void
 	********************************************************/
 	
-	static void quickSortWithMedian(T arr[], int size);
+	static void quickSortMedian(T arr[], int size);
 	
 	
 	/*******************************************************
@@ -96,6 +96,13 @@ public:
 	
 	static double sortTimer(std::function<void(T[],int)>,T arr[], int size);
 	
+	
+	
+	/*******************************************************
+	* @pre :  Valid array, valid size
+	* @post : shuffles array
+	* @return : void
+	********************************************************/
 	static int* createTestArray(int size, int min, int max);
 	
 	
@@ -151,6 +158,7 @@ private:
 	********************************************************/
 	
 	static void shuffle(T arr[], int size);
+
 	
 };
 #include "Sorts.hpp"
