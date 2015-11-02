@@ -66,33 +66,28 @@ public:
 	/*******************************************************
 	* @pre :  None
 	* @post : prints tree
-	* @return : void
+	* @return : bool
 	********************************************************/
 	
 	bool add(T value);
 	
-	
 	/*******************************************************
 	* @pre :  None
-	* @post : prints tree
-	* @return : void
+	* @post : prints tree inorder
+	* @return : bool
 	********************************************************/
+	bool search(T value) const;
+	
 	void printTree(Order order) const;
 	
+	virtual void sortedPrint() const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
-	* @return : void
+	* @pre :  valid order
+	* @post : prints tree in specified order
+	* @return : vector
 	********************************************************/
-	void sortedPrint() const;
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
-	* @return : void
-	********************************************************/
-	T search(T value) const throw (ValueNotFoundException);
+	std::vector<T> treeToVector(Order order) const; 
 	
 	/*******************************************************
 	* PRIVATE MEMBERS
@@ -107,37 +102,41 @@ private:
 	********************************************************/
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
-	* @return : void
+	* @pre :  valid value, valid subTree
+	* @post : true if value added successfully, false otherwise
+	* @return : bool
 	********************************************************/
 	
 	bool add(T value, Node<T>* subTree);
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
+	* @pre :  valid subTree
+	* @post : deletes Tree
 	* @return : void
 	********************************************************/
 	
 	void deleteTree(Node<T>* subTree);
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
-	* @return : void
+	* @pre :  valid value, valid tree
+	* @post : returns true if value in tree
+	* @return : true
 	********************************************************/
-	T search(T value, Node<T>* subTree) const throw (ValueNotFoundException);
+	bool search(T value, Node<T>* subTree) const;
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints tree inorder
+	* @pre :  valid order, valid tree
+	* @post : prints tree in specified order
 	* @return : void
 	********************************************************/
 	void printTree(Node<T>* subTree, Order order) const;
 	
-	
-	
+	/*******************************************************
+	* @pre :  valid order
+	* @post : prints tree in specified order
+	* @return : vector
+	********************************************************/
+	void treeToVector(Order order,Node<T>* subTree, std::vector<T>& vec) const; 
 	
 };
 #include "BinarySearchTree.hpp"

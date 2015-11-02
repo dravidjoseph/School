@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: BinarySearchTree.hpp
 * @author: Dravid Joseph
-* @date: 8/7/15
+* @date: 11/9/15
 * @brief: Implementation for BinarySearchTree class
 ********************************************************/
 
@@ -17,7 +17,12 @@ BinarySearchTree<T>::BinarySearchTree():m_root(nullptr){
 template<typename T>
 BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other){
 	
-	m_root = new Node<T>(*(other.m_root));
+	if(!other.isEmpty()){
+		m_root = new Node<T>(*(other.m_root));
+	}
+	else{
+		m_root = nullptr;
+	}
 }
 
 template<typename T>
@@ -29,6 +34,7 @@ BinarySearchTree<T>::~BinarySearchTree(){
 
 template<typename T>
 BSTI<T>* BinarySearchTree<T>::clone(){
+
 	BSTI<T>* clone = new BinarySearchTree<T>(*(this));
 	
 	return clone;
@@ -44,28 +50,36 @@ bool BinarySearchTree<T>::add(T value){
 	return add(value,m_root);
 }
 
-template<typename T>
-void BinarySearchTree<T>::printTree(Order order) const{
-	
-	printTree(m_root,order);
-	
-}
 
 template<typename T>
-void BinarySearchTree<T>::sortedPrint() const{
-	
-	printTree(m_root,IN_ORDER);
-}
-
-template<typename T>
-T BinarySearchTree<T>::search(T value) const throw (ValueNotFoundException){
+bool BinarySearchTree<T>::search(T value) const{
 	
 	if(isEmpty()){
-		throw ValueNotFoundException("Tree is empty.\n");
+		return false;
 	}
 	else{
 		return search(value,m_root);
 	}
+}
+template<typename T>
+void BinarySearchTree<T>::printTree(Order order) const{
+	printTree(m_root,order);
+}
+
+template<typename T>
+void BinarySearchTree<T>::sortedPrint() const{
+	printTree(m_root,IN_ORDER);
+}
+
+template<typename T>
+std::vector<T> BinarySearchTree<T>::treeToVector(Order order) const{
+	
+	std::vector<T> vec;
+	
+	treeToVector(order,m_root,vec);
+	
+	return vec;
+	
 }
 
 /*******************************************************
@@ -137,14 +151,14 @@ void BinarySearchTree<T>::deleteTree(Node<T>* subTree){
 }
 
 template<typename T>
-T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFoundException){
+bool BinarySearchTree<T>::search(T value, Node<T>* subTree) const{
 	//Tree has been checked as not empty.
 	if(value < subTree -> getValue()){
 		if(subTree -> getLeft() != nullptr){
 			return search(value,subTree->getLeft());
 		}
 		else{
-			throw ValueNotFoundException("Value does not exist in tree.\n");
+			return false;
 		}
 	}
 	else if(value > subTree -> getValue()){
@@ -152,11 +166,14 @@ T BinarySearchTree<T>::search(T value, Node<T>* subTree) const throw (ValueNotFo
 			return search(value,subTree->getRight());
 		}
 		else{
-			throw ValueNotFoundException("Value does not exist in tree.\n");
+			return false;
 		}
 	}
+	else if(value == subTree->getValue()){
+		return true;
+	}
 	else{
-		return subTree->getValue();
+		return false;
 	}
 	
 	
@@ -203,3 +220,46 @@ void BinarySearchTree<T>::printTree(Node<T>* subTree, Order order) const{
 	}
 	
 }
+template<typename T>
+void BinarySearchTree<T>::treeToVector(Order order,Node<T>* subTree, std::vector<T>& vec) const{
+	
+	switch(order){
+		
+		case PRE_ORDER:
+		
+		if(subTree != nullptr){
+			vec.push_back(subTree->getValue());
+			treeToVector(order,subTree->getLeft(),vec);
+			treeToVector(order,subTree->getRight(),vec);
+		}
+		
+		break;
+		
+		case IN_ORDER:
+		
+		if(subTree != nullptr){
+			
+			treeToVector(order,subTree->getLeft(),vec);
+			vec.push_back(subTree->getValue());
+			treeToVector(order,subTree->getRight(),vec);
+			
+		}
+		
+		break;
+		
+		case POST_ORDER:
+		
+		if(subTree != nullptr){
+			
+			treeToVector(order,subTree->getLeft(),vec);
+			treeToVector(order,subTree->getRight(),vec);
+			vec.push_back(subTree->getValue());	
+		}
+		
+		
+		break; 	
+	}
+	
+	
+}
+

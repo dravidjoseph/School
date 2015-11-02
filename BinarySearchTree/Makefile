@@ -1,11 +1,11 @@
-BinarySearchTree: main.o ValueNotFoundException.o
-	g++ -g -std=c++11 -Wall main.o ValueNotFoundException.o -o BinarySearchTree
+BinarySearchTree: main.o Test.o
+	g++ -g -std=c++11 -Wall main.o Test.o -o BinarySearchTree
 	
 main.o: main.cpp BinarySearchTree.h BinarySearchTree.hpp Node.h Node.hpp
 	g++ -g -std=c++11 -Wall -c main.cpp
 	
-ValueNotFoundException.o: ValueNotFoundException.h ValueNotFoundException.cpp
-	g++ -g -std=c++11 -Wall -c ValueNotFoundException.cpp
+Test.o: Test.h Test.cpp
+	g++ -g -std=c++11 -Wall -c Test.cpp
 	
 clean:
 	rm *.o BinarySearchTree

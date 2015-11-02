@@ -1,18 +1,20 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 8/10/15
+* @date: 11/9/15
 * @brief: Driver for Binary Search Tree Class
 ********************************************************/
 
 
-#include <iostream>		//input/output
-#include <climits>		//allows us to use INT_MIN and INT_MAX
-#include <random>		//generate random numbers
-#include <ctime>		//seeds the generator
+#include <iostream>
+#include <climits>		
+#include <random>		
+#include <ctime>		
 
-#include "BinarySearchTree.h"	//Binary Search Tree
-#include "ValueNotFoundException.h"		//Allows us to use exception. Check to see if needed
+
+//User-defined classes
+#include "BinarySearchTree.h"	
+#include "Test.h"	
 
 void printMenu(){
 	
@@ -25,6 +27,7 @@ void printMenu(){
 	std::cout<<"6) Search original tree\n";
 	std::cout<<"7) Search copy\n";
 	std::cout<<"8) Exit\n";
+	std::cout<<"9) Run tests\n";
 	std::cout<<"Your choice: ";
 	
 	
@@ -33,12 +36,26 @@ void printMenu(){
 
 int main(int argc, char** argv){
 	
-	if(argc != 2){
-		std::cout<<"Invalid number of arguments.  Program terminated.\n";
+	
+	if(!(argc == 2 || argc == 3)){
+		std::cout<<"Invalid arguments\n";
 		return 0;
 	}
 	
-	int numNodes = atoi(argv[1]);
+	std::string argType = argv[1];
+	Test myTest;
+	int numNodes = 0;
+	if(argType.compare("-nodes") == 0 && argc == 3){
+		numNodes = atoi(argv[2]);
+	}
+	else if(argType.compare("-test") == 0){
+		
+		myTest.runTests();
+	}
+	else{
+		std::cout<<"Invalid command line arguments.";
+		return 0;
+	}
 	
 	if(numNodes < 0){
 		std::cout<<"Cannot make a tree with negative number of nodes.\n ";
@@ -46,25 +63,22 @@ int main(int argc, char** argv){
 	}
 	
 	/*******************************************************
-	* Local Primitive Variable Declaration
+	* LOCAL VARIABLES
 	********************************************************/
-	
-	int randomNumber = 0;
 	int choice = 0;
-	int choice2 = 0;
 	int value = 0;
 	
 	
 	bool flag = false;
 	
 	/*******************************************************
-	* Tree Declarations
+	*TREES
 	********************************************************/
 	BinarySearchTree<int>* original = new BinarySearchTree<int>();
 	BinarySearchTree<int>* copy = nullptr;
 	
 	/*******************************************************
-	* Random Number Declarations
+	* RANDOM NUMBER GENERATION
 	********************************************************/
 	
 	std::default_random_engine generator(time(nullptr));
@@ -75,20 +89,17 @@ int main(int argc, char** argv){
 	* INITIAL TREE POPULATION
 	********************************************************/
 	
-	
-	
-	
-	
 	std::cout<<"Filling original tree with "<<numNodes<<" values.\n";
 	
 	for(int i = 0;i < numNodes;i++){
 		
-		randomNumber = distribution(generator);
-		if(original->add(randomNumber)){
-			std::cout<<"Adding "<<randomNumber<<" to original tree.\n";
+		value = distribution(generator);
+		if(original->add(value)){
+			std::cout<<"Adding "<<value<<" to original tree.\n";
 		}
 		
 	}
+	value = 0;
 	
 	/*******************************************************
 	* TREE MODIFICATION
@@ -100,131 +111,156 @@ int main(int argc, char** argv){
 		
 		std::cout<<"You chose: "<<choice<<"\n";
 		
-		if(choice == 1){
-			std::cout<<"Input a value to add to the original: ";
-			std::cin>>value;
+		switch(choice){
 			
-			if(original->add(value)){
-				std::cout<<"Adding "<<value<<" to the original tree.\n";
-			}
-			else{
-				std::cout<<"Could not add value to the original tree.\n";
-			}
-		}
-		else if(choice == 2){
-			
-			copy = new BinarySearchTree<int>(*original);
-			std::cout<<"Original tree copied.\n";
-			
-		}
-		else if(choice == 3){
-			
-			delete original;
-			original = nullptr;
-			
-			std::cout<<"Original Tree deleted.\n";
-			
-		}
-		else if(choice == 4){
-			
-			if(original == nullptr){
-				std::cout<<"Original Tree no longer exists.  Cannot print.\n";
-			}
-			else{
-				std::cout<<"Print order options: \n";
-				std::cout<<"\t0 - pre-order\n";
-				std::cout<<"\t1 - in-order\n";
-				std::cout<<"\t2 - post-order\n";
-			
-				std::cin>>choice2;
-			
-				if(choice2 == 0){
-					original->printTree(PRE_ORDER);
-				}
-				else if(choice2 == 1){
-					original->sortedPrint();
-				}
-				else if(choice2 == 2){
-					original->printTree(POST_ORDER);
+			case 1:
+				if(original == nullptr){
+					std::cout<<"Original tree does not exist. Cannot add.\n";
 				}
 				else{
-					std::cout<<"Not a valid option, sorry.\n";
+					std::cout<<"Input a value to add to the original: ";
+					std::cin>>value;
+			
+					if(original->add(value)){
+						std::cout<<"Adding "<<value<<" to the original tree.\n";
+					}
+					else{
+						std::cout<<"Could not add value to the original tree.\n";
+					}
 				}
-			}
+			break;
 			
-		}
-		else if(choice == 5){
+			case 2:
+				copy = new BinarySearchTree<int>(*original);
+				std::cout<<"Original tree copied.\n";
+			break;
 			
-			if(copy == nullptr){
-				std::cout<<"Tree does not exist. Cannot print.\n";
-			}
-			else{
-				std::cout<<"Print order options: \n";
-				std::cout<<"\t0 - pre-order\n";
-				std::cout<<"\t1 - in-order\n";
-				std::cout<<"\t2 - post-order\n";
+			case 3:
+				delete original;
+				original = nullptr;
 			
-				std::cin>>choice2;
+				std::cout<<"Original Tree deleted.\n";
+			break;
 			
-				if(choice2 == 0){
-					copy->printTree(PRE_ORDER);
-				}
-				else if(choice2 == 1){
-					copy->sortedPrint();
-				}
-				else if(choice2 == 2){
-					copy->printTree(POST_ORDER);
+			case 4:
+			
+				if(original == nullptr){
+					std::cout<<"Original Tree no longer exists.  Cannot print.\n";
 				}
 				else{
-					std::cout<<"Not a valid option, sorry.\n";
+					std::cout<<"Print order options: \n";
+					std::cout<<"\t0 - pre-order\n";
+					std::cout<<"\t1 - in-order\n";
+					std::cout<<"\t2 - post-order\n";
+					
+					std::cout<<"Your choice: ";
+					std::cin>>value;
+					std::cout<<"You chose: "<<value<<"\n";
+			
+					switch(value){
+						case 0:
+							original->printTree(PRE_ORDER);
+						break;
+						case 1:
+							original->sortedPrint();
+						break;	
+						case 2:
+							original->printTree(POST_ORDER);
+						break;
+						default:
+							std::cout<<"Not a valid option.\n";
+						break;
+					}
 				}
-			}
-		}
-		else if(choice == 6){
+			break;
 			
-			if(original == nullptr){
-				std::cout<<"Tree does not exist.  Cannot print.\n";
-			}
-			else{
-			
-				std::cout<<"Choose a value you wish to search for: \n";
-				std::cin>>choice2;
-			
-				try{
-					std::cout<<original->search(choice2)<<" is in the list.\n";
+			case 5:
+				if(copy == nullptr){
+					std::cout<<"This tree doesn't exist.  Cannot print.\n";
 				}
-				catch(ValueNotFoundException& e){
-					std::cout<<e.what();
-				}
-			}
-			
-		}
-		else if(choice == 7){
-			
-			if(copy == nullptr){
-				std::cout<<"Tree does not exist.  Cannot print.\n";
-			}
-			else{
-				std::cout<<"Choose a value you wish to search for: \n";
-				std::cin>>choice2;
-			
+				else{
+					std::cout<<"Print order options: \n";
+					std::cout<<"\t0 - pre-order\n";
+					std::cout<<"\t1 - in-order\n";
+					std::cout<<"\t2 - post-order\n";
+					
+					
+					std::cout<<"Your choice: ";
+					std::cin>>value;
+					std::cout<<"You chose: "<<value<<"\n";
 	
-				try{
-					std::cout<<copy->search(choice2)<<" is in the list.\n";
+					switch(value){
+						case 0:
+							copy->printTree(PRE_ORDER);
+						break;
+						case 1:
+							copy->sortedPrint();
+						break;	
+						case 2:
+							copy->printTree(POST_ORDER);
+						break;
+						default:
+							std::cout<<"Not a valid option.\n";
+						break;
+					}
 				}
-				catch(ValueNotFoundException& e){
-					std::cout<<e.what();
+			break;
+			
+			case 6:
+			
+				if(original == nullptr){
+					std::cout<<"Tree does not exist.  Cannot print.\n";
 				}
-			}
+				else{
+			
+					std::cout<<"Choose a value you wish to search for: \n";
+					std::cin>>value;
+			
+					if(original->search(value)){
+						std::cout<<value<<" is in the list.\n";
+					}
+					else{
+						std::cout<<value<<" is not in the list.\n";
+					}
+				}
+			break;
+			
+			case 7:
+			
+				if(copy == nullptr){
+					std::cout<<"This tree does not exist.  Cannot print.\n";
+				}
+				else{
+		
+					std::cout<<"Choose a value you wish to search for: \n";
+					std::cin>>value;
+		
+					if(copy->search(value)){
+						std::cout<<value<<" is in the list.\n";
+					}
+					else{
+						std::cout<<value<<" is not in the list.\n";
+					}
+				}
+			break;
+			
+			case 8:
+				flag = true;
+			
+			break;
+			
+			case 9:
+				myTest.runTests();
+			
+			break;
+			
+			default:
+				std::cout<<"Invalid choice.\n";
+			break;	
 		}
-
-		else if(choice == 8){
-			flag = true;
-		}
-		else{
-			std::cout<<"Invalid choice.\n";
-		}	
+	
 	}
+	
 	std::cout<<"Exiting...";
 	
 	if(original != nullptr){

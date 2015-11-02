@@ -1,15 +1,14 @@
 /*******************************************************
 * @file: BSTI.h
 * @author: Dravid Joseph
-* @date: 8/10/15
+* @date: 11/9/15
 * @brief: Header file for BST Interface
 ********************************************************/
 
 #ifndef BSTI_H
 #define BSTI_H
 
-
-#include "ValueNotFoundException.h"
+#include <vector>
 
 enum Order {PRE_ORDER,IN_ORDER,POST_ORDER};
 
@@ -64,26 +63,30 @@ public:
 	* @return : T
 	********************************************************/
 	
-	virtual T search(T value) const throw (ValueNotFoundException) = 0;
-	
-	
-	/*******************************************************
-	* @pre :  valid enum
-	* @post : print tree in specified order
-	* @return : void
-	********************************************************/
-	
-	virtual void printTree(Order order) const = 0;
+	virtual bool search(T value) const = 0;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : contents of tree printed in order
+	* @post : prints tree in specified order
 	* @return : void
 	********************************************************/
+	virtual void printTree(Order order) const = 0;
 	
+	
+	/*******************************************************
+	* @pre : None
+	* @post : prints tree in order
+	* @return : T
+	********************************************************/
 	virtual void sortedPrint() const = 0;
 	
 	
+	/*******************************************************
+	* @pre :  valid order
+	* @post : returns vector in specified traversal
+	* @return : vector
+	********************************************************/
+	virtual std::vector<T> treeToVector(Order order) const = 0;
 	
 };
 #endif
