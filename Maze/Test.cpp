@@ -29,8 +29,8 @@ void Test::runTests()
 
 	score += test_mazeWalker01() ? 13 : 0;
 	score += test_mazeWalker02() ? 13 : 0;
-	//score += test_mazeWalker03() ? 13 : 0;
-	//score += test_mazeWalker04() ? 13 : 0;
+	score += test_mazeWalker03() ? 13 : 0;
+	score += test_mazeWalker04() ? 13 : 0;
 
         std::cerr << "\n\n=========================\n";
         std::cerr << "Score: " << score << " / " << MAX_SCORE << "\n";

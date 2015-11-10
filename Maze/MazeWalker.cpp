@@ -12,6 +12,7 @@ MazeWalker::MazeWalker(const char* const* mazePtr, int startRow, int startCol, i
 	m_maze = mazePtr;
 	m_rows = rows;
 	m_cols = cols;
+	
 	m_curStep = 1;
 	
 	m_searchType = searchChoice;
@@ -29,6 +30,7 @@ MazeWalker::MazeWalker(const char* const* mazePtr, int startRow, int startCol, i
 	}
 	
 	m_visited[startRow][startCol] = m_curStep;
+	m_curStep++;
 	
 }
 
@@ -44,12 +46,9 @@ MazeWalker::~MazeWalker(){
 
 bool MazeWalker::walkMaze(){
 	
-	m_visited[m_curPos.getRow()][m_curPos.getCol()]++;
-	
-	if(Search::DFS){
+	if(m_searchType == Search::DFS){
 		//Load starting position into stack
 		m_moveStack.push(m_startPos);
-		
 		
 		//keep this going until either the stack is empty or the goal is reached
 		while(!(m_moveStack.empty() || isGoalReached())){
@@ -68,13 +67,17 @@ bool MazeWalker::walkMaze(){
 	}
 	else{
 		//Load starting position into queue
+		std::cout<<"Pushing start position ("<<m_startPos.getRow()<<","<<m_startPos.getCol()<<") to queue.\n";
 		m_moveQueue.push(m_startPos);
 		
 		while(!(m_moveQueue.empty() || isGoalReached())){
 			//store valid moves from start or last iteration
+			
+			std::cout<<"Storing Valid Moves...\n";
 			storeValidMoves();
 			//move m_curPos to the top of queue and go from there.
-  
+  		  	
+			std::cout<<"Moving m_curPos to the front of the queue!";
 			move(m_moveQueue.front());
 			
 			//pop the position from the end of the queue
@@ -106,11 +109,12 @@ void MazeWalker::storeValidMoves(){
 	
 	/***************************************************
 	*local bools to check if move is even possible
+	*Assumes m_curPos is valid to begin with
 	***************************************************/
 	bool up = m_curPos.getRow() - 1 >= 0;
-	bool down = m_curPos.getRow() + 1 <= m_rows;
+	bool down = m_curPos.getRow() + 1 < m_rows;
 	bool left = m_curPos.getCol() - 1 >= 0;
-	bool right = m_curPos.getCol() + 1 <= m_cols;
+	bool right = m_curPos.getCol() + 1 < m_cols;
 	
 	/***************************************************
 	*local ints to check specific indices
@@ -127,26 +131,30 @@ void MazeWalker::storeValidMoves(){
 	int row = m_curPos.getRow();
 	int col = m_curPos.getCol();
 	
-	if(Search::DFS){
+	if(m_searchType == Search::DFS){
 		//valid up move
 		if(up){
-			//Check if up move is a wall
-			if(m_maze[rowAbove][col] != 'W'){
+			//If move is passage or exit, push it
+			std::cout<<"Valid up move? Yup.\n";
+			if(m_maze[rowAbove][col] != 'W' && m_visited[rowAbove][col] == 0){
 				m_moveStack.push(Position(rowAbove,col));
 			}
 		}
 		if(right){
-			if(m_maze[row][colRight] != 'W'){
+			std::cout<<"Valid right move? Yup.\n";
+			if(m_maze[row][colRight] != 'W' && m_visited[row][colRight] == 0){
 				m_moveStack.push(Position(row,colRight));
 			}
 		}
 		if(down){
-			if(m_maze[rowBelow][col] != 'W'){
+			std::cout<<"Valid down move? Yup.\n";
+			if(m_maze[rowBelow][col] != 'W' && m_visited[rowBelow][col] == 0){
 				m_moveStack.push(Position(rowBelow,col));
 			}
 		}
 		if(left){
-			if(m_maze[rowAbove][col] != 'W'){
+			std::cout<<"Valid left move? Yup.\n";
+			if(m_maze[row][colLeft] != 'W' && m_visited[row][colLeft] == 0){
 				m_moveStack.push(Position(row,colLeft));
 			}
 		}
@@ -156,31 +164,47 @@ void MazeWalker::storeValidMoves(){
 	else{
 		if(up){
 			//Check if up move is a wall
-			if(m_maze[rowAbove][col] != 'W'){
+			std::cout<<"Valid up move? Yup.\n";
+			if(m_maze[rowAbove][col] != 'W' && m_visited[rowAbove][col] == 0){
+				std::cout<<"Passageway Here in up!\n";
 				m_moveQueue.push(Position(rowAbove,col));
+				std::cout<<"Pushing ("<<rowAbove<<","<<col<<") to queue.\n";
 			}
 		}
 		if(right){
-			if(m_maze[row][colRight] != 'W'){
+			std::cout<<"Valid right move? Yup.\n";
+			if(m_maze[row][colRight] != 'W' && m_visited[row][colRight] == 0){
+				std::cout<<"Passageway Here in right!\n";
 				m_moveQueue.push(Position(row,colRight));
+				std::cout<<"Pushing ("<<row<<","<<colRight<<") to queue.\n";
 			}
 		}
 		if(down){
-			if(m_maze[rowBelow][col] != 'W'){
+			std::cout<<"Valid down move? Yup.\n";
+			if(m_maze[rowBelow][col] != 'W' && m_visited[rowBelow][col] == 0){
+				std::cout<<"Passageway Here in down!\n";
 				m_moveQueue.push(Position(rowBelow,col));
+				std::cout<<"Pushing ("<<rowBelow<<","<<col<<") to queue.\n";
 			}
 		}
 		if(left){
-			if(m_maze[rowAbove][col] != 'W'){
+			std::cout<<"Valid left move? Yup.\n";
+			if(m_maze[row][colLeft] != 'W' && m_visited[row][colLeft] == 0){
+				std::cout<<"Passageway Here in left!\n";
 				m_moveQueue.push(Position(row,colLeft));
+				std::cout<<"Pushing ("<<row<<","<<colLeft<<") to queue.\n";
 			}
+			
 		}
 	}
 }
 
 void MazeWalker::move(Position& p){
 	m_curPos = p;
-	m_visited[m_curPos.getRow()][m_curPos.getCol()] = m_curStep;
+	if(m_visited[p.getRow()][p.getCol()] == 0){
+		m_visited[p.getRow()][p.getCol()] = m_curStep;
+		m_curStep++;
+	}
 }
 
 bool MazeWalker::isGoalReached() const{

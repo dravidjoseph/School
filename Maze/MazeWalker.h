@@ -14,7 +14,7 @@
 
 #include "Position.h"
 
-enum Search {DFS,BFS};
+enum class Search {DFS,BFS};
 
 class MazeWalker{
 
