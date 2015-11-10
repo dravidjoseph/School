@@ -1,21 +1,24 @@
 /*******************************************************
 * @file: MazeWalker.h
 * @author: Dravid Joseph
-* @date: 8/12/15
+* @date: 11/16/15
 * @brief: Header file for MazeWalker Class
 ********************************************************/
 
-#ifndef MAZEWALKER_H
-#define MAZEWALKER_H
+#ifndef MAZE_WALKER_H
+#define MAZE_WALKER_H
 
+#include <iostream>
 #include <stack>
 #include <queue>
-#include <iostream>
 
 #include "Position.h"
 
+enum Search {DFS,BFS};
+
 class MazeWalker{
-	
+
+
 	/*******************************************************
 	* PUBLIC METHODS
 	********************************************************/
@@ -23,89 +26,102 @@ class MazeWalker{
 public:
 	
 	/*******************************************************
-	* @pre :  Valid parameters
-	* @post : MazeWalker Initialized
+	* @pre :  mazePtr is a valid maze
+	* @post : Allocates mazewalker
 	* @return : None
 	********************************************************/
 	
-	MazeWalker(char** mazePtr, int startRow, int startCol, int rows, int cols,bool dfs);
+	MazeWalker(const char* const* mazePtr, int startRow, int startCol, int rows, int cols, Search searchChoice);
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Deallocates MazeWalker
+	* @pre :  Visited array still exists
+	* @post : Deallocates visited array
 	* @return : None
 	********************************************************/
 	
 	~MazeWalker();
 	
 	/*******************************************************
+	* @pre :  valid maze
+	* @post : returns true if exit is reached, false otherwise
+	* @return : bool
+	********************************************************/
+	
+	bool walkMaze();
+	
+	/*******************************************************
 	* @pre :  None
-	* @post : traverses maze searching for exit
+	* @post : access visited array
+	* @return : const int ptr
+	********************************************************/
+	
+	const int* const* getVisited() const;
+	
+	/*******************************************************
+	* @pre :  valid filename
+	* @post : Allocates 2D char array with maze information
 	* @return : None
 	********************************************************/
 	
-	void walkMaze();
+	int getVisitedRows() const;
 	
 	/*******************************************************
-	* PROTECTED METHODS
+	* @pre :  valid filename
+	* @post : Allocates 2D char array with maze information
+	* @return : None
 	********************************************************/
+	
+	int getVisitedCols() const;
+	
+	/*******************************************************
+	* @pre :  valid filename
+	* @post : Allocates 2D char array with maze information
+	* @return : None
+	********************************************************/
+	
+	const char* const* getMaze() const;
 	
 protected:
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : Stores valid moves in stack or queue
-	* @return : void
+	* @pre :  Valid m_curPos
+	* @post : Data structures loaded with moves
+	* @return : None
 	********************************************************/
 	
 	void storeValidMoves();
 	
 	/*******************************************************
-	* @pre :  Valid position
-	* @post : Moves based on position
-	* @return : void
+	* @pre :  Valid Position
+	* @post : Current position set to P
+	* @return : None
 	********************************************************/
 	
 	void move(Position& p);
 	
 	/*******************************************************
-	* @pre :  None
-	* @post : prints visited boolean array
-	* @return : void
-	********************************************************/
-	
-	void printVisited() const;
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : Returns true if exit is reached, false otherwise.
+	* @pre :  none
+	* @post : determines if goal is reached
 	* @return : bool
 	********************************************************/
 	
 	bool isGoalReached() const;
 	
-	/*******************************************************
-	* PROTECTED MEMBERS
-	********************************************************/
+	Search m_searchType;
 	
-	bool m_isDFS;	//true if dfs, false if bfs
+	const char* const* m_maze;
 	
-	char** m_maze;	//2D array which holds characters for maze
+	int** m_visited;
 	
-	bool** m_visited;	//2D boolean array.
+	int m_rows;
+	int m_cols;
 	
-	int m_rows;		//field to hold rows
+	Position m_curPos;
+	Position m_startPos;
 	
-	int m_cols;		//field to hold columns
+	std::stack<Position> m_moveStack;
+	std::queue<Position> m_moveQueue;
 	
-	Position m_curPos;		//current position
-	
-	Position m_startPos;	//starting position
-	
-	std::stack<Position> m_moveStack;	//stack which holds positions
-	
-	std::queue<Position> m_moveQueue;	//queue which holds positions.
-	
-	
+	int m_curStep;
 };
 #endif

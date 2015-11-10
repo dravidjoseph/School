@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: MazeCreationException.h
 * @author: Dravid Joseph
-* @date: 8/12/15
+* @date: 11/16/15
 * @brief: Header file for MazeCreationException Class
 ********************************************************/
 
@@ -10,22 +10,16 @@
 
 #include <stdexcept>
 
-class MazeCreationException: public std::runtime_error{
+class MazeCreationException:public std::runtime_error{
 	
 	/*******************************************************
 	* PUBLIC METHODS
 	********************************************************/
-	
-public:
-	
-	/*******************************************************
-	* @pre :  None
-	* @post : Binary Search Tree initialized
-	* @return : None
-	********************************************************/
-	
+
+public: 
+		
 	MazeCreationException(const char* message);
-	
 	
 };
 #endif
+

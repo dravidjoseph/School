@@ -1,21 +1,23 @@
-Maze: main.o MazeWalker.o MazeReader.o MazeCreationException.o Position.o
-	g++ -g -std=c++11 main.o MazeWalker.o MazeReader.o MazeCreationException.o Position.o -o Maze
-	
-main.o: main.cpp MazeWalker.h MazeReader.h MazeCreationException.h
-	g++ -g -std=c++11 -c main.cpp
-	
+Maze: main.o MazeCreationException.o MazeReader.o Position.o MazeWalker.o Test.o
+	g++ -g -std=c++11 -Wall main.o MazeReader.o Position.o MazeCreationException.o MazeWalker.o Test.o -o Maze
+
+main.o: main.cpp MazeCreationException.h MazeCreationException.cpp Position.h Position.cpp
+	g++ -g -std=c++11 -Wall -c main.cpp
+
 MazeCreationException.o: MazeCreationException.h MazeCreationException.cpp
-	g++ -g -std=c++11 -c MazeCreationException.cpp
-	
-MazeReader.o: MazeReader.h MazeCreationException.h MazeReader.cpp
-	g++ -g -std=c++11 -c MazeReader.cpp
-	
-Position.o: Position.h Position.cpp
-	g++ -g -std=c++11 -c Position.cpp
-	
+	g++ -g -std=c++11 -Wall -c MazeCreationException.cpp
+
+MazeReader.o: MazeReader.h MazeReader.cpp
+	g++ -g -std=c++11 -Wall -c MazeReader.cpp
+
 MazeWalker.o: MazeWalker.h MazeWalker.cpp
-	g++ -g -std=c++11 -c MazeWalker.cpp
+	g++ -g -std=c++11 -Wall -c MazeWalker.cpp
+
+Position.o: Position.h Position.cpp
+	g++ -g -std=c++11 -Wall -c Position.cpp
 	
+Test.o: Test.h ArrayHelper.h ArrayHelper.hpp Test.cpp
+	g++ -g -std=c++11 -Wall -c Test.cpp
 	
 clean:
 	rm *.o Maze

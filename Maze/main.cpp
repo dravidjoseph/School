@@ -1,68 +1,81 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 8/12/15
+* @date: 11/16/15
 * @brief: Driver for Maze Program
 ********************************************************/
 
 #include <iostream>
 
-#include "MazeWalker.h"
 #include "MazeReader.h"
+#include "MazeWalker.h"
 #include "MazeCreationException.h"
+#include "Test.h"
+
 
 int main(int argc, char** argv){
 	
-	if(argc != 3){
-		std::cout<<"Please run the program again, using three arguments.\n";
+	if(argc != 3 && argc != 2){
+		return 0;
+	}
+	std::string searchType = argv[1];
+	if(argc == 2 && searchType.compare("-test") == 0){
+		
+		Test myTest;
+		myTest.runTests();
 		return 0;
 	}
 	
-	std::string fileName = argv[1];
-	std::string search = argv[2];
 	
-	std::cout<<fileName<<"\n";
-	std::cout<<search<<"\n";
+	std::string file = argv[2];
 	
-	bool searchFlag;
 	
-	MazeReader* reader = nullptr;
+	if(!(searchType.compare("-dfs") == 0 || searchType.compare("-bfs") == 0)){
+		return 0;
+	}
+	
+	MazeReader* maze = nullptr;
 	MazeWalker* walker = nullptr;
 	
-	if(search == "-dfs"){
-		searchFlag = true;
+	try{
+		maze = new MazeReader(file);
 	}
-	else if(search == "-bfs"){
-		searchFlag = false;
+	catch(MazeCreationException& e){
+		std::cout<<e.what();
+		return 0;
+	}
+	
+	if(searchType.compare("-dfs") == 0){
+		walker = new MazeWalker(maze->getMaze(),maze->getStartRow(),maze->getStartCol(),maze->getRows(),maze->getCols(),Search::DFS);
 	}
 	else{
-		std::cout<<"Invalid search option.  Defaulting to bfs.";
+		walker = new MazeWalker(maze->getMaze(),maze->getStartRow(),maze->getStartCol(),maze->getRows(),maze->getCols(),Search::BFS);
 	}
 	
-	std::cout<<searchFlag<<"\n";
+	std::cout<<"Starting Position: "<<maze->getStartRow()<<","<<maze->getStartCol()<<"\n";
+	std::cout<<"Size: "<<maze->getRows()<<","<<maze->getCols()<<"\n";
 	
+	bool goal = walker->walkMaze();
 	
-	try{
-		reader = new MazeReader(fileName);
-	}
-	catch(MazeCreationException& e){
-		std::cout<<e.what();
-	}
+	const int* const* visited = walker->getVisited();
 	
-	
-	try{
-		walker = new MazeWalker(reader->getMaze(),reader->getStartRow(),reader->getStartCol(),reader->getRows(),reader->getCols(),searchFlag);
-	}
-	catch(MazeCreationException& e){
-		std::cout<<e.what();
+	for(int i = 0; i < maze->getRows(); i++){
+		for(int j = 0; j < maze->getCols(); j++){
+			std::cout<<visited[i][j]<<"\t";
+		}
+		std::cout<<"\n";
 	}
 	
-	walker->walkMaze();
+	if(goal){
+		std::cout<<"We escaped!\n";
+	}
+	else{
+		std::cout<<"No way out!\n";
+	}
 	
-	
-	delete reader;
+	delete maze;
 	delete walker;
-	reader = nullptr;
+	maze = nullptr;
 	walker = nullptr;
 	
 	
