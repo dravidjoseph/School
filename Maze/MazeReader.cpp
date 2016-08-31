@@ -10,17 +10,21 @@
 MazeReader::MazeReader(std::string file) throw (MazeCreationException){
 	
 	fileName = file;	//stores filename in instance variable for readMaze
+	//Open filestream object
 	input.open(fileName);
 	
+	//if file isn't accessible, throw exception
 	if(!input.good()){
 		throw MazeCreationException("Invalid filename");
 	}
 	
+	//File accessible, read metadata
 	input >> m_rows;
 	input >> m_cols;
 	input >> m_startRow;
 	input >> m_startCol;
 	
+	//Check for bad metadata and throw exceptions as necessary
 	if(m_rows < 1 || m_cols < 1){
 		throw MazeCreationException("Invalid dimensions");
 	}
@@ -87,21 +91,6 @@ void MazeReader::readMaze() throw (MazeCreationException){
 			input >> maze[i][j];
 		}
 	}
-
-		/**
-		std::cout<<m_rows;
-		std::cout<< m_cols;
-		std::cout<<"\n";
-		std::cout<< m_startRow;
-		std::cout<< m_startCol;
-		std::cout<<"\n";
-		for(int i = 0; i < m_rows; i++){
-			for (int j = 0; j < m_cols; j++){
-				std::cout<< maze[i][j];
-			}
-			std::cout<<"\n";
-		}
-		*/
 		
 	//close file
 	input.close();

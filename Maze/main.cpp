@@ -16,8 +16,10 @@
 int main(int argc, char** argv){
 	
 	if(argc != 3 && argc != 2){
+		std::cout<<"Invalid arguments.";
 		return 0;
 	}
+	
 	std::string searchType = argv[1];
 	if(argc == 2 && searchType.compare("-test") == 0){
 		
@@ -37,6 +39,7 @@ int main(int argc, char** argv){
 	MazeReader* maze = nullptr;
 	MazeWalker* walker = nullptr;
 	
+	//read the file
 	try{
 		maze = new MazeReader(file);
 	}
@@ -45,13 +48,17 @@ int main(int argc, char** argv){
 		return 0;
 	}
 	
+	//if dfs flag, do dfs
 	if(searchType.compare("-dfs") == 0){
 		walker = new MazeWalker(maze->getMaze(),maze->getStartRow(),maze->getStartCol(),maze->getRows(),maze->getCols(),Search::DFS);
 	}
+	//otherwise do bfs
 	else{
 		walker = new MazeWalker(maze->getMaze(),maze->getStartRow(),maze->getStartCol(),maze->getRows(),maze->getCols(),Search::BFS);
 	}
 	
+	
+	//print the maze
 	std::cout<<"Starting Position: "<<maze->getStartRow()<<","<<maze->getStartCol()<<"\n";
 	std::cout<<"Size: "<<maze->getRows()<<","<<maze->getCols()<<"\n";
 	

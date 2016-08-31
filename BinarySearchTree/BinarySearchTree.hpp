@@ -20,6 +20,7 @@ BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& other){
 	if(!other.isEmpty()){
 		m_root = new Node<T>(*(other.m_root));
 	}
+	//important check for cloning empty tree
 	else{
 		m_root = nullptr;
 	}
@@ -73,11 +74,11 @@ void BinarySearchTree<T>::sortedPrint() const{
 
 template<typename T>
 std::vector<T> BinarySearchTree<T>::treeToVector(Order order) const{
-	
+	//create vector
 	std::vector<T> vec;
-	
+	//modify vector with values
 	treeToVector(order,m_root,vec);
-	
+	//return vector
 	return vec;
 	
 }
@@ -223,6 +224,7 @@ void BinarySearchTree<T>::printTree(Node<T>* subTree, Order order) const{
 template<typename T>
 void BinarySearchTree<T>::treeToVector(Order order,Node<T>* subTree, std::vector<T>& vec) const{
 	
+//pretty much exactly like printTree but stores values in vector	
 	switch(order){
 		
 		case PRE_ORDER:

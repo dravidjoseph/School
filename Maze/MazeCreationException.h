@@ -17,7 +17,11 @@ class MazeCreationException:public std::runtime_error{
 	********************************************************/
 
 public: 
-		
+	/*******************************************************
+	* @pre :  None
+	* @post : Initializes MazeCreationException object
+	* @return : None
+	********************************************************/	
 	MazeCreationException(const char* message);
 	
 };

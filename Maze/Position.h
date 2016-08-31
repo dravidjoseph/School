@@ -45,9 +45,5 @@ private:
 	
 	int m_row;
 	int m_col;
-	
-	
-	
-	
 };
 #endif

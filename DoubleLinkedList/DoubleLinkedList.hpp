@@ -351,3 +351,33 @@ void DoubleLinkedList<T>::printList() const{
 	
 	
 }
+
+template<typename T>
+void DoubleLinkedList<T>::removeDuplicates(){
+	//remove duplicates in a way that the only elements are in the back.
+	
+	if(isEmpty() || size() == 1){
+		//No duplicates
+	}
+	else{
+		Node<T>* t1 = m_back;
+		
+		int size = m_size;
+		
+		while(t1->getPrevious() != m_front){
+			Node<T>* t2 = find(t1->getValue());
+			if(t2 != nullptr && t1 != t2){
+				bool 
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+}

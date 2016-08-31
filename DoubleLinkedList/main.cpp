@@ -23,6 +23,7 @@ void printMenu()
 		<<	"8) print list\n"
 		<<	"9) Quit\n"
 		<<	"10) Run Tests\n"
+		<<	"11) Remove duplicates\n"
 		<< 	"Your choice: ";
 }
 
@@ -134,7 +135,9 @@ int main(){
 			Test myTest(std::cout);
 			myTest.runTests();
 		}
-		
+		else if(choice == 11){
+			dll->removeDuplicates();
+		}
 		else{
 			std::cout<<"Invalid choice.\n";
 		}

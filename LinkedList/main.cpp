@@ -28,6 +28,7 @@ void printMenu(){
 			<< "6) Search for value\n"
 			<< "7) Exit\n"
 			<< "8) Run tests\n"
+			<< "9) Reverse the list\n"
 			<< "Enter your choice: ";
 }
 
@@ -113,6 +114,9 @@ int main(){
 		else if(choice == 8){
 			Test testers(std::cout);	//declares test instance
 			testers.runTests();
+		}
+		else if(choice == 9){
+			list->reverse();
 		}
 		
 		else{

@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: main.cpp
 * @author: Dravid Joseph
-* @date: 10/26/15
+* @date: 11/2/15
 * @brief: header for NumberFileDriver class
 ********************************************************/
 
@@ -49,6 +49,8 @@ int main(int argc, char** argv){
 			std::cout<<"Invalid arguments";
 		}
 	}
+	
+	return 0;
 	
 }
 

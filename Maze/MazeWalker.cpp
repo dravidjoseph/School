@@ -9,43 +9,53 @@
 
 MazeWalker::MazeWalker(const char* const* mazePtr, int startRow, int startCol, int rows, int cols, Search searchChoice):m_curPos(Position(startRow,startCol)),m_startPos(Position(startRow,startCol)){
 	
+	
+	//initializes all local variables
 	m_maze = mazePtr;
 	m_rows = rows;
 	m_cols = cols;
-	
 	m_curStep = 1;
-	
 	m_searchType = searchChoice;
 	
+	
+	
+	
+	//Initialize m_visited, a 2D integer array
 	m_visited = new int*[m_rows];
 	
+	//initialize each row to an integer array
 	for(int i = 0;i<m_rows;i++){
 		m_visited[i] = new int[m_cols];
 	}
 	
+	//Populate the array with zeros
 	for(int i = 0;i < m_rows;i++){
 		for(int j = 0; j < m_cols; j++){
 			m_visited[i][j] = 0;
 		}
 	}
 	
+	//Replace zero at the starting location with 1.
 	m_visited[startRow][startCol] = m_curStep;
-	m_curStep++;
-	
+	m_curStep++;	//increment for future use.
 }
 
 MazeWalker::~MazeWalker(){
 	//m_maze is handled by maze reader
+	
+	//delete integer arrays each pointer holds
 	for(int i = 0; i < m_rows; i++){
 		delete m_visited[i];
 		m_visited[i] = nullptr;
 	}
+	//delete the pointers (is this technically necessary?)
 	delete m_visited;
 	m_visited = nullptr;
 }
 
 bool MazeWalker::walkMaze(){
 	
+	//Do DFS
 	if(m_searchType == Search::DFS){
 		//Load starting position into stack
 		m_moveStack.push(m_startPos);
@@ -54,37 +64,33 @@ bool MazeWalker::walkMaze(){
 		while(!(m_moveStack.empty() || isGoalReached())){
 			//store valid moves from start or last iteration
 			storeValidMoves();
-			//move m_curPos to the top of stack and go from there. 
+			//move m_curPos to the top of stack 
 			move(m_moveStack.top());
 			
 			//pop the position from the stack
 			m_moveStack.pop();
 			
-		}
-		
-		
-		
+		}	
 	}
 	else{
 		//Load starting position into queue
-		//std::cout<<"Pushing start position ("<<m_startPos.getRow()<<","<<m_startPos.getCol()<<") to queue.\n";
 		m_moveQueue.push(m_startPos);
 		
+		//keep going until queue is empty or goal is reached
 		while(!(m_moveQueue.empty() || isGoalReached())){
-			//store valid moves from start or last iteration
 			
-			//std::cout<<"Storing Valid Moves...\n";
+			//store valid moves at the end of the queue
 			storeValidMoves();
-			//move m_curPos to the top of queue and go from there.
+			//Remove from the front of the queue
   		  	m_moveQueue.pop();
-			//std::cout<<"Moving m_curPos to the front of the queue!";
+			
+			//Ensures that once the queue is empty no moves will be made.
 			if(!m_moveQueue.empty()){
 				move(m_moveQueue.front());
 			}
 		}
 	}
-	
-	return isGoalReached();
+	return isGoalReached();		//either it's reached or it isn't
 }
 
 const int* const* MazeWalker::getVisited() const{
@@ -150,7 +156,6 @@ void MazeWalker::storeValidMoves(){
 				m_moveStack.push(Position(row,colLeft));
 			}
 		}
-		
 	}
 	//BFS
 	else{
@@ -179,7 +184,9 @@ void MazeWalker::storeValidMoves(){
 }
 
 void MazeWalker::move(Position& p){
+	//Change m_curPos to p
 	m_curPos = p;
+	//mark step ONLY if the move hasn't been visited.
 	if(m_visited[m_curPos.getRow()][m_curPos.getCol()] == 0){
 		m_visited[m_curPos.getRow()][m_curPos.getCol()] = m_curStep;
 		m_curStep++;

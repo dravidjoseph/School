@@ -1,7 +1,7 @@
 /*******************************************************
 * @file: BinarySearchTree.h
 * @author: Dravid Joseph
-* @date: 8/5/15
+* @date: 11/9/15
 * @brief: Header file for BinarySearchTree class
 ********************************************************/
 
@@ -76,11 +76,24 @@ public:
 	* @post : prints tree inorder
 	* @return : bool
 	********************************************************/
+	
 	bool search(T value) const;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree in specified order
+	* @return : bool
+	********************************************************/
 	
 	void printTree(Order order) const;
 	
-	virtual void sortedPrint() const;
+	/*******************************************************
+	* @pre :  None
+	* @post : prints tree inorder
+	* @return : bool
+	********************************************************/
+	
+	void sortedPrint() const;
 	
 	/*******************************************************
 	* @pre :  valid order
@@ -132,9 +145,9 @@ private:
 	void printTree(Node<T>* subTree, Order order) const;
 	
 	/*******************************************************
-	* @pre :  valid order
+	* @pre :  valid order, valid subTree, valid vector ref
 	* @post : prints tree in specified order
-	* @return : vector
+	* @return : void
 	********************************************************/
 	void treeToVector(Order order,Node<T>* subTree, std::vector<T>& vec) const; 
 	

@@ -78,7 +78,7 @@ void Test::runTests()
 }
 
 
-Test::Test(std::ostream& os) : os(os), TEST_SIZE(1000), NUM_TESTS(12), MAX_SCORE(80)
+Test::Test(std::ostream& os) : os(os), TEST_SIZE(10000), MAX_SCORE(80)
 {
 	m_testNum = 0;
 }
@@ -307,7 +307,7 @@ bool Test::test_sort10()
 	m_testNum++;
 	printTestMessage(m_testNum, "bogo sort called with an array of size 1");
 	
-	Sorts<int>::insertionSort(arr, 1);
+	Sorts<int>::bogoSort(arr, 1);
 	isPassed = Sorts<int>::isSorted(arr,1);
 	
 	printPassFail(isPassed);
@@ -377,7 +377,7 @@ bool Test::test_sort13()
 bool Test::test_sort14()
 {
 	bool isPassed = false;
-	const int SIZE = 8;
+	const int SIZE = 4;
 	const int LOW = 0;
 	const int HIGH = 5000;
 	int* arr = Sorts<int>::createTestArray(SIZE, LOW, HIGH);
@@ -564,7 +564,7 @@ bool Test::test_sort22()
 	m_testNum++;
 	printTestMessage(m_testNum, "quick sort called with an array of size " + std::to_string(TEST_SIZE));
 	
-	Sorts<int>::mergeSort(arr, TEST_SIZE);
+        Sorts<int>::quickSort(arr, TEST_SIZE);
 	isPassed = Sorts<int>::isSorted(arr, TEST_SIZE);
 	
 	delete[] arr;
@@ -585,7 +585,7 @@ bool Test::test_sort23()
 	m_testNum++;
 	printTestMessage(m_testNum, "quickSortWithMedian sort called with an array of size " + std::to_string(TEST_SIZE));
 	
-	Sorts<int>::mergeSort(arr, TEST_SIZE);
+        Sorts<int>::quickSortWithMedian(arr, TEST_SIZE);
 	isPassed = Sorts<int>::isSorted(arr, TEST_SIZE);
 	
 	delete[] arr;

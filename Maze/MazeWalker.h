@@ -8,7 +8,6 @@
 #ifndef MAZE_WALKER_H
 #define MAZE_WALKER_H
 
-#include <iostream>
 #include <stack>
 #include <queue>
 

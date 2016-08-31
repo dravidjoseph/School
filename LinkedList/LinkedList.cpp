@@ -145,32 +145,27 @@ bool LinkedList::removeBack(){
 	if(isEmpty()){
 		return false;
 	}
-
-	Node* endPtr = m_front;
-	//m_front node being held by endPtr
-	if(m_size == 1){
+	else if(size() == 1){
+		delete m_front;
 		m_front = nullptr;
 	}
-	//2+ node list
 	else{
-		//endPtr is one node ahead of firstPtr
-		Node* penPtr = m_front;
-		endPtr = m_front -> getNext();
 		
-		//advance until secondPtr is at end of list
-		while(endPtr->getNext() != nullptr){
-			penPtr = penPtr->getNext();
-			endPtr = endPtr->getNext();
+		Node* t1 = m_front;
+		Node* t2 = m_front->getNext();
+		
+		while(t2->getNext() != nullptr){
+			t1 = t1->getNext();
+			t2 = t2->getNext();
 		}
-		//now endPtr points to the last node in list	
-		penPtr->setNext(nullptr);
+		t1->setNext(nullptr);
+		delete t2;
+		t2 = nullptr;
+		
 	}
-	
-	delete endPtr;
-	endPtr = nullptr;
 	m_size--;
-	
 	return true;
+	
 	
 	
 }
@@ -197,5 +192,41 @@ bool LinkedList::removeFront(){
 	}
 }
 
+void LinkedList::reverse(){
+	
+	if(isEmpty() || size() == 1){
+		//Nothing to do
+	}
+	else{
+		Node* newFront = m_front->getNext();
+		Node* c1 = m_front;
+		
+		//Set newFront and switch the pointer around
+		while(newFront->getNext() != nullptr){
+			newFront = newFront->getNext();
+			c1 = c1->getNext();
+		}
+		newFront->setNext(c1);
+		c1->setNext(nullptr);
+		
+		c1 = m_front;
+		Node* c2 = m_front->getNext();
+		//Get the rest of the list
+		for(int i = 0; i < m_size-2;i++){
+			while(c2->getNext() != nullptr){
+				c1 = c1->getNext();
+				c2 = c2->getNext();
+			}
+			c1->setNext(nullptr);
+			c2->setNext(c1);
+			c1 = m_front;
+			c2 = m_front->getNext();
+		}
+		
+		m_front = newFront;
+		
+		
+	}
+}
 
 
